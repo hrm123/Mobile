@@ -1,6 +1,7 @@
 'use strict;'
 import {React} from 'react-native';
 let { AppRegistry, Component, Text} = React;
+import TaskList from './TaskList';
 
 class Todos extends Component{
     constructor(props, context){
@@ -8,7 +9,7 @@ class Todos extends Component{
         this.state = {
             todos:[
                 {
-                    task: 'Learn reacct Native'
+                    task: 'Learn React Native'
                 }
             ]
 
@@ -17,7 +18,7 @@ class Todos extends Component{
 
     render(){
         return {
-            <Text> Hello world! </Text>
+            <TaskList/>
         };
     }
 
