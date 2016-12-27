@@ -21,7 +21,7 @@ class Weekdays extends Component {
       var daysItems = [];
       for(i=0;i<7;i++){
         var day = Moment().add(i,'days').format('dddd');
-        daysItems.push(<DayItem key={day} DayName={day} DaysUntil={i}></DayItem>);
+        daysItems.push(<DayItem key={day} DayName={day} DaysUntil={i+1}></DayItem>);
       }
       return daysItems;
       /*

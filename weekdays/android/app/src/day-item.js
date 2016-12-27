@@ -29,6 +29,7 @@ class DayItem extends Component {
 
     fontWeight(){
         var weight = 7- this.props.DaysUntil;
+        weight = (weight === 0) ? 1 : weight;
         return weight*100; // font weight always needs to be multiple of 100
     }
 
