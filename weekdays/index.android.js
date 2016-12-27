@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, AppRegistry, StyleSheet} from 'react-native';
 import DayItem from './android/app/src/day-item';
+import Moment from 'moment';
+
 const DaysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 //create react component
@@ -9,13 +11,26 @@ class Weekdays extends Component {
   render(){
     return(
       <View style={styles.container}>
-        {DaysOfWeek.map( (dn) => {
-          return <DayItem DayName={dn}></DayItem>;
-        })}
-        
+        {this.days()}
       </View>
     );
 
+  }
+
+  days(){
+      var daysItems = [];
+      for(i=0;i<7;i++){
+        var day = Moment().add(i,'days').format('dddd');
+        daysItems.push(<DayItem key={day} DayName={day} DaysUntil={i}></DayItem>);
+      }
+      return daysItems;
+      /*
+      DaysOfWeek.map( 
+        (dn) => {
+          return <DayItem key={dn} DayName={dn}></DayItem>;
+        }
+        )
+        */
   }
 };
 
