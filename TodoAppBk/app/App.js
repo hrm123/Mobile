@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import Heading from './Heading';
+import Input from './Input';
 
 class App extends Component{
     constructor(props){
@@ -16,14 +17,37 @@ class App extends Component{
             type: 'All'
         }
     }
+    inputChange(inputValue) {
+        console.log('Input Value: ', inputValue)
+        this.setState({ inputValue })
+    }
     render(){
         return(
             <View style={styles.container}>
                 <ScrollView style={styles.content}>
                     <Heading />
+                    <Input
+                        inputValue={this.state.inputValue}
+                        inputChange={(text) => this.inputChange(text)} />
+                    
                 </ScrollView>
             </View>
         );
+    }
+    submitTodo () {
+        if(this.state.inputValue.match(/^\s*$/)){
+            return;
+        }
+        let todo = {
+            title: this.state.inputValue,
+            todoindex: todoIindex,
+            complete: false
+        }
+        todoIndex++;
+        this.state.todos.push(todo);
+        this.setState({ todos: this.state.todos, inputValue: ''}, 
+            () => console.log('State:', this.state));
+
     }
 }
 
