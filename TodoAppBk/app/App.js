@@ -7,7 +7,19 @@ import {
 } from 'react-native';
 import Heading from './Heading';
 import Input from './Input';
+import { Provider } from 'react-redux'
+// creates our Redux store (elsewhere)
+const store = configureStore()
 
+class Root extends React.Component {
+  render () {
+    return (
+      <Provider store={ store }>
+        <TheRestOfYourApp />
+      </Provider>
+    )
+  }
+}
 class App extends Component{
     constructor(props){
         super(props);
@@ -23,15 +35,17 @@ class App extends Component{
     }
     render(){
         return(
-            <View style={styles.container}>
-                <ScrollView style={styles.content}>
-                    <Heading />
-                    <Input
-                        inputValue={this.state.inputValue}
-                        inputChange={(text) => this.inputChange(text)} />
-                    
-                </ScrollView>
-            </View>
+            <Provider store={ store }>     
+                <View style={styles.container}>
+                    <ScrollView style={styles.content}>
+                        <Heading />
+                        <Input
+                            inputValue={this.state.inputValue}
+                            inputChange={(text) => this.inputChange(text)} />
+                        
+                    </ScrollView>
+                </View>
+            </Provider>
         );
     }
     submitTodo () {
