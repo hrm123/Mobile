@@ -1,10 +1,15 @@
-import {createStore, applyMiddleware} from 'redux';  
+import {createStore, applyMiddleware, compose} from 'redux';  
 import rootReducer from './reducers/rootReducer';  
 import thunk from 'redux-thunk';
 
-export default function configureStore() {  
+
+export default function configureStore(option = {}) {  
+  const middlewares = option.middlewares || [thunk];
+  const {persistedState} = option;
+  //TODO: check option.middlewares is an array
   return createStore(
     rootReducer,
-    applyMiddleware(thunk)
+    persistedState || {},
+    applyMiddleware(...middlewares)
   );
 }

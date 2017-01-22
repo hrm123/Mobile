@@ -6,7 +6,7 @@ import {
   ScrollView,
   View
 } from 'react-native';
-import * as TodosActions from  "../actions/todosActions";
+const TodosActions =  require("../actions/todosActions");
 import { bindActionCreators } from 'redux';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
@@ -16,6 +16,7 @@ class Root extends Component{
     constructor(props){
         super(props);
         this.submitTodo = this.submitTodo.bind(this);
+        this.inputChange = this.inputChange.bind(this);
     }
 
     render(){
@@ -41,7 +42,7 @@ class Root extends Component{
             "Task": this.props.todos.inputValue,
             "Complete": false,
             "TaskType": "General",
-             "TaskId": this.props.todos.maxTodoIndex++
+             "TaskId": -1 // will be updated in tthe action method
         }
 
         this.props.onSubmitClick(todo);
@@ -62,8 +63,8 @@ class Root extends Component{
 
     }
     inputChange = (inputValue) =>  {
-        console.log('Input Value: ', inputValue)
-        //this.setState({ inputValue })
+        console.log('Input Value: ', inputValue);
+        this.props.onTitleChanged(inputValue);
     }
 }
 
@@ -97,7 +98,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         //actions: bindActionCreators(TodosActions, dispatch) -- can use this when you want to pass these dispatch methods to component that does not know about redux
         onSubmitClick: (todo) => {
             dispatch(TodosActions.addTodos(todo));
-        } 
+        },
+        onTitleChanged:  (newVal) =>{
+            dispatch(TodosActions.titleChanged(newVal));
+        }
     };
 };
 
