@@ -1,4 +1,4 @@
-import * as types from '../actions/actionTypes';  
+const types =  require('../actions/actionTypes');  
 import initialState from './initialState';
 
 export default function todosReducer(state = initialState, action) {  
@@ -6,7 +6,9 @@ export default function todosReducer(state = initialState, action) {
     case types.LOAD_TODOS_SUCCESS:
       return action.todos
     case types.ADD_TODOS:
-      return Object.assign({}, { todos : state.todos.push(todo)});
+      debugger;
+        // { "Task" : todoText, "TaskType" : "General", "TaskId":  ownProps.maxTodoIndex++}
+      return Object.assign({}, { todos : state.todos.push(action.todo)});
     default: 
       return state;
   }

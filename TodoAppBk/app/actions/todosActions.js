@@ -1,13 +1,17 @@
-import * as types from './actionTypes';  
+const actionTypes =  require('./actionTypes');  
 
 //action creators
 
 function loadTodosSuccess(todos) {  
-  return {type: types.LOAD_TODOS_SUCCESS, todos};
+  return {type: actionTypes.LOAD_TODOS_SUCCESS, todos};
 }
 
-function addTodos(todo) {  
-  return {type: types.ADD_TODOS, todo};
+addTodos = (todo) => { 
+    return (dispatch,getState) => {
+      debugger;
+      const currentState = getState();
+      dispatch( {type: actionTypes.ADD_TODOS, todo});
+  }
 }
 
 export {

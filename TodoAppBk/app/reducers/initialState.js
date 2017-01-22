@@ -1,5 +1,6 @@
 export default {  
     inputValue: "My first todo",
     todos: [],
-    type: 'All'
+    type: 'All',
+    maxTodoIndex: 0
 }

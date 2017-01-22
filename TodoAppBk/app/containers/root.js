@@ -10,14 +10,16 @@ import * as TodosActions from  "../actions/todosActions";
 import { bindActionCreators } from 'redux';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 class Root extends Component{
     constructor(props){
         super(props);
+        this.submitTodo = this.submitTodo.bind(this);
     }
 
     render(){
-        const { todos, actions } = this.props;
+        const { todos } = this.props;
         return(   
                 <View style={styles.container}>
                     <ScrollView style={styles.content}>
@@ -25,16 +27,25 @@ class Root extends Component{
                         <Input
                             inputValue={todos.inputValue}
                             inputChange={(text) => this.inputChange(text)} />
-                        
+                        <Button submitTodo={this.submitTodo} />
                     </ScrollView>
                 </View>
         );
     }
-    inputChange(inputValue) {
-        console.log('Input Value: ', inputValue)
-        this.setState({ inputValue })
-    }
-    submitTodo () {
+    submitTodo = () => {
+        debugger;
+        if(this.props.todos.inputValue.match(/^\s*$/)){
+            return;
+        }
+        let todo = {
+            "Task": this.props.todos.inputValue,
+            "Complete": false,
+            "TaskType": "General",
+             "TaskId": this.props.todos.maxTodoIndex++
+        }
+
+        this.props.onSubmitClick(todo);
+        /*
         if(this.state.inputValue.match(/^\s*$/)){
             return;
         }
@@ -47,32 +58,17 @@ class Root extends Component{
         this.state.todos.push(todo);
         this.setState({ todos: this.state.todos, inputValue: ''}, 
             () => console.log('State:', this.state));
+            */
 
     }
-    inputChange(inputValue) {
+    inputChange = (inputValue) =>  {
         console.log('Input Value: ', inputValue)
-        this.setState({ inputValue })
-    }
-    submitTodo () {
-        if(this.state.inputValue.match(/^\s*$/)){
-            return;
-        }
-        let todo = {
-            title: this.state.inputValue,
-            todoindex: todoIindex,
-            complete: false
-        }
-        todoIndex++;
-        this.state.todos.push(todo);
-        this.setState({ todos: this.state.todos, inputValue: ''}, 
-            () => console.log('State:', this.state));
-
+        //this.setState({ inputValue })
     }
 }
 
 Root.propTypes = {
-    todos: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    todos: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -89,14 +85,19 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
+    debugger;
   return {
     todos: state.todos
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+    debugger;
     return {
-        actions: bindActionCreators(TodosActions, dispatch)
+        //actions: bindActionCreators(TodosActions, dispatch) -- can use this when you want to pass these dispatch methods to component that does not know about redux
+        onSubmitClick: (todo) => {
+            dispatch(TodosActions.addTodos(todo));
+        } 
     };
 };
 

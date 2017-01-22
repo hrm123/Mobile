@@ -1,5 +1,5 @@
-export default {
+module.exports =   {
     "LOAD_TODOS_SUCCESS" : 'LOAD_TODOS_SUCCESS',
     "ADD_TODOS" : 'ADD_TODOS',
     "REFRESHING_TODOS" : 'REFRESHING_TODOS'
-}
+};
