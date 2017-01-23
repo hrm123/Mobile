@@ -9,8 +9,12 @@ export default function todosReducer(currentState = initialState, action) {
       return Object.assign({},currentState, {"inputValue" : action.newTitle});
     case types.ADD_TODOS:
         // { "Task" : todoText, "TaskType" : "General", "TaskId":  ownProps.maxTodoIndex++}
-      const newState = Object.assign({},currentState, { maxTodoIndex :action.todo.TaskId }, { todos : currentState.todos.concat( action.todo ) });
-      return newState;
+      return Object.assign({},currentState, { maxTodoIndex :action.todo.TaskId }, { todos : currentState.todos.concat( action.todo ) });
+    case types.EDIT_TODOS:
+      var editedIndex = currentState.todos.map(function(x) {return x.TaskId; }).indexOf(action.todo.TaskId);
+      return Object.assign({},currentState, { todos : currentState.todos.splice(editedIndex, 1, action.todo ) });
+    case types.DELETE_TODOS:
+      return Object.assign({},currentState, { todos : currentState.todos.filter( (td) => td.TaskId !== action.todo.TaskId ) });
     default: 
       return currentState;
   }

@@ -52,8 +52,16 @@ class Root extends Component{
 
         this.props.onSubmitClick(todo);
     }
+
+    toggleComplete = (taskId) => {
+        const { todos : todosList } = this.props.todos;
+        const currentTodo = todosList.filter((td) => td.TaskId===taskId);
+        currentTodo.Complete = !currentTodo.Complete;
+        this.props.onTaskChanged(currentTodo);
+
+    }
+
     inputChange(nv){
-        console.log('Input Value: ', nv);
         this.props.onTitleChanged(nv);
     }
 }
@@ -91,6 +99,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onTitleChanged:  (newVal) =>{
             dispatch(TodosActions.titleChanged(newVal));
+        },
+        onTaskChanged: (todo) => {
+            dispatch(TodosActions.editTodos(todo));
         }
     };
 };

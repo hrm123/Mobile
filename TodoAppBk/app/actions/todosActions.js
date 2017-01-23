@@ -22,9 +22,20 @@ const titleChanged = (newTitle) => {
 
 const addTodos = (todo) => { 
     return (dispatch,getState) => {
-      debugger;
       const currentState = getState();
       todo.TaskId = currentState.todos.maxTodoIndex + 1;
+      dispatch( {type: actionTypes.ADD_TODOS, todo});
+  }
+};
+
+const editTodos = (todo) => { 
+    return (dispatch,getState) => {
+      dispatch( {type: actionTypes.ADD_TODOS, todo});
+  }
+};
+
+const deleteTodos = (todo) => { 
+    return (dispatch,getState) => {
       dispatch( {type: actionTypes.ADD_TODOS, todo});
   }
 };
@@ -32,5 +43,7 @@ const addTodos = (todo) => {
 module.exports = {
   loadTodosSuccess,
   addTodos,
-  titleChanged
+  titleChanged,
+  editTodos,
+  deleteTodos
 };
