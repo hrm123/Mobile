@@ -33,7 +33,11 @@ class Root extends Component{
                             inputValue={inputVal}
                             inputChange={this.inputChange}
                              /> 
-                            <TodoList todos={todosList} />
+                            <TodoList 
+                                todos={todosList}  
+                                toggleComplete={this.toggleComplete}
+                                deleteTodo={this.deleteTask}
+                            />
                         <Button submitTodo={this.submitTodo} />
                     </ScrollView>
                 </View>
@@ -53,12 +57,21 @@ class Root extends Component{
         this.props.onSubmitClick(todo);
     }
 
+    deleteTask = (taskId) => {
+        const { todos : todosList } = this.props.todos;
+        const currentTodo = todosList.filter((td) => td.TaskId===taskId);
+        if(currentTodo && currentTodo.length ===1){
+            this.props.onDeleteTask(currentTodo[0]);
+        }
+    }
+
     toggleComplete = (taskId) => {
         const { todos : todosList } = this.props.todos;
         const currentTodo = todosList.filter((td) => td.TaskId===taskId);
-        currentTodo.Complete = !currentTodo.Complete;
-        this.props.onTaskChanged(currentTodo);
-
+        if(currentTodo && currentTodo.length ===1){
+            currentTodo[0].Complete = !currentTodo[0].Complete;
+            this.props.onTaskChanged(currentTodo[0]);
+        }
     }
 
     inputChange(nv){
@@ -102,6 +115,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onTaskChanged: (todo) => {
             dispatch(TodosActions.editTodos(todo));
+        },
+        onDeleteTask: (todo) => {
+            dispatch(TodosActions.deleteTodos(todo));
         }
     };
 };
