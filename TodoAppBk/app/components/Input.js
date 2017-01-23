@@ -34,14 +34,13 @@ class Input extends Component{
                     placeholderTextcolor="#CACACA"
                     selectionColor="#666666"
                     onChangeText={ (text) => this.setState({text})} 
-                    onBlur={inputChange}/>
+                    onBlur={this.onInputValChanged}/>
             </View>
         );
     }
 
-    onInputValChanged(newVal){
-        debugger;
-        console.log(newVal);
+    onInputValChanged(evnt){
+        this.props.inputChange(this.state.text);
     }
 };
 

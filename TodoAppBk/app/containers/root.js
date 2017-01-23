@@ -66,9 +66,9 @@ class Root extends Component{
             */
 
     }
-    inputChange(inputValue){
-        console.log('Input Value: ', inputValue);
-        this.props.onTitleChanged(inputValue);
+    inputChange(nv){
+        console.log('Input Value: ', nv);
+        this.props.onTitleChanged(nv);
     }
 }
 
