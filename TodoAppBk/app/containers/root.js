@@ -12,18 +12,18 @@ import { bindActionCreators } from 'redux';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import TodoList from '../components/TodoList';
 
 class Root extends Component{
     constructor(props){
         super(props);
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
-        this.state = {inputVal : ''}
     }
 
     render(){
         const { todos } = this.props;
-        let inputVal = todos.inputValue;
+        const {inputVal, todos : todosList } = todos;
         debugger;
         return(   
                 <View style={styles.container}>
@@ -33,6 +33,7 @@ class Root extends Component{
                             inputValue={inputVal}
                             inputChange={this.inputChange}
                              /> 
+                            <TodoList todos={todosList} />
                         <Button submitTodo={this.submitTodo} />
                     </ScrollView>
                 </View>
@@ -50,21 +51,6 @@ class Root extends Component{
         }
 
         this.props.onSubmitClick(todo);
-        /*
-        if(this.state.inputValue.match(/^\s*$/)){
-            return;
-        }
-        let todo = {
-            title: this.state.inputValue,
-            todoindex: todoIindex,
-            complete: false
-        }
-        todoIndex++;
-        this.state.todos.push(todo);
-        this.setState({ todos: this.state.todos, inputValue: ''}, 
-            () => console.log('State:', this.state));
-            */
-
     }
     inputChange(nv){
         console.log('Input Value: ', nv);
