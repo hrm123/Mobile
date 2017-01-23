@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
 
-const Input = ({ inputValue, inputChange }) => (
+/*
+class Input extends Component = () => (
     <View style={styles.inputContainer}>
         <TextInput
             value={inputValue}
@@ -9,9 +10,40 @@ const Input = ({ inputValue, inputChange }) => (
             placeholder="What needs to be done?"
             placeholderTextcolor="#CACACA"
             selectionColor="#666666"
-            onChangeText={inputChange} />
+            onTextChange={inputChange || } />
     </View>
 )
+*/
+
+
+class Input extends Component{
+    constructor(props){
+        super(props);
+        this.state = {text : ''};
+        this.onInputValChanged = this.onInputValChanged.bind(this);
+    }
+
+    render(){
+        const { inputValue, inputChange } = this.props;
+        return(
+            <View style={styles.inputContainer}>
+                <TextInput
+                    value={this.state.text}
+                    style={styles.input}
+                    placeholder="What needs to be done?"
+                    placeholderTextcolor="#CACACA"
+                    selectionColor="#666666"
+                    onChangeText={ (text) => this.setState({text})} 
+                    onBlur={inputChange}/>
+            </View>
+        );
+    }
+
+    onInputValChanged(newVal){
+        debugger;
+        console.log(newVal);
+    }
+};
 
 const styles = StyleSheet.create({
     inputContainer: {

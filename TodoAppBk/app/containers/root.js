@@ -4,7 +4,8 @@ import {
   AppRegistry,
   StyleSheet,
   ScrollView,
-  View
+  View,
+  TextInput
 } from 'react-native';
 const TodosActions =  require("../actions/todosActions");
 import { bindActionCreators } from 'redux';
@@ -17,24 +18,27 @@ class Root extends Component{
         super(props);
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
+        this.state = {inputVal : ''}
     }
 
     render(){
         const { todos } = this.props;
+        let inputVal = todos.inputValue;
+        debugger;
         return(   
                 <View style={styles.container}>
                     <ScrollView style={styles.content}>
                         <Heading />
                         <Input
-                            inputValue={todos.inputValue}
-                            inputChange={(text) => this.inputChange(text)} />
+                            inputValue={inputVal}
+                            inputChange={this.inputChange}
+                             /> 
                         <Button submitTodo={this.submitTodo} />
                     </ScrollView>
                 </View>
         );
     }
     submitTodo = () => {
-        debugger;
         if(this.props.todos.inputValue.match(/^\s*$/)){
             return;
         }
@@ -62,7 +66,7 @@ class Root extends Component{
             */
 
     }
-    inputChange = (inputValue) =>  {
+    inputChange(inputValue){
         console.log('Input Value: ', inputValue);
         this.props.onTitleChanged(inputValue);
     }
