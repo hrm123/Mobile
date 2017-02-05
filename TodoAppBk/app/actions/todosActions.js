@@ -30,7 +30,7 @@ const addTodos = (todo) => {
 
 const editTodos = (todo) => { 
     return (dispatch,getState) => {
-      dispatch( {type: actionTypes.ADD_TODOS, todo});
+      dispatch( {type: actionTypes.EDIT_TODOS, todo});
   }
 };
 

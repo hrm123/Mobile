@@ -69,8 +69,7 @@ class Root extends Component{
         const { todos : todosList } = this.props.todos;
         const currentTodo = todosList.filter((td) => td.TaskId===taskId);
         if(currentTodo && currentTodo.length ===1){
-            currentTodo[0].Complete = !currentTodo[0].Complete;
-            this.props.onTaskChanged(currentTodo[0]);
+            this.props.onTaskChanged({TaskId: currentTodo[0].TaskId , Complete:!currentTodo[0].Complete});
         }
     }
 
