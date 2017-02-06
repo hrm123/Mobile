@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, TouchableHighlight, StyleSheet } from 'react-native';
 
 const TodoButton = ({ onPress, complete, name }) =>{
-    debugger;
     return (
         <TouchableHighlight
             onPress={onPress}

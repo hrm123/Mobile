@@ -1,6 +1,7 @@
 export default {  
     inputValue: "My first todo",
     todos: [],
-    type: 'All',
+    taskType: 'General',
+    taskStatus:'All',
     maxTodoIndex: 0
 }

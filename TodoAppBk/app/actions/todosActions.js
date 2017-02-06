@@ -9,7 +9,6 @@ function loadTodosSuccess1(todos) {
 
 const loadTodosSuccess = (todos) =>  {  
   return (dispatch,getState) => {
-    debugger;
     dispatch ( {type: actionTypes.LOAD_TODOS_SUCCESS, todos});
   }
 };
@@ -40,10 +39,17 @@ const deleteTodos = (todo) => {
   }
 };
 
+const todoTypeChanged = (taskStatus) =>{
+  return (dispatch,getState) => {
+      dispatch( {type: actionTypes.CHANGE_TODO_TYPE, taskStatus});
+  }
+};
+
 module.exports = {
   loadTodosSuccess,
   addTodos,
   titleChanged,
   editTodos,
-  deleteTodos
+  deleteTodos,
+  todoTypeChanged
 };

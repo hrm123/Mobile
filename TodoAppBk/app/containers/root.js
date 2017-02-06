@@ -13,18 +13,23 @@ import Heading from '../components/Heading';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import TodoList from '../components/TodoList';
+import TabBar from '../components/TabBar';
 
 class Root extends Component{
     constructor(props){
         super(props);
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
+        this.setType = this.setType.bind(this);
+    }
+
+    setType (type) {
+        this.props.onSetType(type);
     }
 
     render(){
         const { todos } = this.props;
-        const {inputVal, todos : todosList } = todos;
-        debugger;
+        const {inputVal, todos : todosList, taskStatus : type } = todos;
         return(   
                 <View style={styles.container}>
                     <ScrollView style={styles.content}>
@@ -32,14 +37,16 @@ class Root extends Component{
                         <Input
                             inputValue={inputVal}
                             inputChange={this.inputChange}
-                             /> 
-                            <TodoList 
-                                todos={todosList}  
-                                toggleComplete={this.toggleComplete}
-                                deleteTodo={this.deleteTask}
-                            />
+                        /> 
+                        <TodoList 
+                            todos={todosList}  
+                            toggleComplete={this.toggleComplete}
+                            deleteTodo={this.deleteTask}
+                            type={type}
+                        />
                         <Button submitTodo={this.submitTodo} />
                     </ScrollView>
+                    <TabBar type={type} setType={this.setType} />
                 </View>
         );
     }
@@ -50,7 +57,7 @@ class Root extends Component{
         let todo = {
             "Task": this.props.todos.inputValue,
             "Complete": false,
-            "TaskType": "General",
+            "taskType": "General",
              "TaskId": -1 // will be updated in tthe action method
         }
 
@@ -96,14 +103,12 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-    debugger;
   return {
     todos: state.todos
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    debugger;
     return {
         //actions: bindActionCreators(TodosActions, dispatch) -- can use this when you want to pass these dispatch methods to component that does not know about redux
         onSubmitClick: (todo) => {
@@ -117,6 +122,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onDeleteTask: (todo) => {
             dispatch(TodosActions.deleteTodos(todo));
+        },
+        onSetType: (type) =>{
+            dispatch(TodosActions.todoTypeChanged(type));
         }
     };
 };
