@@ -36,7 +36,7 @@ const editTodos = (todo) => {
 
 const deleteTodos = (todo) => { 
     return (dispatch,getState) => {
-      dispatch( {type: actionTypes.ADD_TODOS, todo});
+      dispatch( {type: actionTypes.DELETE_TODOS, todo});
   }
 };
 

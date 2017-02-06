@@ -1,21 +1,24 @@
 import React from 'react';
 import { Text, TouchableHighlight, StyleSheet } from 'react-native';
 
-const TodoButton = ({ onPress, complete, name }) => (
-    <TouchableHighlight
-        onPress={onPress}
-        underlayColor='#efefef'
-        style={styles.button}
-    >
-        <Text style={[
-            styles.text,
-            complete ? styles.complete : null,
-            name === 'Delete' ? styles.deleteButton : null ]}
+const TodoButton = ({ onPress, complete, name }) =>{
+    debugger;
+    return (
+        <TouchableHighlight
+            onPress={onPress}
+            underlayColor='#efefef'
+            style={styles.button}
         >
-            {name}
-        </Text>
-    </TouchableHighlight>
-);
+            <Text style={[
+                styles.text,
+                complete ? styles.complete : null,
+                name === 'Delete' ? styles.deleteButton : null ]}
+            >
+                {name}
+            </Text>
+        </TouchableHighlight>
+    );
+}
 
 const styles = StyleSheet.create({
     button: {

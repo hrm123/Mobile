@@ -10,7 +10,7 @@ const Todo = ({ todo, toggleComplete, deleteTodo  }) => (
         <View style={styles.buttons}>
             <TodoButton
                 name='Done'
-                complete={todo.complete}
+                complete={todo.Complete}
                 onPress={() =>toggleComplete(todo.TaskId)} 
             />
             <TodoButton

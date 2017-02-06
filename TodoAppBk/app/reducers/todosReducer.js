@@ -13,8 +13,10 @@ export default function todosReducer(currentState = initialState, action) {
     case types.EDIT_TODOS:
       debugger;
       var editedIndex = currentState.todos.map(function(x) {return x.TaskId; }).indexOf(action.todo.TaskId);
-      var changedTodo = Object.assign({}, currentState.todos.filter( (td) => td.TaskId === action.todo.TaskId ), {Complete: action.todo.Complete });
-      return Object.assign({},currentState, { todos : currentState.todos.splice(editedIndex, 1, changedTodo ) });
+      var changedTodo = Object.assign({}, currentState.todos.filter( (td) => td.TaskId === action.todo.TaskId )[0], {Complete: action.todo.Complete });
+      var clonedArray = JSON.parse(JSON.stringify(currentState.todos));
+      clonedArray.splice(editedIndex, 1, changedTodo );
+      return Object.assign({},currentState, { todos :  clonedArray });
     case types.DELETE_TODOS:
       return Object.assign({},currentState, { todos : currentState.todos.filter( (td) => td.TaskId !== action.todo.TaskId ) });
     default: 
