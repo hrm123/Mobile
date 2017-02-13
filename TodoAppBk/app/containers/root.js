@@ -5,7 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  TextInput
+  TextInput,
+  TouchableHighlight,
+  Text
 } from 'react-native';
 const TodosActions =  require("../actions/todosActions");
 import { bindActionCreators } from 'redux';
@@ -14,6 +16,9 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import TodoList from '../components/TodoList';
 import TabBar from '../components/TabBar';
+import { AdMobBanner, AdMobInterstitial, PublisherBanner } from 'react-native-admob';
+import TimerMixin from 'react-timer-mixin';
+import reactMixin from 'react-mixin';
 
 class Root extends Component{
     constructor(props){
@@ -21,14 +26,71 @@ class Root extends Component{
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.setType = this.setType.bind(this);
+
+        this.state = {
+            bannerSize: 'smartBannerPortrait',
+        };
+        this.setBannerSize = this.setBannerSize.bind(this);
     }
 
     setType (type) {
         this.props.onSetType(type);
     }
 
+     componentDidMount() {
+         
+        AdMobInterstitial.setTestDeviceID('EMULATOR');
+        AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+
+        AdMobInterstitial.addEventListener('interstitialDidLoad',
+        () => console.log('interstitialDidLoad event'));
+        AdMobInterstitial.addEventListener('interstitialDidClose',
+        this.interstitialDidClose);
+        AdMobInterstitial.addEventListener('interstitialDidFailToLoad',
+        () => console.log('interstitialDidFailToLoad event'));
+        AdMobInterstitial.addEventListener('interstitialDidOpen',
+        () => console.log('interstitialDidOpen event'));
+        AdMobInterstitial.addEventListener('interstitialWillLeaveApplication',
+        () => console.log('interstitalWillLeaveApplication event'));
+
+        AdMobInterstitial.requestAd((error) => error && console.log(error));
+
+        /* this ads can be enable in free versions */
+        /*
+        this.setInterval(
+            () => { this.showInterstital(); },
+            5000
+        );
+        */
+        
+    }
+
+    componentWillUnmount() {
+        AdMobInterstitial.removeAllListeners();
+    }
+
+    interstitialDidClose() {
+        console.log('interstitialDidClose event');
+        AdMobInterstitial.requestAd((error) => error && console.log(error));
+    }
+
+    showInterstital() {
+        AdMobInterstitial.showAd((error) => error && console.log(error));
+    }
+
+    setBannerSize() {
+        const { bannerSize } = this.state;
+        this.setState({
+        bannerSize: bannerSize === 'smartBannerPortrait' ?
+            'mediumRectangle' : 'smartBannerPortrait',
+        });
+    }
+
     render(){
         const { todos } = this.props;
+        const { bannerSize } = this.state;
+        console.log(bannerSize);
+
         const {inputVal, todos : todosList, taskStatus : type } = todos;
         return(   
                 <View style={styles.container}>
@@ -45,6 +107,20 @@ class Root extends Component{
                             type={type}
                         />
                         <Button submitTodo={this.submitTodo} />
+                        <TouchableHighlight>
+                            <Text onPress={this.showInterstital} style={styles.button}>
+                            Show interstital and preload next
+                            </Text>
+                        </TouchableHighlight>
+                        <TouchableHighlight>
+                            <Text onPress={this.setBannerSize} style={styles.button}>
+                            Set banner size to {bannerSize === 'smartBannerPortrait' ?
+                                'mediumRectangle' : 'smartBannerPortrait'}
+                            </Text>
+                        </TouchableHighlight>
+
+                       
+
                     </ScrollView>
                     <TabBar type={type} setType={this.setType} />
                 </View>
@@ -84,6 +160,8 @@ class Root extends Component{
         this.props.onTitleChanged(nv);
     }
 }
+
+reactMixin(Root.prototype, TimerMixin);
 
 Root.propTypes = {
     todos: PropTypes.object.isRequired
