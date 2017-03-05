@@ -1,0 +1,3 @@
+rootProject.name = 'todoOffline'
+
+include ':app'
