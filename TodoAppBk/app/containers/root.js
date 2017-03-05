@@ -89,8 +89,7 @@ class Root extends Component{
     render(){
         const { todos } = this.props;
         const { bannerSize } = this.state;
-        console.log(bannerSize);
-
+        
         const {inputVal, todos : todosList, taskStatus : type } = todos;
         return(   
                 <View style={styles.container}>
@@ -107,6 +106,7 @@ class Root extends Component{
                             type={type}
                         />
                         <Button submitTodo={this.submitTodo} />
+                        {/*
                         <TouchableHighlight>
                             <Text onPress={this.showInterstital} style={styles.button}>
                             Show interstital and preload next
@@ -118,7 +118,7 @@ class Root extends Component{
                                 'mediumRectangle' : 'smartBannerPortrait'}
                             </Text>
                         </TouchableHighlight>
-
+                        */}
                        
 
                     </ScrollView>
