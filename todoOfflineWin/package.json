@@ -1,0 +1,35 @@
+{
+  "name": "todoOfflineWin",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "(cd android/ && ./gradlew assembleDebug)",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
+  },
+  "dependencies": {
+    "react": "15.4.2",
+    "react-addons-pure-render-mixin": "^15.4.2",
+    "react-mixin": "^2.0.2",
+    "react-native": "0.42.0",
+    "react-native-admob": "^1.1.5",
+    "react-native-router-flux": "^3.37.0",
+    "react-redux": "^5.0.2",
+    "react-timer-mixin": "^0.13.3",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-persist": "^4.4.2",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "15.4.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
