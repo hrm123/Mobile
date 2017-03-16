@@ -11,14 +11,13 @@ import {
 } from 'react-native';
 const TodosActions =  require("../actions/todosActions");
 import { bindActionCreators } from 'redux';
-import Heading from '../components/Heading';
+import {Header} from '../components/header';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import TodoList from '../components/TodoList';
 import TabBar from '../components/TabBar';
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
-
 
 
 class Todos extends Component{
@@ -47,7 +46,7 @@ class Todos extends Component{
         return(   
                 <View style={styles.container}>
                     <ScrollView style={styles.content}>
-                        <Heading />
+                        <Header />
                         <Input
                             inputValue={inputVal}
                             inputChange={this.inputChange}

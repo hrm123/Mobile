@@ -9,11 +9,13 @@
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "dependencies": {
+    "firebase": "^3.7.2",
     "react": "15.4.2",
     "react-addons-pure-render-mixin": "^15.4.2",
     "react-mixin": "^2.0.2",
     "react-native": "0.42.0",
     "react-native-admob": "^1.1.5",
+    "react-native-gifted-spinner": "^0.1.0",
     "react-native-router-flux": "^3.37.0",
     "react-redux": "^5.0.2",
     "react-timer-mixin": "^0.13.3",

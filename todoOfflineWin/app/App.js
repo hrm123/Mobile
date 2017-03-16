@@ -5,7 +5,7 @@ import Todos from "./containers/todos";
 
 import { Provider, connect  } from 'react-redux'
 import configureStore from './configureStore'; 
-import SignUp from './components/signup';
+import Signup from './components/signup';
 import Login from './components/login';
 
 // creates our Redux store (elsewhere)
@@ -34,7 +34,7 @@ class App extends Component{
                 <RouterWithRedux> 
                     
                     <Scene key="root">
-                        <Scene key='signup' component={SignUp} title='signup'/>
+                        <Scene key='signup' component={Signup} title='signup'/>
                         <Scene key='login' component={Login} title='login'/>
                         <Scene key='todos' component={Todos} title='todos'/>
                         <Scene key='landing' component={Root} title='My Todos' initial/>

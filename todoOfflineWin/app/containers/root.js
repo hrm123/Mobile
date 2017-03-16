@@ -6,20 +6,29 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Header from '../components/header';
 
-const Root = () => (
-    <View style={styles.header}>
-        <Text style={styles.headerText} onPress={Actions.signup}>
-            Sign up
-        </Text>
-        <Text style={styles.headerText} onPress={Actions.login}>
-            Login
-        </Text>
-        <Text style={styles.headerText} onPress={Actions.todos}>
-            My Todos
-        </Text>
-    </View>
-);
+
+class Root extends Component{
+    render(){ 
+        return (
+        <View>
+            <Header />
+            <View style={styles.header}>
+                <Text style={styles.headerText} onPress={Actions.signup}>
+                    Sign up
+                </Text>
+                <Text style={styles.headerText} onPress={Actions.login}>
+                    Login
+                </Text>
+                <Text style={styles.headerText} onPress={Actions.todos}>
+                    My Todos
+                </Text>
+            </View>
+        </View>
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     header: {
