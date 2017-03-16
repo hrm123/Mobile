@@ -7,7 +7,7 @@ import  {
   StyleSheet
 } from 'react-native';
 import React, { Component } from 'react';
-
+import {app} from  './Auth/firebaseApp'
 import GiftedSpinner from 'react-native-gifted-spinner';
 
 class Header extends Component {
@@ -25,6 +25,18 @@ class Header extends Component {
         </View>
       </View>
     );
+  }
+
+  ComponentDidUnmount(){
+    /*
+    app.auth().signOut().then(function() {
+      debugger;
+      // Sign-out successful.
+    }).catch(function(error) {
+      debugger;
+      // An error happened.
+    });
+    */
   }
 
 

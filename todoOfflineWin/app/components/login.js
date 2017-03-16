@@ -81,7 +81,12 @@ export default class login extends Component {
         debugger;
 
         console.log('Login Failed. Please try again');
+        return;
     });
+    if(this.props.onLogin)
+    {
+      this.props.onLogin( {email: this.state.email, name: this.state.email} );
+    }
 
   }
 

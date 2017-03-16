@@ -45,11 +45,27 @@ const todoTypeChanged = (taskStatus) =>{
   }
 };
 
+
+const Login = (account) =>{
+  return (dispatch,getState) => {
+      dispatch( {type: actionTypes.LOGIN, account});
+  }
+};
+
+
+const Logout = (account) =>{
+  return (dispatch,getState) => {
+      dispatch( {type: actionTypes.LOGOUT, account});
+  }
+};
+
 module.exports = {
   loadTodosSuccess,
   addTodos,
   titleChanged,
   editTodos,
   deleteTodos,
-  todoTypeChanged
+  todoTypeChanged,
+  Login,
+  Logout
 };
