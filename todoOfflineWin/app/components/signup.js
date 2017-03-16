@@ -12,7 +12,9 @@ import ButtonWidget from '../components/buttonWidget';
 import Header from '../components/header';
 
 import Login from './login';
+import {app} from  './Auth/firebaseApp'
 
+/*
 import firebase from 'firebase';
 
 var config = {
@@ -23,17 +25,7 @@ var config = {
     messagingSenderId: "617493806104"
   };
   let app = firebase.initializeApp(config);
-
-const SignUp1 = ({ border, title, selected, setType, type }) => (
-    <View>
-        <header />
-        <Text >
-            signup
-        </Text>
-    </View>
-);
-
-
+*/
 
 //let app = new Firebase("https://offlinetodos.firebaseio.com");
 
@@ -56,38 +48,26 @@ class Signup extends Component {
     this.setState({
       loaded: false
     });
+    debugger;
 
-    app.createUser({
-      'email': this.state.email,
-      'password': this.state.password
-    }, (error, userData) => {
-
-      if(error){
-        switch(error.code){
-
-          case "EMAIL_TAKEN":
-            alert("The new user account cannot be created because the email is already in use.");
-          break;
-
-          case "INVALID_EMAIL":
-            alert("The specified email is not a valid email.");
-          break;
-
-          default:
-            alert("Error creating user:");
+    app.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
+    .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+        } else {
+            alert(errorMessage);
         }
-
-      }else{
-        alert('Your account was created!');
-      }
-
-      this.setState({
+        console.log(error);
+    });
+    this.setState({
         email: '',
         password: '',
         loaded: true
       });
 
-    });
 
   }
 
