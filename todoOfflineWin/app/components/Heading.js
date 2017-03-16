@@ -5,11 +5,15 @@ import {
   Text,
   View
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const Heading = () => (
     <View style={styles.header}>
-        <Text style={styles.headerText}>
-            todos
+        <Text style={styles.headerText} onPress={Actions.signup}>
+            Sign up
+        </Text>
+        <Text style={styles.headerText} onPress={Actions.login}>
+            Login
         </Text>
     </View>
 );
