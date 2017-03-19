@@ -23,7 +23,6 @@ export default function todosReducer(currentState = initialState.todos, action) 
     case types.CHANGE_TODO_TYPE:
       return Object.assign({},currentState, { taskStatus: action.taskStatus });
     case REHYDRATE:
-    debugger;
       var savedState = action.payload.todos;
       if(savedState){
         return {...currentState, ...savedState};

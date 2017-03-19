@@ -15,6 +15,17 @@ import GiftedSpinner from 'react-native-gifted-spinner';
 export default class Loader extends Component {
 
   render(){
+
+
+return (
+<View style={styles.header_item}>
+        {  !this.props.loaded &&
+            <GiftedSpinner />
+        }
+        </View>
+  
+);
+
     return (
       <View style={styles.header}>
         <View style={styles.header_item}>

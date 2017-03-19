@@ -25,7 +25,6 @@ class AdMob extends Component {
     }
 
     componentDidMount() {
-        debugger;
 
         //AdMobInterstitial.requestAd(AdMobInterstitial.showAd)
         AdMobInterstitial.addEventListener('interstitialDidLoad',

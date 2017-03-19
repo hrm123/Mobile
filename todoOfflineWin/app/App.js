@@ -6,7 +6,7 @@ import Todos from "./containers/todos";
 import { Provider, connect  } from 'react-redux'
 import configureStore from './configureStore'; 
 import Signup from './components/signup';
-import Login from './components/login';
+import Login from './containers/loginContainer';
 
 // creates our Redux store (elsewhere)
 const store = configureStore();

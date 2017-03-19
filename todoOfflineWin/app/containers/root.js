@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Header from './header';
+import Footer from './footer';
 import {app} from  '../components/Auth/firebaseApp'
+import styles from '../styles/common-styles.js';
 
 class Root extends Component{
 
@@ -18,40 +20,49 @@ class Root extends Component{
             return null;
         }
     }
-    render(){ 
+
+    render1 = () => {
+        return(
+        <View style={styles.container}
+        >
+            <View style={styles.header} 
+            >
+                <Text style={styles.button}>
+                    Test
+                </Text>
+            </View>
+            <View style={styles.body} 
+            >
+                <Text style={styles.button}>
+                    Test1
+                </Text>
+            </View>
+            <View style={styles.footer} 
+            >
+                <Text style={styles.button}>
+                    Test2
+                </Text>
+            </View>
+        </View>
+        );
+    }
+    render = () => { 
 
         var user = app.auth().currentUser;
-        debugger;
-        if (user) {
-        // User is signed in.
-        } else {
-        // No user is signed in.
-        }
+        
         return (
-        <View>
+        <View style={styles.container}>
             <Header />
-            <View style={styles.header}>
-                {this.renderIf(!user, 
-                <View >  
-                    <Text style={styles.headerText} onPress={Actions.signup}>
-                        Sign up
-                    </Text>
-                    <Text style={styles.headerText} onPress={Actions.login}>
-                        Login
-                    </Text>
-                </View>
-                )}
-                {this.renderIf(user, 
-                <Text style={styles.headerText} onPress={Actions.todos}>
-                    My Todos
-                </Text>
-                 )}
+            <View style={styles.body}>
             </View>
+            <Footer isLoginAllowed={true} isSignupAllowed={true}/>
         </View>
         );
     }
 }
 
+
+/*
 const styles = StyleSheet.create({
     header: {
         marginTop: 80
@@ -63,5 +74,5 @@ const styles = StyleSheet.create({
         fontWeight: '100'
     }
 });
-
+*/
 export default Root;

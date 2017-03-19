@@ -7,31 +7,36 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Header from './header';
-import login from '../components/login';
-import { Actions } from 'react-native-router-flux';
+import Footer from './footer';
+import Login from '../components/login';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
+import styles from '../styles/common-styles.js';
+const TodosActions =  require("../actions/todosActions");
 
 class LoginContainer extends Component{
-    render(){ 
-
-        
+    render = () => { 
         return (
-        <View>
+        <View style={styles.container}>
             <Header />
-            <login onLogin={this.onUserLogin}/>
+            <View style={styles.body}>
+            <Login onLogin={this.onUserLogin}/>
+            </View>
+            <Footer isLoginAllowed={false} isSignupAllowed={true}/>
         </View>
         );
-    }
+    };
 
 
     onUserLogin = (account) => {
-        debugger;
-        this.props.onLogin(account);
-        Actions.todos({text: 'Hello World!'}); 
-    }
+        //debugger;
+        //this.props.onLogin(account);
+        //Actions.todos({text: 'Hello World!'}); 
+    };
 
 }
 
+/*
 const styles = StyleSheet.create({
     header: {
         marginTop: 80
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
         fontWeight: '100'
     }
 });
-
+*/
 
 
 const mapStateToProps = (state) => {

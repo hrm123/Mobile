@@ -47,7 +47,7 @@ class Signup extends Component {
     this.setState({
       loaded: false
     });
-    debugger;
+
 
     app.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
     .catch(function(error) {

@@ -5,38 +5,28 @@ import React, {
 
 module.exports = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        },
   body: {
     flex: 9,
+    backgroundColor: '#F5FCFF'
+  },
+   footer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'steelblue',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'space-between',
   },
-  textinput: {
-    height: 40,
-    borderColor: 'red',
-    borderWidth: 1,
-    alignSelf: 'stretch'
-  },
-  transparent_button: {
-    marginTop: 10,
-    padding: 15
-  },
-  transparent_button_text: {
-    color: '#0485A9',
-    fontSize: 16
-  },
-  primary_button: {
-    margin: 10,
-    padding: 15,
-    backgroundColor: '#529ecc'
-  },
-  primary_button_text: {
-    color: '#FFF',
-    fontSize: 18
-  },
-  image: {
-    width: 100,
-    height: 100
+  header: {
+    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    flex: 2,
+    backgroundColor: 'powderblue'
   }
 });

@@ -5,7 +5,7 @@ const initialState =  {
     taskType: 'General',
     taskStatus:'All',
     maxTodoIndex: 0,
-    acct : { userName: '', loggedIn : false}
+    acct : { userName: '', loggedIn : false, loaded : true}
 };
 
 export default initialState;

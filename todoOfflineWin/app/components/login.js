@@ -17,9 +17,9 @@ import Signup from './signup';
 import Account from './Auth/account';
 
 import styles from '../styles/common-styles.js';
-import {app} from  './Auth/firebaseApp'
+import {app} from  './Auth/firebaseApp';
 
-export default class login extends Component {
+export default class Login extends Component {
 
   constructor(props){
     super(props);
@@ -34,7 +34,7 @@ export default class login extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <Loader text="Login" loaded={this.state.loaded} />
+        {/* <Loader text="Login" loaded={this.state.loaded} /> */}
         <View style={styles.body}>
           <TextInput
             style={styles.textinput}
@@ -67,7 +67,6 @@ export default class login extends Component {
   }
 
   login = () => {
-    debugger;
     var that = this;
     this.setState({
       loaded: false
@@ -79,7 +78,7 @@ export default class login extends Component {
         that.setState({
             loaded: true
         });
-        debugger;
+
 
         console.log('Login Failed. Please try again');
         return;

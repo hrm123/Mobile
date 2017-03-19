@@ -12,6 +12,7 @@ import GiftedSpinner from 'react-native-gifted-spinner';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import styles from '../styles/common-styles.js';
 
 class Header extends Component {
 
@@ -20,8 +21,22 @@ class Header extends Component {
     this.props.onLogin(user);
   };
 
-  ComponentDidMount = () => {
-    firebase.auth().onAuthStateChanged(function(user) {
+  ComponentWillMount() {
+    return;
+    this.authListener();
+  }
+
+  ComponentWillUnmount = () => {
+    return;
+    debugger;
+    this.authListener();
+    this.fireBaseListener && this.fireBaseListener();
+    this.authListener = undefined;
+  }
+
+  authListener = () => {
+    debugger;
+    this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 debugger;
                 this.userLoggedIn(user);
@@ -31,15 +46,15 @@ class Header extends Component {
                 console.error("No user signed in");
             }
         });
-  }
+  };
 
-  renderIf(condition, content) {
+  renderIf = (condition, content) => {
         if (condition) {
             return content;
         } else {
             return null;
         }
-    }
+    };
 
   render(){
     debugger;
@@ -47,6 +62,9 @@ class Header extends Component {
     
     return (
         <View>
+           <Text style={styles.button}>
+                Test
+                </Text>
             <View style={styles.header}>
                 {this.renderIf(!acct.loggedIn, 
                 <View >  
@@ -68,9 +86,9 @@ class Header extends Component {
           <Text style={styles.header_text}>{this.props.text}</Text>
         </View>
         <View style={styles.header_item}>
-        {  !this.props.loaded &&
-            <GiftedSpinner />
-        }
+          {this.renderIf(!this.props.acct.loaded, 
+                <GiftedSpinner />
+                 )}
         </View>
     </View>
      
@@ -92,29 +110,10 @@ class Header extends Component {
 
 };
 
-const styles = StyleSheet.create({
-  header: {
-    padding: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    flex: 1
-  },
-  header_item: {
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  header_text: {
-    color: '#000',
-    fontSize: 18
-  }
-});
-
-
-
 const mapStateToProps = (state) => {
   return {
-    acct: state.acct
+    acct: state.acct,
+    loaded: state.loaded
   }
 };
 
