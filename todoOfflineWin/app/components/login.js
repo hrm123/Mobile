@@ -11,7 +11,7 @@ import  {
 
 import React, { Component } from 'react';
 import ButtonWidget from './buttonWidget';
-import Header from './header';
+import Loader from './Loader.js';
 
 import Signup from './signup';
 import Account from './Auth/account';
@@ -34,7 +34,7 @@ export default class login extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <Header text="Login" loaded={this.state.loaded} />
+        <Loader text="Login" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextInput
             style={styles.textinput}
@@ -52,13 +52,13 @@ export default class login extends Component {
 
           <ButtonWidget
             text="Login"
-            onpress={this.login.bind(this)}
+            onpress={this.login}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />
 
           <ButtonWidget
             text="New here?"
-            onpress={this.goToSignup.bind(this)}
+            onpress={this.goToSignup}
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
         </View>
@@ -66,7 +66,8 @@ export default class login extends Component {
     );
   }
 
-  login(){
+  login = () => {
+    debugger;
     var that = this;
     this.setState({
       loaded: false
@@ -90,7 +91,7 @@ export default class login extends Component {
 
   }
 
-  goToSignup(){
+  goToSignup = () => {
     this.props.navigator.push({
       component: Signup
     });

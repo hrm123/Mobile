@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 const TodosActions =  require("../actions/todosActions");
 import { bindActionCreators } from 'redux';
-import {Header} from '../components/header';
+import {Header} from './header';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import TodoList from '../components/TodoList';

@@ -11,7 +11,6 @@ import  {
 
 import React, { Component } from 'react';
 import ButtonWidget from '../buttonWidget';
-import Header from '../header';
 
 import Signup from '../signup';
 import Login from '../login';
@@ -45,8 +44,7 @@ export default class Account extends Component {
   render(){
 
     return (
-      <View style={styles.container}>
-        <Header text="Account" loaded={this.state.loaded} />  
+      <View style={styles.container}> 
         <View style={styles.body}>
         {
           this.state.user &&

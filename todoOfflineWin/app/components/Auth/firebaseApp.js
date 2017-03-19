@@ -10,6 +10,7 @@ var config = {
   };
 let app = firebase.initializeApp(config);
 
+
 export {
     app
 };

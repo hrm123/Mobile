@@ -3,7 +3,7 @@ import initialState from './initialState';
 import {REHYDRATE} from 'redux-persist/constants';
 
 
-export default function todosReducer(currentState = initialState, action) {  
+export default function todosReducer(currentState = initialState.todos, action) {  
   switch(action.type) {
     case types.LOAD_TODOS_SUCCESS:
       return action.todos

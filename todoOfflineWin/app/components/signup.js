@@ -9,7 +9,6 @@ import  {
 } from 'react-native';
 import React, { Component } from 'react';
 import ButtonWidget from '../components/buttonWidget';
-import Header from '../components/header';
 
 import Login from './login';
 import {app} from  './Auth/firebaseApp'
@@ -80,7 +79,6 @@ class Signup extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header text="Signup" loaded={this.state.loaded} />
         <View style={styles.body}>
 
             <TextInput

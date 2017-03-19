@@ -2,15 +2,17 @@
 import  {
   AppRegistry,
   Text,
+  TextInput,
   View,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  AsyncStorage
 } from 'react-native';
+
 import React, { Component } from 'react';
-import {app} from  './Auth/firebaseApp'
 import GiftedSpinner from 'react-native-gifted-spinner';
 
-class Header extends Component {
+export default class Loader extends Component {
 
   render(){
     return (
@@ -27,20 +29,8 @@ class Header extends Component {
     );
   }
 
-  ComponentDidUnmount(){
-    /*
-    app.auth().signOut().then(function() {
-      debugger;
-      // Sign-out successful.
-    }).catch(function(error) {
-      debugger;
-      // An error happened.
-    });
-    */
-  }
 
-
-};
+}
 
 const styles = StyleSheet.create({
   header: {
@@ -60,5 +50,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Header;
-//AppRegistry.registerComponent('header', () => header);
+AppRegistry.registerComponent('loader', () => Loader);

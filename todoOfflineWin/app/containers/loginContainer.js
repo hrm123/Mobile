@@ -6,12 +6,15 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Header from '../components/header';
+import Header from './header';
 import login from '../components/login';
 import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 
 class LoginContainer extends Component{
     render(){ 
+
+        
         return (
         <View>
             <Header />
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    acct: state.acct
   }
 };
 

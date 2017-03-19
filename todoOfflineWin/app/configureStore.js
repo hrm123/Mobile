@@ -20,8 +20,8 @@ export default configureStore = (option = {}, onComplete) => {
       autoRehydrate()
     )
   ); // autoRehydrate()(createStoreWithMiddleware)(rootReducer);
-  persistStore(store, { storage: AsyncStorage }, onComplete);
+  persistStore(store, { storage: AsyncStorage }, onComplete).purge() ;
   
-  //persistStore(store, config, callback).purge() -- call to clean up storage cache
+ // persistStore(store, config, callback).purge() ; //-- call to clean up storage cache
   return store;
 }; 
