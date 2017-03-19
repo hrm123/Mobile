@@ -13,6 +13,7 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/common-styles.js';
+const TodosActions =  require("../actions/todosActions");
 
 class Footer extends Component {
 
@@ -24,11 +25,11 @@ class Footer extends Component {
         }
     };
 
-    ComponentWillMount = () => {
+    componentWillMount = () => {
         this.authListener();
     }
 
-    ComponentWillUnmount = () => {
+    componentWillUnmount = () => {
         debugger;
         //this.authListener();
         this.fireBaseListener && this.fireBaseListener();
@@ -37,10 +38,11 @@ class Footer extends Component {
 
     authListener = () => {
         debugger;
+        var that = this;
         this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     debugger;
-                    this.userLoggedIn(user);
+                    that.userLoggedIn(user);
                     console.log(user);
                 } else {
                     debugger;
@@ -83,7 +85,12 @@ class Footer extends Component {
                 )}
         </View>);
     };
-}
+
+    userLoggedIn = (user) => {
+        debugger;
+        this.props.onLogin( {userName: user.email, loggedIn : true, loaded : false });
+    };
+};
 
 const mapStateToProps = (state) => {
   return {

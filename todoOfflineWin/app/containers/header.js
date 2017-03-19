@@ -35,7 +35,6 @@ class Header extends Component {
   }
 
   authListener = () => {
-    debugger;
     this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 debugger;
@@ -57,7 +56,7 @@ class Header extends Component {
     };
 
   render(){
-    debugger;
+
     var {acct} = this.props;
     
     return (
