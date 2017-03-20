@@ -93,7 +93,7 @@ class Root extends Component{
         const {inputVal, todos : todosList, taskStatus : type } = todos;
         return(   
                 <View style={styles.container}>
-                    <ScrollView style={styles.content}>
+                    <ScrollView style={styles.content} keyboardShouldPersistTaps="handled">
                         <Heading />
                         <Input
                             inputValue={inputVal}

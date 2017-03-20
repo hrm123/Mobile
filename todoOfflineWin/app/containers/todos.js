@@ -48,7 +48,7 @@ class Todos extends Component{
                 <View style={styles.container}>
                     <Header/>
                     <View style={styles.body}>
-                        <ScrollView style={styles.content}>
+                        <ScrollView style={styles.content} keyboardShouldPersistTaps="handled">
                             <Input
                                 inputValue={inputVal}
                                 inputChange={this.inputChange}

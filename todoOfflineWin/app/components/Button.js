@@ -9,7 +9,7 @@ class Button extends Component{
     };
     render = () => {
         return(
-            <View style={styles.buttonContainer}>
+            <View style={styles.buttonContainer} >
             <TouchableHighlight
                 underlayColor='#efefef'
                 style={styles.button}
@@ -23,10 +23,9 @@ class Button extends Component{
         );
     };
     submitClicked = () => {
-        debugger;
         const { submitTodo } = this.props;
         if(submitTodo){
-
+            submitTodo();
         }
     };
 }
