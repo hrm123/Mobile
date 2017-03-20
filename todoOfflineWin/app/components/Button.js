@@ -1,18 +1,35 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-const Button = ({ submitTodo }) => (
-<View style={styles.buttonContainer}>
-    <TouchableHighlight
-    underlayColor='#efefef'
-    style={styles.button}
-    onPress={submitTodo}>
-        <Text style={styles.submit}>
-            Submit
-        </Text>
-    </TouchableHighlight>
-</View>
-);
+
+
+class Button extends Component{
+    constructor(props){
+        super(props);
+    };
+    render = () => {
+        return(
+            <View style={styles.buttonContainer}>
+            <TouchableHighlight
+                underlayColor='#efefef'
+                style={styles.button}
+                onPress={this.submitClicked}
+            >
+                <Text style={styles.submit}>
+                    Submit1
+                </Text>
+            </TouchableHighlight>
+        </View>
+        );
+    };
+    submitClicked = () => {
+        debugger;
+        const { submitTodo } = this.props;
+        if(submitTodo){
+
+        }
+    };
+}
 
 const styles = StyleSheet.create({
     buttonContainer: {

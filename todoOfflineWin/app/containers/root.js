@@ -21,31 +21,7 @@ class Root extends Component{
         }
     }
 
-    render1 = () => {
-        return(
-        <View style={styles.container}
-        >
-            <View style={styles.header} 
-            >
-                <Text style={styles.button}>
-                    Test
-                </Text>
-            </View>
-            <View style={styles.body} 
-            >
-                <Text style={styles.button}>
-                    Test1
-                </Text>
-            </View>
-            <View style={styles.footer} 
-            >
-                <Text style={styles.button}>
-                    Test2
-                </Text>
-            </View>
-        </View>
-        );
-    }
+    
     render = () => { 
 
         var user = app.auth().currentUser;

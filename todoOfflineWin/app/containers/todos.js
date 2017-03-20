@@ -11,14 +11,15 @@ import {
 } from 'react-native';
 const TodosActions =  require("../actions/todosActions");
 import { bindActionCreators } from 'redux';
-import {Header} from './header';
+import Header from './header';
+import Footer from './footer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import TodoList from '../components/TodoList';
 import TabBar from '../components/TabBar';
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
-
+import styles from '../styles/common-styles.js';
 
 class Todos extends Component{
     constructor(props){
@@ -33,11 +34,11 @@ class Todos extends Component{
         };
         this.setBannerSize = this.setBannerSize.bind(this);
         */
-    }
+    };
 
     setType (type) {
         this.props.onSetType(type);
-    }
+    };
 
     render(){
         const { todos } = this.props;
@@ -45,25 +46,30 @@ class Todos extends Component{
         const {inputVal, todos : todosList, taskStatus : type } = todos;
         return(   
                 <View style={styles.container}>
-                    <ScrollView style={styles.content}>
-                        <Header />
-                        <Input
-                            inputValue={inputVal}
-                            inputChange={this.inputChange}
-                        /> 
-                        <TodoList 
-                            todos={todosList}  
-                            toggleComplete={this.toggleComplete}
-                            deleteTodo={this.deleteTask}
-                            type={type}
-                        />
-                        <Button submitTodo={this.submitTodo} />
-                    </ScrollView>
-                    <TabBar type={type} setType={this.setType} />
+                    <Header/>
+                    <View style={styles.body}>
+                        <ScrollView style={styles.content}>
+                            <Input
+                                inputValue={inputVal}
+                                inputChange={this.inputChange}
+                            /> 
+                            <TodoList 
+                                todos={todosList}  
+                                toggleComplete={this.toggleComplete}
+                                deleteTodo={this.deleteTask}
+                                type={type}
+                            />
+                            <Button submitTodo={this.submitTodo} />
+                        </ScrollView>
+                        <TabBar type={type} setType={this.setType} />
+                    </View>
+                    <Footer isLoginAllowed={false} isSignupAllowed={false}/>
                 </View>
         );
-    }
+    };
+
     submitTodo = () => {
+        debugger;
         if(this.props.todos.inputValue.match(/^\s*$/)){
             return;
         }
@@ -75,7 +81,7 @@ class Todos extends Component{
         }
 
         this.props.onSubmitClick(todo);
-    }
+    };
 
     deleteTask = (taskId) => {
         const { todos : todosList } = this.props.todos;
@@ -83,7 +89,7 @@ class Todos extends Component{
         if(currentTodo && currentTodo.length ===1){
             this.props.onDeleteTask(currentTodo[0]);
         }
-    }
+    };
 
     toggleComplete = (taskId) => {
         const { todos : todosList } = this.props.todos;
@@ -91,11 +97,11 @@ class Todos extends Component{
         if(currentTodo && currentTodo.length ===1){
             this.props.onTaskChanged({TaskId: currentTodo[0].TaskId , Complete:!currentTodo[0].Complete});
         }
-    }
+    };
 
     inputChange(nv){
         this.props.onTitleChanged(nv);
-    }
+    };
 }
 
 reactMixin(Todos.prototype, TimerMixin);
@@ -104,6 +110,7 @@ Todos.propTypes = {
     todos: PropTypes.object.isRequired
 };
 
+/*
 const styles = StyleSheet.create({
     container: {
         flex :1,
@@ -114,10 +121,12 @@ const styles = StyleSheet.create({
         paddingTop: 60
     }
 });
+*/
 
 
 
 const mapStateToProps = (state) => {
+    debugger;
   return {
     todos: state.todos
   }
