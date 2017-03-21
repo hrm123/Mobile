@@ -16,7 +16,7 @@ class Button extends Component{
                 onPress={this.submitClicked}
             >
                 <Text style={styles.submit}>
-                    Submit1
+                    Submit
                 </Text>
             </TouchableHighlight>
         </View>

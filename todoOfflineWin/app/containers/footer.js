@@ -27,14 +27,14 @@ class Footer extends Component {
 
     componentWillMount = () => {
         this.authListener();
-    }
+    };
 
     componentWillUnmount = () => {
         debugger;
         //this.authListener();
         this.fireBaseListener && this.fireBaseListener();
         this.authListener = undefined;
-    }
+    };
 
     authListener = () => {
         debugger;
@@ -42,14 +42,15 @@ class Footer extends Component {
         this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     debugger;
-                    that.userLoggedIn(user);
+                    that.onUserLogIn(user);
                     console.log(user);
                 } else {
                     debugger;
-                    console.error("No user signed in");
+                    that.onUserLogOut();
                 }
             });
     };
+
     render = () => {
         var {loggedIn} = this.props.acct;
         var {isLoginAllowed, isSignupAllowed} = this.props;
@@ -78,7 +79,7 @@ class Footer extends Component {
             )}
             {this.renderIf(loggedIn,
             <View >
-                <Text style={styles.headerText} onPress={Actions.logout}>
+                <Text style={styles.headerText} onPress={this.logOutUser}>
                     Sign out
                 </Text>
             </View>
@@ -86,9 +87,19 @@ class Footer extends Component {
         </View>);
     };
 
-    userLoggedIn = (user) => {
+    onUserLogIn = (user) => {
         debugger;
         this.props.onLogin( {userName: user.email, loggedIn : true, loaded : false });
+    };
+
+    logOutUser = (acct) => {
+        firebase.auth().signOut()
+    };
+
+    onUserLogOut = (user) => {
+        debugger;
+        Actions.landing();
+        this.props.onLogout( {userName: '', loggedIn : false, loaded : false });
     };
 };
 
