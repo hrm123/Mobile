@@ -41,12 +41,10 @@ class Footer extends Component {
         var that = this;
         this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    debugger;
                     that.onUserLogIn(user);
                     console.log(user);
                 } else {
-                    debugger;
-                    that.onUserLogOut();
+                    that.onLogoutUpdateFromServer();
                 }
             });
     };
@@ -88,7 +86,6 @@ class Footer extends Component {
     };
 
     onUserLogIn = (user) => {
-        debugger;
         this.props.onLogin( {userName: user.email, loggedIn : true, loaded : false });
     };
 
@@ -96,10 +93,14 @@ class Footer extends Component {
         firebase.auth().signOut()
     };
 
-    onUserLogOut = (user) => {
-        debugger;
-        Actions.landing();
+    onLogoutUpdateFromServer = () => {
+        // redux action  to update state to loggedout
         this.props.onLogout( {userName: '', loggedIn : false, loaded : false });
+    }
+
+    onUserLogOut = (user) => {
+        this.props.onLogout( {userName: '', loggedIn : false, loaded : false });
+        Actions.landing();
     };
 };
 
