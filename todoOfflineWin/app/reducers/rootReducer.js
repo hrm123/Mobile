@@ -2,11 +2,13 @@
 import {combineReducers} from 'redux';  
 import todos from './todosReducer';
 import acct from './loginReducer';
-import { firebaseStateReducer as firebase } from 'react-redux-firebase';
+import fbRef from './firebaseRef';
+import fbConfig from './firebaseConfig';
+import nav from './navReducer';
 
 const rootReducer = combineReducers({  
   // short hand property names
-  todos, acct, firebase
+  todos, acct, fbRef, fbConfig,nav
 })
 
 export default rootReducer;  

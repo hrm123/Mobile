@@ -14,10 +14,10 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/common-styles.js';
 
+
 class Header extends Component {
 
   userLoggedIn = (user) => {
-    debugger;
     this.props.onLogin(user);
   };
 
@@ -28,7 +28,6 @@ class Header extends Component {
 
   ComponentWillUnmount = () => {
     return;
-    debugger;
     this.authListener();
     this.fireBaseListener && this.fireBaseListener();
     this.authListener = undefined;
@@ -37,11 +36,9 @@ class Header extends Component {
   authListener = () => {
     this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                debugger;
                 this.userLoggedIn(user);
                 console.log(user);
             } else {
-                debugger;
                 console.error("No user signed in");
             }
         });
@@ -97,10 +94,8 @@ class Header extends Component {
   ComponentDidUnmount(){
     /*
     app.auth().signOut().then(function() {
-      debugger;
       // Sign-out successful.
     }).catch(function(error) {
-      debugger;
       // An error happened.
     });
     */
@@ -120,7 +115,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         //actions: bindActionCreators(TodosActions, dispatch) -- can use this when you want to pass these dispatch methods to component that does not know about redux
         onLogin: (acct) => {
-          debugger;
             dispatch(TodosActions.Login(acct));
         },
         onLogout:  (acct) =>{

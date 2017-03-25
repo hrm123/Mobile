@@ -20,6 +20,7 @@ import TabBar from '../components/TabBar';
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
 import styles from '../styles/common-styles.js';
+import firebase from 'firebase';
 
 class Todos extends Component{
     constructor(props){
@@ -69,7 +70,6 @@ class Todos extends Component{
     };
 
     submitTodo = () => {
-        debugger;
         if(this.props.todos.inputValue.match(/^\s*$/)){
             return;
         }
@@ -77,9 +77,16 @@ class Todos extends Component{
             "Task": this.props.todos.inputValue,
             "Complete": false,
             "taskType": "General",
-             "TaskId": -1 // will be updated in tthe action method
+             "TaskId": -1 // will be updated in the action method
         }
-
+        const {userName} = this.props;
+        if(userName.length >0){
+            const ref = firebase.database().ref("/");
+            const userRef= ref.child(userName.replace("@","_").replace(".","-"));
+            const todosRef = userRef.child("todos");            
+            todosRef.set([todo]);
+        }
+        
         this.props.onSubmitClick(todo);
     };
 
@@ -127,7 +134,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    userName: (state.acct.loggedIn === true) ? state.acct.userName : ""
   }
 };
 

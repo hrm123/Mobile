@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/common-styles.js';
 const TodosActions =  require("../actions/todosActions");
+const fbRefActions =  require("../actions/fireBaseRef");
 
 class Footer extends Component {
 
@@ -29,15 +30,18 @@ class Footer extends Component {
         this.authListener();
     };
 
+    componentDidMount = ()  => {
+        const ref = firebase.database().ref();
+        fbRefActions.SetFirebaseRef(ref);
+     };
+
     componentWillUnmount = () => {
-        debugger;
         //this.authListener();
         this.fireBaseListener && this.fireBaseListener();
         this.authListener = undefined;
     };
 
     authListener = () => {
-        debugger;
         var that = this;
         this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {

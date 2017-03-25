@@ -10,4 +10,5 @@ const initialState =  {
     acct : { userName: '', loggedIn : false, loaded : true}
 };
 
+
 export default initialState;

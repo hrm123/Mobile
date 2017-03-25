@@ -1,6 +1,6 @@
 const types =  require('../actions/actionTypes');  
 
-function firebaseRef(state = initialState, action) {
+export default function fbRefReducer(state = {}, action) {
   switch (action.type) {
   case types.FIREBASE_REF_SET:
     return action.value;

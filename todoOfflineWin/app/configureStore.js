@@ -3,7 +3,6 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist'; 
 import rootReducer from './reducers/rootReducer';  
 import thunk from 'redux-thunk';
-import { reduxFirebase } from 'react-redux-firebase';
 
 const middleWare = [];
 
