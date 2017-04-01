@@ -7,7 +7,7 @@ const initialState =  {
         taskStatus:'All',
         maxTodoIndex: 0
     },
-    acct : { userName: '', loggedIn : false, loaded : true}
+    acct : { userName: 'ANONYMOUS', loggedIn : false, loaded : true}
 };
 
 

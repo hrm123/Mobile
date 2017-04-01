@@ -7,11 +7,15 @@ import { Provider, connect  } from 'react-redux'
 import configureStore from './configureStore'; 
 import Signup from './components/signup';
 import Login from './containers/loginContainer';
-
+const TodosActions =  require("./actions/todosActions");
 // creates our Redux store (elsewhere)
 const store = configureStore();
 const RouterWithRedux = connect()(Router);
 
+// setup Firebase listeners
+setTimeout(function(){
+	store.dispatch( TodosActions.startListeningToAuth() );
+});
 
 class App extends Component{
     constructor(props){

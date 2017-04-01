@@ -3,6 +3,7 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist'; 
 import rootReducer from './reducers/rootReducer';  
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'remote-redux-devtools';
 
 const middleWare = [];
 
@@ -16,16 +17,16 @@ var config = {
   };
 
 export default configureStore = (option = {}, onComplete) => {
+  debugger;
   const middlewares = option.middlewares || [thunk] || reduxFirebase(fbConfig, { userProfile: 'users' });
   const {persistedState} = option;
   //const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+  const composeEnhancers = composeWithDevTools({ realtime: true });
   const store =  createStore(
     rootReducer,
-    undefined,
-    compose(
-      applyMiddleware(...middlewares),
-      autoRehydrate()
-    )
+     persistedState, 
+      composeEnhancers(applyMiddleware(...middlewares))
+      //,autoRehydrate()
   ); // autoRehydrate()(createStoreWithMiddleware)(rootReducer);
   persistStore(store, { storage: AsyncStorage }, onComplete).purge() ;
   

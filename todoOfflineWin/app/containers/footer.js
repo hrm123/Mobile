@@ -26,6 +26,7 @@ class Footer extends Component {
         }
     };
 
+/*
     componentWillMount = () => {
         this.authListener();
     };
@@ -45,6 +46,7 @@ class Footer extends Component {
         var that = this;
         this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
+                    debugger;
                     that.onUserLogIn(user);
                     console.log(user);
                 } else {
@@ -53,7 +55,10 @@ class Footer extends Component {
             });
     };
 
+    */
+
     render = () => {
+        debugger;
         var {loggedIn} = this.props.acct;
         var {isLoginAllowed, isSignupAllowed} = this.props;
         return(
@@ -109,6 +114,7 @@ class Footer extends Component {
 };
 
 const mapStateToProps = (state) => {
+    debugger;
   return {
     acct: state.acct,
     loaded: state.loaded

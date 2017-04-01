@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
+    debugger;
   return {
     todos: state.todos,
     userName: (state.acct.loggedIn === true) ? state.acct.userName : ""

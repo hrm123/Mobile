@@ -1,5 +1,5 @@
 const actionTypes =  require('./actionTypes');  
-
+import firebase from 'firebase';
 //action creators
 
 function loadTodosSuccess1(todos) {  
@@ -60,6 +60,26 @@ const Logout = (account) =>{
 };
 
 
+	const startListeningToAuth =  () => {
+		return  (dispatch,getState) => {
+      debugger;
+			firebase.auth().onAuthStateChanged(function(user){
+				if (user){ 
+          debugger;
+          const acct = {userName: user.email, loggedIn : true, loaded : false };
+          dispatch(Login(acct));
+				} else {
+          debugger;
+          const acct = {userName: 'ANONYMOUS', loggedIn : false, loaded : false }
+					if (getState().auth.userName !== 'ANONYMOUS'){ // log out if not already logged out
+						dispatch(Logout(acct));
+					}
+				}
+			});
+		}
+	}
+
+
 module.exports = {
   loadTodosSuccess,
   addTodos,
@@ -68,5 +88,6 @@ module.exports = {
   deleteTodos,
   todoTypeChanged,
   Login,
-  Logout
+  Logout,
+  startListeningToAuth
 };

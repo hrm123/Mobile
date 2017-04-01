@@ -6,9 +6,11 @@ const types =  require('../actions/actionTypes');
 export default function loginReducer(currentState = initialState.acct, action) {  
   switch(action.type) {
     case types.LOGIN:
-        return Object.assign({},currentState, action.account);
+        debugger;
+        const newState = Object.assign({},currentState, action.account);;
+        return newState;
     case types.LOGOUT:
-      return Object.assign({},currentState, action.account);
+      return Object.assign({},currentState, action.account, { userName: 'ANONYMOUS', loggedIn : false});
     default:
         return currentState;
   }
