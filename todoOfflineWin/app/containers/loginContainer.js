@@ -30,7 +30,6 @@ class LoginContainer extends Component{
 
     onUserLogin = (account) => {
         Actions.todos();
-        //debugger;
         //this.props.onLogin(account);
         //Actions.todos({text: 'Hello World!'}); 
     };

@@ -26,15 +26,27 @@ class Footer extends Component {
         }
     };
 
-/*
+    /*
     componentWillMount = () => {
         this.authListener();
     };
+    */
 
     componentDidMount = ()  => {
-        const ref = firebase.database().ref();
-        fbRefActions.SetFirebaseRef(ref);
+        //const ref = firebase.database().ref();
+        //fbRefActions.SetFirebaseRef(ref);
+        
+        setTimeout(this.onListenFirebaseAuth, 1000);
+
+        /*
+        setTimeout(function(){
+	        store.dispatch( TodosActions.startListeningToAuth() );
+        });
+        */
+        
      };
+
+     /*
 
     componentWillUnmount = () => {
         //this.authListener();
@@ -45,8 +57,8 @@ class Footer extends Component {
     authListener = () => {
         var that = this;
         this.fireBaseListener = firebase.auth().onAuthStateChanged(function(user) {
+            debugger;
                 if (user) {
-                    debugger;
                     that.onUserLogIn(user);
                     console.log(user);
                 } else {
@@ -54,11 +66,11 @@ class Footer extends Component {
                 }
             });
     };
-
     */
 
+    
+
     render = () => {
-        debugger;
         var {loggedIn} = this.props.acct;
         var {isLoginAllowed, isSignupAllowed} = this.props;
         return(
@@ -111,6 +123,9 @@ class Footer extends Component {
         this.props.onLogout( {userName: '', loggedIn : false, loaded : false });
         Actions.landing();
     };
+    onListenFirebaseAuth = () => {
+        this.props.startListenFirebaseAuth();
+    }
 };
 
 const mapStateToProps = (state) => {
@@ -129,7 +144,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onLogout:  (acct) =>{
             dispatch(TodosActions.Logout(acct));
-        }
+        },
+        startListenFirebaseAuth: () => {
+            dispatch(TodosActions.startListeningToAuth());
+        },
     };
 };
 

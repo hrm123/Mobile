@@ -12,10 +12,14 @@ const TodosActions =  require("./actions/todosActions");
 const store = configureStore();
 const RouterWithRedux = connect()(Router);
 
+/*
 // setup Firebase listeners
 setTimeout(function(){
 	store.dispatch( TodosActions.startListeningToAuth() );
 });
+*/
+
+
 
 class App extends Component{
     constructor(props){

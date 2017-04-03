@@ -1,6 +1,7 @@
 const actionTypes =  require('./actionTypes');  
 import firebase from 'firebase';
 //action creators
+import { Actions } from 'react-native-router-flux';
 
 function loadTodosSuccess1(todos) {  
   return {type: actionTypes.LOAD_TODOS_SUCCESS, todos};
@@ -46,19 +47,46 @@ const todoTypeChanged = (taskStatus) =>{
 };
 
 
-const Login = (account) =>{
+const Login1 = (acct) =>{
   return (dispatch,getState) => {
-      dispatch( {type: actionTypes.LOGIN, account});
+      debugger;
+      const currentState = getState();
+      dispatch( {type: actionTypes.LOGIN, acct});
+      return new Promise(function(resolve, reject){
+        //fetch todos from firebase and resolve the Promise
+          const ref = firebase.database().ref("/");
+            const userRef= ref.child(currentState.acct.userName.replace("@","_").replace(".","-"));
+            debugger;
+            const todosRef = userRef.child("todos"); 
+            resolve(todosRef);
+      });
   }
 };
 
 
-const Logout = (account) =>{
+const Login = (acct) =>{
   return (dispatch,getState) => {
-      dispatch( {type: actionTypes.LOGOUT, account});
+      debugger;
+      //const currentState = getState();
+      dispatch( {type: actionTypes.LOGIN, acct});
   }
 };
 
+
+const Logout = (acct) =>{
+  return (dispatch,getState) => {
+      dispatch( {type: actionTypes.LOGOUT, acct});
+  }
+};
+
+const ChangeRouteToTodos = () => {
+  return  (dispatch,getState) => {
+    debugger;
+    if(getState().acct.userName !== "ANONYMOUS"){
+      Actions.todos({ "acctFromRouter" : getState().acct});
+    }
+  };
+};
 
 	const startListeningToAuth =  () => {
 		return  (dispatch,getState) => {
@@ -66,8 +94,14 @@ const Logout = (account) =>{
 			firebase.auth().onAuthStateChanged(function(user){
 				if (user){ 
           debugger;
-          const acct = {userName: user.email, loggedIn : true, loaded : false };
-          dispatch(Login(acct));
+          if(getState().acct.userName !== user.email){
+            const acct = {userName: user.email, loggedIn : true, loaded : false };
+            dispatch(Login(acct)); /* .then( (data) => { 
+              debugger;
+              dispatch(ChangeRouteToTodos());
+            });
+            //setTimeout( () => { dispatch(ChangeRouteToTodos());} );*/
+          }
 				} else {
           debugger;
           const acct = {userName: 'ANONYMOUS', loggedIn : false, loaded : false }
@@ -89,5 +123,6 @@ module.exports = {
   todoTypeChanged,
   Login,
   Logout,
-  startListeningToAuth
+  startListeningToAuth,
+  ChangeRouteToTodos
 };

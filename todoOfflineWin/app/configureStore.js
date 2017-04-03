@@ -4,6 +4,8 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import rootReducer from './reducers/rootReducer';  
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'remote-redux-devtools';
+import createLoggerMiddleware  from 'redux-logger';
+import promise from 'redux-promise';
 
 const middleWare = [];
 
@@ -17,8 +19,10 @@ var config = {
   };
 
 export default configureStore = (option = {}, onComplete) => {
-  debugger;
-  const middlewares = option.middlewares || [thunk] || reduxFirebase(fbConfig, { userProfile: 'users' });
+  const logger = createLoggerMiddleware({});
+  const middlewares = [thunk ];// || reduxFirebase(fbConfig, { userProfile: 'users' });
+  middlewares.push(promise);
+  middlewares.push(logger);
   const {persistedState} = option;
   //const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
   const composeEnhancers = composeWithDevTools({ realtime: true });

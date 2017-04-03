@@ -28,7 +28,8 @@ class Todos extends Component{
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.setType = this.setType.bind(this);
-
+        debugger;
+        this.acct = this.props.acctFromRouter || {};
         /*
         this.state = {
             bannerSize: 'smartBannerPortrait',
@@ -135,9 +136,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     debugger;
   return {
-    todos: state.todos,
-    userName: (state.acct.loggedIn === true) ? state.acct.userName : ""
+    todos: state.todos
   }
+
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

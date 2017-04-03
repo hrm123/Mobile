@@ -8,7 +8,7 @@ import nav from './navReducer';
 
 const rootReducer = combineReducers({  
   // short hand property names
-  todos, acct, fbRef, fbConfig,nav
+  todos, acct //, fbRef, fbConfig,nav
 })
 
 export default rootReducer;  

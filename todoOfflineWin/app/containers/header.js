@@ -105,7 +105,9 @@ class Header extends Component {
 };
 
 const mapStateToProps = (state) => {
+    debugger;
   return {
+    userName: state.acct.userName,
     acct: state.acct,
     loaded: state.loaded
   }
