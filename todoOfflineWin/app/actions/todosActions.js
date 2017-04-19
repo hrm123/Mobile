@@ -105,7 +105,7 @@ const ChangeRouteToTodos = () => {
 				} else {
           debugger;
           const acct = {userName: 'ANONYMOUS', loggedIn : false, loaded : false }
-					if (getState().auth.userName !== 'ANONYMOUS'){ // log out if not already logged out
+					if (getState().auth && getState().auth.userName !== 'ANONYMOUS'){ // log out if not already logged out
 						dispatch(Logout(acct));
 					}
 				}

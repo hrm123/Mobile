@@ -72,9 +72,12 @@ class Header extends Component {
                     </Text>
                 </View>
                 )}
+                <Text style={styles.headerText} onPress={Actions.todos}>
+                    My Todos 123
+                </Text>
                 {this.renderIf(acct.loggedIn, 
                 <Text style={styles.headerText} onPress={Actions.todos}>
-                    My Todos
+                    My Todos 123
                 </Text>
                  )}
             </View>

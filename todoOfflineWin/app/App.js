@@ -40,13 +40,13 @@ class App extends Component{
 
         return(
             <Provider store={ store }>
-                <RouterWithRedux> 
+                <RouterWithRedux showNavigationBar={false}> 
                     
                     <Scene key="root">
-                        <Scene key='signup' component={Signup} title='signup'/>
-                        <Scene key='login' component={Login} title='login'/>
-                        <Scene key='todos' component={Todos} title='todos'/>
-                        <Scene key='landing' component={Root} title='My Todos' initial/>
+                        <Scene key='signup' component={Signup} title='signup' hideNavBar={true}/>
+                        <Scene key='login' component={Login} title='login' hideNavBar={true}/>
+                        <Scene key='todos' component={Todos} title='todos' hideNavBar={true}/>
+                        <Scene key='landing' component={Root} title='My Todos' initial hideNavBar={true}/>
                     </Scene>
                 </RouterWithRedux>
             </Provider>
