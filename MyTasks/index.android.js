@@ -11,7 +11,25 @@ import {
   Text,
   View
 } from 'react-native';
+import * as firebase from 'firebase';
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCJ5EDKB48_E3HzQd8t8qlgyqLpMrEpHTk",
+    authDomain: "mytasks-2df8e.firebaseapp.com",
+    databaseURL: "https://mytasks-2df8e.firebaseio.com",
+    projectId: "mytasks-2df8e",
+    storageBucket: "mytasks-2df8e.appspot.com",
+    messagingSenderId: "294474878483"
+  };
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
+import App from './app/App';
+
+const MyTasks = () => <App />
+
+AppRegistry.registerComponent('MyTasks', () => MyTasks);
+
+/*
 export default class MyTasks extends Component {
   render() {
     return (
@@ -51,3 +69,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('MyTasks', () => MyTasks);
+*/
