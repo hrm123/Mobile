@@ -9,6 +9,6 @@ const firebaseConfig = {
     storageBucket: "mytasks-2df8e.appspot.com",
     messagingSenderId: "294474878483"
 };
-const FirebaseApp = firebase.initializeApp(firebaseConfig);
+const FirebaseApp1 = firebase.initializeApp(firebaseConfig);
 
-module.exports.FbDatabase = FirebaseApp.database();
+module.exports.FbDatabase = FirebaseApp1.database();
