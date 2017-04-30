@@ -13,16 +13,8 @@ import {
 } from 'react-native';
 import * as firebase from 'firebase';
 import App from './app/App';
+import FbDatabase from './app/db/fbDb';
 
- var config = {
-    apiKey: "AIzaSyCJ5EDKB48_E3HzQd8t8qlgyqLpMrEpHTk",
-    authDomain: "mytasks-2df8e.firebaseapp.com",
-    databaseURL: "https://mytasks-2df8e.firebaseio.com",
-    projectId: "mytasks-2df8e",
-    storageBucket: "mytasks-2df8e.appspot.com",
-    messagingSenderId: "294474878483"
-  };
-  firebase.initializeApp(config);
 export default class MyTasks extends Component {
   render() {
     return (

@@ -19,6 +19,7 @@ import TabBar from '../components/TabBar';
 import { AdMobBanner, AdMobInterstitial, PublisherBanner } from 'react-native-admob';
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
+import {FbDatabase} from '../db/fbDb';
 
 class Root extends Component{
     constructor(props){
@@ -26,7 +27,8 @@ class Root extends Component{
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.setType = this.setType.bind(this);
-
+        debugger;
+        this.todosRef = FbDatabase.ref("/");
         this.state = {
             bannerSize: 'smartBannerPortrait',
         };
@@ -136,6 +138,7 @@ class Root extends Component{
             "taskType": "General",
              "TaskId": -1 // will be updated in tthe action method
         }
+        this.todosRef.push(todo);
 
         this.props.onSubmitClick(todo);
     }
