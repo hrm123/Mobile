@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 import * as firebase from 'firebase';
+import App from './app/App';
+
  var config = {
     apiKey: "AIzaSyCJ5EDKB48_E3HzQd8t8qlgyqLpMrEpHTk",
     authDomain: "mytasks-2df8e.firebaseapp.com",
@@ -24,18 +26,7 @@ import * as firebase from 'firebase';
 export default class MyTasks extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+       <App/>
     );
   }
 }
