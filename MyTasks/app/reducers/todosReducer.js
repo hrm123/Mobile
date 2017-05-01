@@ -8,6 +8,7 @@ export default function todosReducer(currentState = initialState, action) {
     case types.TASK_TITLE_CHANGED:
       return Object.assign({},currentState, {"inputValue" : action.newTitle});
     case types.ADD_TODOS:
+    debugger;
         // { "Task" : todoText, "TaskType" : "General", "TaskId":  ownProps.maxTodoIndex++}
       return Object.assign({},currentState, { maxTodoIndex :action.todo.TaskId }, { todos : currentState.todos.concat( action.todo ) });
     case types.EDIT_TODOS:
@@ -20,6 +21,10 @@ export default function todosReducer(currentState = initialState, action) {
       return Object.assign({},currentState, { todos : currentState.todos.filter( (td) => td.TaskId !== action.todo.TaskId ) });
     case types.CHANGE_TODO_TYPE:
       return Object.assign({},currentState, { taskStatus: action.taskStatus });
+    case "FOLLOW_TODO_COMMIT":
+      return currentState;
+    case "FOLLOW_TODO_ROLLBACK":
+      return currentState;
     default: 
       return currentState;
   }

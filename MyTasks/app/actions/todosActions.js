@@ -23,7 +23,20 @@ const addTodos = (todo) => {
     return (dispatch,getState) => {
       const currentState = getState();
       todo.TaskId = currentState.todos.maxTodoIndex + 1;
-      dispatch( {type: actionTypes.ADD_TODOS, todo});
+      dispatch( {
+        type: actionTypes.ADD_TODOS, 
+        todo,
+        meta: {
+          offline: {
+            // the network action to execute:
+            effect: { url: 'https://mytasks-2df8e.firebaseio1.com/tasks.json', method: 'POST', body: todo },
+            // action to dispatch when effect succeeds:
+            commit: { type: 'FOLLOW_TODO_COMMIT', payload: null, meta:  todo  },
+            // action to dispatch if network action fails permanently:
+            rollback: { type: 'FOLLOW_TODO_ROLLBACK', payload: null, meta:   todo }
+          }
+        }
+      });
   }
 };
 

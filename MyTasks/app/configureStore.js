@@ -1,7 +1,8 @@
 import {createStore, applyMiddleware, compose} from 'redux';  
 import rootReducer from './reducers/rootReducer';  
 import thunk from 'redux-thunk';
-
+import { offline } from 'redux-offline';
+import offlineConfig from 'redux-offline/lib/defaults';
 
 export default function configureStore(option = {}) {  
   const middlewares = option.middlewares || [thunk];
@@ -10,6 +11,9 @@ export default function configureStore(option = {}) {
   return createStore(
     rootReducer,
     persistedState || {},
-    applyMiddleware(...middlewares)
+    compose(
+    applyMiddleware(...middlewares),
+    offline(offlineConfig)
+    )
   );
 }

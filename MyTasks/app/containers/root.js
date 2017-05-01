@@ -27,7 +27,6 @@ class Root extends Component{
         this.submitTodo = this.submitTodo.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.setType = this.setType.bind(this);
-        debugger;
         this.todosRef = FbDatabase.ref("/");
         this.state = {
             bannerSize: 'smartBannerPortrait',
