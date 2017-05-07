@@ -23,13 +23,14 @@ const addTodos = (todo) => {
     return (dispatch,getState) => {
       const currentState = getState();
       todo.TaskId = currentState.todos.maxTodoIndex + 1;
+      debugger;
       dispatch( {
         type: actionTypes.ADD_TODOS, 
         todo,
         meta: {
           offline: {
             // the network action to execute:
-            effect: { url: 'https://mytasks-2df8e.firebaseio1.com/tasks.json', method: 'POST', body: todo },
+            effect: { url: 'tasks.json', method: 'POST', body: todo },
             // action to dispatch when effect succeeds:
             commit: { type: 'FOLLOW_TODO_COMMIT', payload: null, meta:  todo  },
             // action to dispatch if network action fails permanently:
@@ -42,13 +43,40 @@ const addTodos = (todo) => {
 
 const editTodos = (todo) => { 
     return (dispatch,getState) => {
-      dispatch( {type: actionTypes.EDIT_TODOS, todo});
+      dispatch( {
+        type: actionTypes.EDIT_TODOS,
+        todo,
+        meta: {
+          offline: {
+            // the network action to execute:
+            effect: { url: 'tasks.json', method: 'POST', body: todo },
+            // action to dispatch when effect succeeds:
+            commit: { type: 'FOLLOW_TODO_COMMIT', payload: null, meta:  todo  },
+            // action to dispatch if network action fails permanently:
+            rollback: { type: 'FOLLOW_TODO_ROLLBACK', payload: null, meta:   todo }
+          }
+        }
+      
+    });
   }
 };
 
 const deleteTodos = (todo) => { 
     return (dispatch,getState) => {
-      dispatch( {type: actionTypes.DELETE_TODOS, todo});
+      dispatch( {
+        type: actionTypes.DELETE_TODOS, 
+        todo,
+        meta: {
+          offline: {
+            // the network action to execute:
+            effect: { url: 'tasks.json', method: 'DELETE', body: todo },
+            // action to dispatch when effect succeeds:
+            commit: { type: 'FOLLOW_TODO_COMMIT', payload: null, meta:  todo  },
+            // action to dispatch if network action fails permanently:
+            rollback: { type: 'FOLLOW_TODO_ROLLBACK', payload: null, meta:   todo }
+          }
+        }
+      });
   }
 };
 
