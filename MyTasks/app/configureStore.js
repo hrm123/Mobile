@@ -8,7 +8,6 @@ const actionTypes =  require('./actions/actionTypes');
 
 const offlineConfig = {
   effect: (effect, action) => {
-      debugger;
         console.log(`Executing effect for ${action.type}`);
         switch (action.type)
         {

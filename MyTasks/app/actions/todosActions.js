@@ -23,7 +23,6 @@ const addTodos = (todo) => {
     return (dispatch,getState) => {
       const currentState = getState();
       todo.TaskId = currentState.todos.maxTodoIndex + 1;
-      debugger;
       dispatch( {
         type: actionTypes.ADD_TODOS, 
         todo,

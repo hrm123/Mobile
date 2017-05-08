@@ -137,7 +137,7 @@ class Root extends Component{
             "taskType": "General",
              "TaskId": -1 // will be updated in tthe action method
         }
-        this.todosRef.push(todo);
+        //this.todosRef.push(todo);
 
         this.props.onSubmitClick(todo);
     }
