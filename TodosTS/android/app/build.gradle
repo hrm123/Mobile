@@ -64,7 +64,9 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-
+project.ext.react = [
+  entryFile: "artifacts/index.android.js"
+]
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**

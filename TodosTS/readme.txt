@@ -1,0 +1,1 @@
+'npm run start:android' to start project in simulator or phone.
