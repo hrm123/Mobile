@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
+    "test": "jest --coverage",
     "tsc": "tsc",
     "clean": "rimraf artifacts",
     "build": "npm run clean && npm run tsc -- ",
     "lint": "tslint src/**/*.ts",
     "watch": "npm run build -- -w",
-    "start:android": "npm run build && react-native run-android && npm run watch"
+    "start:android": "npm run build && concurrently -r \"react-native run-android\" \"npm run watch\""
   },
   "dependencies": {
     "react": "16.0.0-alpha.6",
@@ -31,6 +31,17 @@
     "typescript": "^2.3.2"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testRegex": "artifacts/.+\\.(test|spec).js$",
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "artifacts/**/*.js",
+      "!artifacts/**/*.spec.js",
+      "!artifacts/**/*.index.js"
+    ]
   }
 }
