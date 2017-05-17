@@ -10,7 +10,7 @@
     "build": "npm run clean && npm run tsc -- ",
     "lint": "tslint src/**/*.ts",
     "watch": "npm run build -- -w",
-    "start:android": "npm run build && concurrently -r \"react-native run-android\" \"npm run watch\""
+    "start:android": "npm run build && concurrently -r \"react-native run-android \" \"npm run watch\""
   },
   "dependencies": {
     "react": "16.0.0-alpha.6",
