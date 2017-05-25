@@ -1,14 +1,11 @@
 
-import {combineReducers} from 'redux';  
-import todos from './todosReducer';
-import acct from './loginReducer';
-import fbRef from './firebaseRef';
-import fbConfig from './firebaseConfig';
-import nav from './navReducer';
+import {combineReducers} from 'redux'
+import todos from './todosReducer'
+import acct from './loginReducer'
 
-const rootReducer = combineReducers({  
+const rootReducer = combineReducers({
   // short hand property names
-  todos, acct //, fbRef, fbConfig,nav
+  todos, acct
 })
 
-export default rootReducer;  
+export default rootReducer

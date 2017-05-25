@@ -1,14 +1,14 @@
 
-const initialState =  {  
+const initialState =  {
     todos: {
         todos: [],
-        inputValue: "My first todo",
+        inputValue: 'My first todo',
         taskType: 'General',
-        taskStatus:'All',
+        taskStatus: 'All',
         maxTodoIndex: 0
     },
     acct : { userName: 'ANONYMOUS', loggedIn : false, loaded : true}
-};
+}
 
 
-export default initialState;
+export default initialState
