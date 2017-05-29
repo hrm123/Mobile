@@ -1,21 +1,13 @@
-class ActionTypes   {
-    public static readonly LOAD_TODOS_SUCCESS = 'LOAD_TODOS_SUCCESS'
-    public static readonly ADD_TODOS = 'ADD_TODOS'
-    public static readonly REFRESHING_TODOS  = 'REFRESHING_TODOS'
-    public static readonly TASK_TITLE_CHANGED  = 'TASK_TITLE_CHANGED'
-    public static readonly EDIT_TODOS = 'EDIT_TODOS'
-    public static readonly DELETE_TODOS = 'DELETE_TODOS'
-    public static readonly CHANGE_TODO_TYPE = 'CHANGE_TODO_TYPE'
-    public static readonly LOGIN = 'LOGIN'
-    public static readonly LOGOUT = 'LOGOUT'
-    public static readonly FIREBASE_CONFIG_REPLACE = 'FIREBASE_CONFIG_REPLACE'
-    public static readonly FIREBASE_REF_SET = 'FIREBASE_REF_SET'
+export namespace ActionTypes   {
+    export const LOAD_TODOS_SUCCESS: string = 'LOAD_TODOS_SUCCESS'
+    export const ADD_TODOS: string = 'ADD_TODOS'
+    export const REFRESHING_TODOS: string  = 'REFRESHING_TODOS'
+    export const TASK_TITLE_CHANGED: string  = 'TASK_TITLE_CHANGED'
+    export const EDIT_TODOS: string = 'EDIT_TODOS'
+    export const DELETE_TODOS: string = 'DELETE_TODOS'
+    export const CHANGE_TODO_TYPE: string = 'CHANGE_TODO_TYPE'
+    export const LOGIN: string = 'LOGIN'
+    export const LOGOUT: string = 'LOGOUT'
+    export const FIREBASE_CONFIG_REPLACE: string = 'FIREBASE_CONFIG_REPLACE'
+    export const FIREBASE_REF_SET: string = 'FIREBASE_REF_SET'
 }
-
-
-alert(ActionTypes.LOAD_TODOS_SUCCESS)
-export interface LoadTodosSuccess {
-    type: ActionTypes.LOAD_TODOS_SUCCESS;
-}
-
-export type ReduxAction = LoadTodosSuccess;
