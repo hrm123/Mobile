@@ -1,6 +1,6 @@
 import {ActionTypes} from './actionTypes'
 import * as TodosTsTypes from '../types/todoTypes'
-// action creators
+// typescripted
 import {ThunkAction} from 'redux-thunk'
 
 export const loadTodosSuccess: ThunkAction<void, TodosTsTypes.AppState, {}> = (todos) =>  {

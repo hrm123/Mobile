@@ -1,3 +1,5 @@
+// typescripted
+
 export namespace ActionTypes   {
     export const LOAD_TODOS_SUCCESS: string = 'LOAD_TODOS_SUCCESS'
     export const ADD_TODOS: string = 'ADD_TODOS'
