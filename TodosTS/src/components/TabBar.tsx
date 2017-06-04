@@ -1,18 +1,19 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import * as React from 'react';
+import { ViewStyle, View, StyleSheet } from 'react-native';
 import TabBarItem from './TabBarItem';
+import * as TodosTsTypes from '../types/todoTypes';
 
 
-const TabBar = ({ setType, type }) => (
-    <View style={styles.container}>
-        <TabBarItem todoType={type} title='All'
-        setType={() => setType('All')} />
-        <TabBarItem type={type} title='Active'
-        setType={() => setType('Active')} />
-        <TabBarItem type={type} title='Complete'
-        setType={() => setType('Complete')} />
+const TabBar : React.StatelessComponent<TodosTsTypes.TabBarModel> = props => {
+    const tabBarItem1Data: TodosTsTypes.TabBarItemModel  = {todoType: props.type, title:'All', setType: () => props.setType('All')}
+    const tabBarItem2Data: TodosTsTypes.TabBarItemModel = {todoType: props.type, title: 'Active', setType: () => props.setType('Active') }
+    const tabBarItem3Data: TodosTsTypes.TabBarItemModel = {todoType: props.type, title: 'Complete', setType: () => props.setType('Complete') }
+    return <View style={styles.container}>
+        <TabBarItem {...tabBarItem1Data} />
+        <TabBarItem {...tabBarItem2Data} />
+        <TabBarItem  {...tabBarItem3Data} />
     </View>
-)
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderTopWidth: 1,
         borderTopColor: '#dddddd'
-    }
+    } as ViewStyle
 });
 
 export default TabBar;

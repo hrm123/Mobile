@@ -1,26 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { ViewStyle, View, Text, StyleSheet } from 'react-native';
 import TodoButton from "./TodoButton";
+import * as TodosTsTypes from '../types/todoTypes';
 
-const Todo = ({ todo, toggleComplete, deleteTodo  }) => (
-    <View style={styles.todoContainer}>
+const Todo : React.StatelessComponent<TodosTsTypes.TodoModel> = props => {
+    const todoButton1Data: TodosTsTypes.TodoButtonModel = { name:'Done',
+                complete: props.todo.Complete,
+                onPress: () =>props.toggleComplete(props.todo.TaskId) }
+    const todoButton2Data: TodosTsTypes.TodoButtonModel = {
+        name: 'Delete',
+        onPress : () => props.deleteTodo(props.todo.TaskId)
+    }
+    return <View style={styles.todoContainer}>
         <Text style={styles.todoText}>
-            {todo.Task}
+            {props.todo.Task}
         </Text>
         <View style={styles.buttons}>
-            <TodoButton
-                name='Done'
-                complete={todo.Complete}
-                onPress={() =>toggleComplete(todo.TaskId)} 
-            />
-            <TodoButton
-                name='Delete'
-                onPress={() =>deleteTodo(todo.TaskId)}
-            />
+            <TodoButton {...todoButton1Data} />
+            <TodoButton {...todoButton2Data} />
         </View>
     </View>
-);
-
+}
 const styles = StyleSheet.create({
     todoContainer: {
         marginLeft: 20,
@@ -39,16 +39,16 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 2, height: 2 },
         flexDirection: 'row',
         alignItems: 'center'
-    },
+    } as ViewStyle,
     todoText: {
         fontSize: 17
-    },
+    } as ViewStyle,
     buttons: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center'
-    }
+    } as ViewStyle
 });
 
 export default Todo;

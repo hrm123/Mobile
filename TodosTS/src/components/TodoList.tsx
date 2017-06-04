@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import Todo from './Todo';
+import * as TodosTsTypes from '../types/todoTypes';
 
-const TodoList = ({todos, toggleComplete, deleteTodo , type}) => {
-
-    const getVisibleTodos = (todos, type) => {
+const TodoList : React.StatelessComponent<TodosTsTypes.TodoListModel> = props => {
+    const getVisibleTodos = (todos: TodosTsTypes.Todo[], type: string): TodosTsTypes.Todo[] => {
         switch (type) {
             case 'All':
                 return todos;
@@ -12,24 +12,30 @@ const TodoList = ({todos, toggleComplete, deleteTodo , type}) => {
                 return todos.filter( (t) => t.Complete);
             case 'Active':
                 return todos.filter( (t) => !t.Complete);
+            default:
+                return todos;
+
         }
     }
 
-    todos = getVisibleTodos(todos, type).map((todo, i) => {
+    const todoElements = getVisibleTodos(props.todos, props.type).map((todo1, i) => {
+            const todoModel = {
+                key : todo1.TaskId,
+                todo: todo1,
+                toggleComplete: props.toggleComplete,
+                deleteTodo: props.deleteTodo
+            }
+
+            return (
+                <Todo {...todoModel} />
+            )
+        });
+
         return (
-            <Todo
-                key={todo.TaskId}
-                todo={todo}
-                toggleComplete={toggleComplete}
-                deleteTodo={deleteTodo}
-            />
-        )
-    });
-    return (
         <View>
-            {todos}
+            {todoElements}
         </View>
     );
-};
 
+}
 export default TodoList;
