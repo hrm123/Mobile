@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 
 
-class Button extends Component{
+class Button extends Component<any,any>{
     constructor(props){
         super(props);
     };
-    render = () => {
+    public render()  {
         return(
             <View style={styles.buttonContainer} >
             <TouchableHighlight

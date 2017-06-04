@@ -5,7 +5,7 @@ import TabBarItem from './TabBarItem';
 
 const TabBar = ({ setType, type }) => (
     <View style={styles.container}>
-        <TabBarItem type={type} title='All'
+        <TabBarItem todoType={type} title='All'
         setType={() => setType('All')} />
         <TabBarItem type={type} title='Active'
         setType={() => setType('Active')} />

@@ -1,30 +1,35 @@
 import { Component, PropTypes  } from 'react'
+//import * as React from 'react'
 import { connect } from 'react-redux'
-import {
-  ScrollView,
-  View
-} from 'react-native'
+import React, { ScrollView, View, Input } from 'react-native'
 const todosActions =  require("../actions/todosActions")
 import Footer from './footer'
-import Input from '../components/Input'
+import Header from './header'
+//import Input from '../components/Input'
 import Button from '../components/Button'
-import todoList from '../components/TodoList'
+import TodoList from '../components/TodoList'
 import TabBar from '../components/TabBar'
 import TimerMixin from 'react-timer-mixin'
-import styles from '../styles/common-styles.js'
+import {styles} from '../styles/common-styles.js'
 import * as TodosTsTypes from '../types/todoTypes'
+import * as Redux from "redux"
 
-
-interface TodosProps {
-    todos: TodosTsTypes.AppState,
+export interface ITodosProps{
+    todos: TodosTsTypes.TodosState,
     onSetType: Function
+
 }
 
-class Todos extends Component<TodosProps, any> {
-    constructor(props) {
+export interface ITodosState {
+        
+
+}
+
+class Todos extends Component<ITodosProps, any> {
+    constructor(props: ITodosProps) {
         super(props)
-        this.submitTodo = this.submitTodo.bind(this)
-        this.inputChange = this.inputChange.bind(this)
+        //this.submitTodo = this.submitTodo.bind(this)
+        //this.inputChange = this.inputChange.bind(this)
         this.setType = this.setType.bind(this)
         /*
         this.state = {
@@ -32,15 +37,15 @@ class Todos extends Component<TodosProps, any> {
         }
         this.setBannerSize = this.setBannerSize.bind(this)
         */
-    }
+    };
 
     setType (type) {
         this.props.onSetType(type)
-    }
+    };
 
-    render() {
+    public render(): JSX.Element {
         const {inputValue: inputVal, todos : todosList, taskStatus : type } = this.props.todos
-        return {
+        return (
                 <View style={styles.container}>
                     <Header/>
                     <View style={styles.body}>
@@ -49,7 +54,7 @@ class Todos extends Component<TodosProps, any> {
                                 inputValue={inputVal}
                                 inputChange={this.inputChange}
                             /> 
-                            <todoList 
+                            <TodoList 
                                 todos={todosList}  
                                 toggleComplete={this.toggleComplete}
                                 deleteTodo={this.deleteTask}
@@ -61,7 +66,7 @@ class Todos extends Component<TodosProps, any> {
                     </View>
                     <Footer isLoginAllowed={false} isSignupAllowed={false}/>
                 </View>
-        }
+        )
     }
 
     submitTodo = () => {
@@ -128,14 +133,14 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     todos: state.todos
   }
 
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Redux.Dispatch<any>) => {
     return {
         // actions: bindActionCreators(TodosActions, dispatch) -- can use this
         // when you want to pass these dispatch methods to component that does not know about redux
