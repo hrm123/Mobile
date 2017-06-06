@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
-import Root from "./containers/root";
-import Todos from "./containers/todos";
+import Todos from "./todos";
 
 import { Provider, connect  } from 'react-redux'
-import configureStore from './configureStore'; 
-import Signup from './components/signup';
-import Login from './containers/loginContainer';
-const TodosActions =  require("./actions/todosActions");
+import configureStore from '../configureStore'; 
+
 // creates our Redux store (elsewhere)
 const store = configureStore();
 const RouterWithRedux = connect()(Router);
@@ -19,10 +16,12 @@ setTimeout(function(){
 });
 */
 
+export interface IAppProps {
 
+}
 
-class App extends Component{
-    constructor(props){
+class App extends Component<IAppProps, any>{
+    constructor(props: IAppProps){
         super(props);
         this.isLoaded = this.isLoaded.bind(this);
        this.state = {
@@ -40,13 +39,10 @@ class App extends Component{
 
         return(
             <Provider store={ store }>
-                <RouterWithRedux showNavigationBar={false}> 
+                <RouterWithRedux> 
                     
                     <Scene key="root">
-                        <Scene key='signup' component={Signup} title='signup' hideNavBar={true}/>
-                        <Scene key='login' component={Login} title='login' hideNavBar={true}/>
-                        <Scene key='todos' component={Todos} title='todos' hideNavBar={true}/>
-                        <Scene key='landing' component={Root} title='My Todos' initial hideNavBar={true}/>
+                        <Scene key='todos' component={Todos} title='todos' hideNavBar={true} initial/>
                     </Scene>
                 </RouterWithRedux>
             </Provider>

@@ -18,7 +18,7 @@ const TodoList : React.StatelessComponent<TodosTsTypes.TodoListModel> = props =>
         }
     }
 
-    const todoElements = getVisibleTodos(props.todos, props.type).map((todo1, i) => {
+    const todoElements = getVisibleTodos(props.todos, props.type).map((todo1) => {
             const todoModel = {
                 key : todo1.TaskId,
                 todo: todo1,

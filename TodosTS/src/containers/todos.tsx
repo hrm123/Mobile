@@ -1,31 +1,31 @@
-import { Component, PropTypes  } from 'react'
+import { Component } from 'react'
 //import * as React from 'react'
 import { connect } from 'react-redux'
-import React, { ScrollView, View, Input } from 'react-native'
+import React, { ScrollView, View } from 'react-native'
 const todosActions =  require("../actions/todosActions")
-import Footer from './footer'
-import Header from './header'
-//import Input from '../components/Input'
+import Input from '../components/Input'
 import Button from '../components/Button'
 import TodoList from '../components/TodoList'
 import TabBar from '../components/TabBar'
-import TimerMixin from 'react-timer-mixin'
+//import TimerMixin from 'react-timer-mixin'
 import {styles} from '../styles/common-styles.js'
 import * as TodosTsTypes from '../types/todoTypes'
 import * as Redux from "redux"
 
 export interface ITodosProps{
     todos: TodosTsTypes.TodosState,
-    onSetType: Function
-
+    onSetType: (type1: any) => void,
+    onSubmitClick: (todo: TodosTsTypes.Todo) => void,
+    onDeleteTask: (todo: TodosTsTypes.Todo) => void,
+    onTitleChanged: (newVal: string) => void,
+    onTaskChanged: (todo: TodosTsTypes.Todo) => void
 }
 
 export interface ITodosState {
-        
-
+    todos: TodosTsTypes.TodosState
 }
 
-class Todos extends Component<ITodosProps, any> {
+class TodosApp extends Component<ITodosProps, any> {
     constructor(props: ITodosProps) {
         super(props)
         //this.submitTodo = this.submitTodo.bind(this)
@@ -39,15 +39,14 @@ class Todos extends Component<ITodosProps, any> {
         */
     };
 
-    setType (type) {
-        this.props.onSetType(type)
+    setType (type1) {
+        this.props.onSetType(type1)
     };
 
     public render(): JSX.Element {
         const {inputValue: inputVal, todos : todosList, taskStatus : type } = this.props.todos
         return (
                 <View style={styles.container}>
-                    <Header/>
                     <View style={styles.body}>
                         <ScrollView style={styles.content} keyboardShouldPersistTaps="handled">
                             <Input
@@ -64,7 +63,6 @@ class Todos extends Component<ITodosProps, any> {
                         </ScrollView>
                         <TabBar type={type} setType={this.setType} />
                     </View>
-                    <Footer isLoginAllowed={false} isSignupAllowed={false}/>
                 </View>
         )
     }
@@ -79,6 +77,7 @@ class Todos extends Component<ITodosProps, any> {
             "taskType": "General",
              "TaskId": -1 // will be updated in the action method
         }
+        /*
         const {userName} = this.props
         debugger
         if(userName.length >0){
@@ -87,6 +86,7 @@ class Todos extends Component<ITodosProps, any> {
             const todosRef = userRef.child("todos")            
             todosRef.set([todo])
         }
+        */
         
         this.props.onSubmitClick(todo)
     }
@@ -103,7 +103,9 @@ class Todos extends Component<ITodosProps, any> {
         const { todos : todosList } = this.props.todos
         const currentTodo = todosList.filter((td) => td.TaskId===taskId)
         if(currentTodo && currentTodo.length ===1){
-            this.props.onTaskChanged({TaskId: currentTodo[0].TaskId , Complete:!currentTodo[0].Complete})
+            this.props.onTaskChanged(
+                Object.assign({},currentTodo[0],{Complete:!currentTodo[0].Complete})
+                )
         }
     }
 
@@ -112,11 +114,13 @@ class Todos extends Component<ITodosProps, any> {
     }
 }
 
-reactMixin(Todos.prototype, TimerMixin)
+//reactMixin(Todos.prototype, TimerMixin)
 
+/*
 Todos.propTypes = {
     todos: PropTypes.object.isRequired
 }
+*/
 
 /*
 const styles = StyleSheet.create({
@@ -165,4 +169,4 @@ const mapDispatchToProps = (dispatch: Redux.Dispatch<any>) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Todos)
+)(TodosApp)

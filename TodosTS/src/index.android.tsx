@@ -14,7 +14,7 @@ export default class TodosTS extends Component<Props, State> {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                    React Native with typescript 101!
+                    React Native with typescript 102!
                 </Text>
                 <Text style={styles.instructions}>
                     To get started, edit index.android.js

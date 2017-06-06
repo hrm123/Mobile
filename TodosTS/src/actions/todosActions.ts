@@ -1,4 +1,4 @@
-import {ActionTypes} from './actionTypes'
+import * as ActionTypes from './actionTypes'
 import * as TodosTsTypes from '../types/todoTypes'
 // typescripted
 import {ThunkAction} from 'redux-thunk'
