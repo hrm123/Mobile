@@ -28,7 +28,8 @@
     "android",
     "ios",
     "build",
-    "node_modules"
+    "node_modules",
+    "coverage"
   ],
   "compileOnSave": true
 }

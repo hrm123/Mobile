@@ -1,7 +1,8 @@
 import { Component } from 'react'
 //import * as React from 'react'
 import { connect } from 'react-redux'
-import React, { ScrollView, View } from 'react-native'
+import React from 'react'
+import { ScrollView, View } from 'react-native'
 const todosActions =  require("../actions/todosActions")
 import Input from '../components/Input'
 import Button from '../components/Button'
