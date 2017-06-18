@@ -51,11 +51,16 @@
   },
   "jest": {
     "preset": "react-native",
-    "testRegex": "artifacts/.+\\.(test|spec).js$",
+    "testRegex": "artifacts/.+\\.(test|spec).(ts|tsx|js)$",
     "coverageDirectory": "coverage",
     "coverageReporters": [
       "text-summary",
       "html"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
     ],
     "collectCoverageFrom": [
       "artifacts/**/*.js",

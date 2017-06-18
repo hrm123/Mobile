@@ -38,9 +38,11 @@ class Input extends Component<IInputProps,any>{
                     style={styles.input}
                     placeholder="What needs to be done?"
                     //placeholderTextcolor="#CACACA"
-                    selectionColor="#666666"
-                    onChangeText={ (text) => this.setState({text})} 
-                    onBlur={this.onInputValChanged}/>
+                    //selectionColor="#666666"
+                    //onChangeText={ (text) => this.setState({text})} 
+                    onBlur={this.onInputValChanged}
+                    onChange={ (text) => this.setState({text})}
+                    />
             </View>
         );
     }

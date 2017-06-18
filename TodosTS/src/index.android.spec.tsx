@@ -1,13 +1,14 @@
 import React from 'react'
 import { mount, render, shallow } from 'enzyme'
-//import renderer from 'react-test-renderer'
+import 'react-native';
+import renderer from 'react-test-renderer'
 import TodosApp from './containers/todos'
 //import configureStore from 'redux-mock-store'
 import {Provider} from 'react-redux'
 //import * as TodosTsActions from '../src/actions/actionTypes'
 import {createStore} from 'redux'
 import todosReducer from './reducers/todosreducer'
-//import Index from './index.android';
+import Index from './index.android';
 import initialState from './reducers/initialState';
 //import renderer from 'react-native-mock-render';
 
@@ -27,7 +28,9 @@ describe('>>>T O D O S A P P -- snapshot',() => {
           global[property] = document.defaultView[property];   
         }                                                      
       });    
-      
+      store = createStore(todosReducer, initialState.todos )
+        //store.dispatch(TodosTsActions.(500))
+      wrapper = mount( <Provider store={store}><TodosApp /></Provider> )
   })
 
 
@@ -37,16 +40,30 @@ describe('>>>T O D O S A P P -- snapshot',() => {
         store = createStore(todosReducer, initialState.todos )
         //store.dispatch(TodosTsActions.(500))
         wrapper = mount( <Provider store={store}><TodosApp /></Provider> )
-        console.log(wrapper.debug())
+       // console.log(wrapper.debug())
     });
-/*
+
+  it('should render a TodoList component', () =>{
+    let todoListObj = wrapper.find('TodoList');
+    expect(todoListObj).toBeDefined();
+    let todoObj = todoListObj.find('Todo');
+    expect(todoObj).toBeDefined();
+    //console.log(todoObj);
+    let todoTxt = todoObj.find('Text');
+    //console.log(todoTxt.debug());
+    //console.log(todoTxt.render());
+    expect(todoTxt.find('textinput')).toEqual("What needs to be done?");
+
+  });
+
+
   it('renders correctly', () => {
     const tree = renderer.create(
       <Index />
     );
     expect(tree).toBeDefined();
   });   
-  */ 
+  
 })
 
 
