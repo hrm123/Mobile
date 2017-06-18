@@ -1,8 +1,11 @@
 import React from 'react'
 import { mount, render, shallow } from 'enzyme'
-import 'react-native';
+import { Text } from 'react-native';
 import renderer from 'react-test-renderer'
 import TodosApp from './containers/todos'
+import TodoList from './components/TodoList'
+import Todo from './components/Todo'
+import TodosTsTypes from './types/todoTypes'
 //import configureStore from 'redux-mock-store'
 import {Provider} from 'react-redux'
 //import * as TodosTsActions from '../src/actions/actionTypes'
@@ -10,7 +13,7 @@ import {createStore} from 'redux'
 import todosReducer from './reducers/todosreducer'
 import Index from './index.android';
 import initialState from './reducers/initialState';
-//import renderer from 'react-native-mock-render';
+//import renderer from 'react-native-mock-render/mock';
 
 describe('>>>T O D O S A P P -- snapshot',() => {
   let store,wrapper
@@ -34,7 +37,7 @@ describe('>>>T O D O S A P P -- snapshot',() => {
   })
 
 
-  it('+++capturing Snapshot of Home', () => {
+  xit('+++capturing Snapshot of Home', () => {
         //const renderedValue =  renderer.create(<TodosApp />).toJSON()
         //expect(renderedValue).toMatchSnapshot();
         store = createStore(todosReducer, initialState.todos )
@@ -43,21 +46,69 @@ describe('>>>T O D O S A P P -- snapshot',() => {
        // console.log(wrapper.debug())
     });
 
-  it('should render a TodoList component', () =>{
+  xit('should render a TodoList component', () =>{
+    const todosCurrent:TodosTsTypes.Todo[] =
+           ["todo1", "todo2"].map((s,i) => { return { 
+                                      Task: s, Complete: false,
+                                      TaskId: i, taskType: 'General' 
+                                    }});
+    const todoListModel:TodosTsTypes.TodoListModel =
+      {
+        todos: todosCurrent,
+        type: 'General',
+        deleteTodo: jest.fn,
+        toggleComplete: jest.fn
+
+      }
+
+    const wrapper = shallow(<TodoList {...todoListModel} />);
+    console.log(wrapper);
+    console.log(wrapper.render());
+    
+  });
+
+   it('should render a Todo component', () =>{
+    const todoModel:TodosTsTypes.TodoModel =
+      {
+        deleteTodo: jest.fn,
+        toggleComplete: jest.fn,
+        key: 1,
+        todo: {
+          Complete: false,
+          Task: 'todo1',
+          TaskId: 1,
+          taskType: 'General'
+        }
+      }
+
+    const wrapper = shallow(<Todo {...todoModel} />);
+    //console.log(wrapper);
+    //console.log(wrapper.render());
+    expect(wrapper.contains(
+        <Text >
+            todo1
+        </Text>
+    )).toBe(true);
+  });
+
+
+  xit('should render a TodoList container', () =>{
     let todoListObj = wrapper.find('TodoList');
     expect(todoListObj).toBeDefined();
     let todoObj = todoListObj.find('Todo');
     expect(todoObj).toBeDefined();
     //console.log(todoObj);
-    let todoTxt = todoObj.find('Text');
+    //let todoTxt = todoObj.find('Text');
     //console.log(todoTxt.debug());
-    //console.log(todoTxt.render());
-    expect(todoTxt.find('textinput')).toEqual("What needs to be done?");
+    console.log(wrapper.debug());
+    console.log(wrapper.render());
+    //console.log(todoTxt.Children());
+//    expect(todoTxt.find('textinput')).toEqual("What needs to be done?");
 
   });
 
 
-  it('renders correctly', () => {
+  xit('renders correctly', () => {
     const tree = renderer.create(
       <Index />
     );

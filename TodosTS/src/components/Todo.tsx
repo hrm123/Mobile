@@ -12,9 +12,10 @@ const Todo : React.StatelessComponent<TodosTsTypes.TodoModel> = props => {
         onPress : () => props.deleteTodo(props.todo.TaskId)
     }
     return <View style={styles.todoContainer}>
-        <Text style={styles.todoText}>
+        <Text>
             {props.todo.Task}
         </Text>
+
         <View style={styles.buttons}>
             <TodoButton {...todoButton1Data} />
             <TodoButton {...todoButton2Data} />
