@@ -8,6 +8,7 @@ import TodosTsTypes from '../types/todoTypes'
 
 describe('>>>T O D O S COMPONENT -- tests', () => {
     let wrapper
+    let onPress: TodosTsTypes.PressFn = () => { console.log('omPress called')}
     beforeEach(() => {
       let jsdom = require('jsdom').jsdom
       global.document = jsdom('')
@@ -21,8 +22,8 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
         }
       })
       const todoModel: TodosTsTypes.TodoModel = {
-          deleteTodo: jest.fn,
-          toggleComplete: jest.fn,
+          deleteTodo: fn2,
+          toggleComplete: fn2,
           key: 1,
           todo: {
               Complete: false,
@@ -33,6 +34,8 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
       }
       wrapper = shallow(<Todo {...todoModel} />)
     })
+
+    let fn2 = jest.fn()  // (taskId: number) => { console.log(taskId)}
 
     it('should render a Todo component', () => {
         //console.log(wrapper)
@@ -46,8 +49,8 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
 
     it('should render a Todo component using SnapShots', () => {
         const todoModel: TodosTsTypes.TodoModel = {
-          deleteTodo: jest.fn,
-          toggleComplete: jest.fn,
+          deleteTodo: fn2,
+          toggleComplete: fn2,
           key: 1,
           todo: {
             Complete: false,
@@ -63,12 +66,29 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
     })
 
     describe('Todo component button tests', () => {
-        it('Todo component button tests', () => {
+        it('Todo component button render', () => {
             let todoButtons = wrapper.find(TodoButton)
             expect(todoButtons).toHaveLength(2)
-            console.log(todoButtons)
-            let button1State: TodosTsTypes.TodoButtonModel = {name: 'Delete', onPress: jest.fn, complete : false};
-            expect(todoButtons[0].state()).toEqual(button1State)
+            //console.log(todoButtons)
+            //console.log(todoButtons.first().props())
+            let doneButtonState: TodosTsTypes.TodoButtonModel = {name: 'Done', onPress: onPress, complete : false}
+            let deleteButtonState: TodosTsTypes.TodoButtonModel = {name: 'Delete', onPress: onPress, complete : false}
+            expect(todoButtons.first().props().name).toEqual(doneButtonState.name)
+            expect(todoButtons.first().props().complete).toEqual(doneButtonState.complete)
+            expect(todoButtons.at(1).props().name).toEqual(deleteButtonState.name)
+            //expect(todoButtons.at(1).props().onPress.getClass().equals(onPress.getClass())).toBeTruthy()
+
+        })
+        it('Todo component button click', () => {
+            let todoButtons = wrapper.find(TodoButton)
+            expect(todoButtons).toHaveLength(2)
+            //console.log(todoButtons)
+            //console.log(todoButtons.first().props())
+            let doneButton = todoButtons.first()
+            doneButton.simulate('press')
+            expect(fn2).toHaveBeenCalled()
+            expect(fn2).toHaveBeenCalledWith(1)
+
         })
     })
 

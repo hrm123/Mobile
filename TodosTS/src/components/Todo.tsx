@@ -4,9 +4,9 @@ import TodoButton from "./TodoButton";
 import * as TodosTsTypes from '../types/todoTypes';
 
 const Todo : React.StatelessComponent<TodosTsTypes.TodoModel> = props => {
-    const todoButton1Data: TodosTsTypes.TodoButtonModel = { name:'Done',
+    const todoButton1Data: TodosTsTypes.TodoButtonModel = { name: 'Done',
                 complete: props.todo.Complete,
-                onPress: () =>props.toggleComplete(props.todo.TaskId) }
+                onPress: () => props.toggleComplete(props.todo.TaskId) }
     const todoButton2Data: TodosTsTypes.TodoButtonModel = {
         name: 'Delete',
         onPress : () => props.deleteTodo(props.todo.TaskId)

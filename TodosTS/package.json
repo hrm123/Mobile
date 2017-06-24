@@ -36,6 +36,7 @@
     "babel-preset-react-native": "1.9.2",
     "concurrently": "^3.4.0",
     "enzyme": "^2.8.2",
+    "jasmine-core": "^2.6.4",
     "jest": "20.0.1",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",

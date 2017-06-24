@@ -17,37 +17,37 @@ export interface AppState  {
     todos: TodosState
 }
 
-
 export type TabBarItemModel = {
-    border?: any, 
+    border?: any,
     title: string,
     selected?: any,
-    setType : () => void,
-    todoType : string
+    setType: () => void,
+    todoType: string
 }
 
 export type TabBarModel = {
-    setType : (todoType: string) => void,
-    type : string
+    setType: (todoType: string) => void,
+    type: string
 }
 
 export type TodoModel = {
-    todo : Todo,
-    toggleComplete : (number) => void,
-    deleteTodo : (number) => void,
+    todo: Todo,
+    toggleComplete: (id: number) => void,
+    deleteTodo: (id: number) => void,
     key?: number
 }
 
-
 export type TodoListModel = {
-    todos : Todo[],
+    todos: Todo[],
     type: string,
-    toggleComplete : (number) => void,
-    deleteTodo : (number) => void
+    toggleComplete: (id: number) => void,
+    deleteTodo: (id: number) => void
 }
 
+export type PressFn = () => void
+
 export type TodoButtonModel = {
-    onPress : () => void,
-    complete? : boolean,
-    name : string
+    onPress: PressFn,
+    complete?: boolean,
+    name: string
 }
