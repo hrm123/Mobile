@@ -17,7 +17,7 @@ const TodoButton : React.StatelessComponent<TodosTsTypes.TodoButtonModel> = prop
                 {props.name}
             </Text>
         </TouchableHighlight>
-    );
+    )
 }
 const styles = StyleSheet.create({
     button: {
