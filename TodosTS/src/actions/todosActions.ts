@@ -17,8 +17,8 @@ export const titleChanged: ThunkAction<void, TodosTsTypes.AppState, {}> = (newTi
   }
 }
 
-export type addTodos = (todo) => ThunkAction<void, TodosTsTypes.AppState, {todo: TodosTsTypes.Todo}>
-export const addTodos: ThunkAction<void, TodosTsTypes.AppState, {todo: TodosTsTypes.Todo}> = (todo) => {
+export type addTodos = (todo: TodosTsTypes.Todo) => ThunkAction<void, TodosTsTypes.AppState, {todo: TodosTsTypes.Todo}>
+export const addTodos: ThunkAction<void, TodosTsTypes.AppState, TodosTsTypes.Todo> = (todo) => {
     return (dispatch, getState, extraArg) => {
       const currentState = getState()
       const currentTodo: TodosTsTypes.Todo = extraArg.todo

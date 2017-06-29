@@ -8,7 +8,19 @@ import TodosTsTypes from '../types/todoTypes'
 
 describe('>>>T O D O S COMPONENT -- tests', () => {
     let wrapper
-    let onPress: TodosTsTypes.PressFn = () => { console.log('omPress called')}
+    let fn2 = jest.fn()  // (taskId: number) => { console.log(taskId)}
+    let onPress: TodosTsTypes.PressFn = () => { console.log('onPress called')}
+    let todoModel: TodosTsTypes.TodoModel = {
+        deleteTodo: fn2,
+        toggleComplete: fn2,
+        key: 1,
+        todo: {
+            Complete: false,
+            Task: 'todo1',
+            TaskId: 1,
+            taskType: 'General'
+        }
+    }
     beforeEach(() => {
       let jsdom = require('jsdom').jsdom
       global.document = jsdom('')
@@ -21,21 +33,9 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
           global[property] = document.defaultView[property]
         }
       })
-      const todoModel: TodosTsTypes.TodoModel = {
-          deleteTodo: fn2,
-          toggleComplete: fn2,
-          key: 1,
-          todo: {
-              Complete: false,
-              Task: 'todo1',
-              TaskId: 1,
-              taskType: 'General'
-          }
-      }
+
       wrapper = shallow(<Todo {...todoModel} />)
     })
-
-    let fn2 = jest.fn()  // (taskId: number) => { console.log(taskId)}
 
     it('should render a Todo component', () => {
         //console.log(wrapper)
@@ -87,7 +87,7 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
             let doneButton = todoButtons.first()
             doneButton.simulate('press')
             expect(fn2).toHaveBeenCalled()
-            expect(fn2).toHaveBeenCalledWith(1)
+            expect(fn2).toHaveBeenCalledWith(todoModel.key)
 
         })
     })
