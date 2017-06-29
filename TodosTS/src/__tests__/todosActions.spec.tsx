@@ -13,9 +13,9 @@ describe('todo actions tests', () => {
            taskType: 'general'
        }
        let store = Mocks.mockStore
-       TodosActions.addTodos( store.dispatch, store.getState, currentTodo)
+       TodosActions.addTodos( currentTodo)(store.dispatch, store.getState, {todo: currentTodo})
        const actions = store.getActions()
-       expect(actions).toEqual(TodosActionsTypes.ADD_TODOS)
+       expect(actions[0]).toEqual( { 'todo': currentTodo , 'type': TodosActionsTypes.ADD_TODOS})
    })
     it('should create an action to edit todo', () => {
 

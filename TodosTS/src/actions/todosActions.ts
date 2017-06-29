@@ -17,8 +17,8 @@ export const titleChanged: ThunkAction<void, TodosTsTypes.AppState, {}> = (newTi
   }
 }
 
-export type addTodos = (todo: TodosTsTypes.Todo) => ThunkAction<void, TodosTsTypes.AppState, {todo: TodosTsTypes.Todo}>
-export const addTodos: ThunkAction<void, TodosTsTypes.AppState, TodosTsTypes.Todo> = (todo) => {
+export type AddTodos = (todo: TodosTsTypes.Todo) => ThunkAction<any, TodosTsTypes.AppState, {todo: TodosTsTypes.Todo}>
+export const addTodos: AddTodos = (todo) => {
     return (dispatch, getState, extraArg) => {
       const currentState = getState()
       const currentTodo: TodosTsTypes.Todo = extraArg.todo
@@ -53,7 +53,7 @@ export const todoTypeChanged: ThunkAction<void, {}, {todo: TodosTsTypes.Todo}> =
 
 export type TodosActions =
   loadTodosSuccess|
-  addTodos|
+  AddTodos|
   titleChanged|
   editTodos|
   deleteTodos|
