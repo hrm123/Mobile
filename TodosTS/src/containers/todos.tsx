@@ -49,13 +49,13 @@ class TodosApp extends Component<ITodosProps, any> {
         return (
                 <View style={styles.container}>
                     <View style={styles.body}>
-                        <ScrollView style={styles.content} 
-                        //keyboardShouldPersistTaps="handled"
+                        <ScrollView style={styles.content}
+                        keyboardShouldPersistTaps='handled'
                         >
                             <Input
                                 inputValue={inputVal}
                                 inputChange={this.inputChange}
-                            /> 
+                            />
                             <TodoList 
                                 todos={todosList}  
                                 toggleComplete={this.toggleComplete}

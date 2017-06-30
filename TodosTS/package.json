@@ -55,6 +55,7 @@
     "preset": "react-native",
     "testRegex": "artifacts/.+\\.(test|spec).(ts|tsx|js)$",
     "coverageDirectory": "coverage",
+    "collectCoverage": false,
     "coverageReporters": [
       "text-summary",
       "html"
