@@ -48,18 +48,6 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
     })
 
     it('should render a Todo component using SnapShots', () => {
-        const todoModel: TodosTsTypes.TodoModel = {
-          deleteTodo: fn2,
-          toggleComplete: fn2,
-          key: 1,
-          todo: {
-            Complete: false,
-            Task: 'todo1',
-            TaskId: 1,
-            taskType: 'General'
-          }
-        }
-
         expect(renderer.create(
           <Todo {...todoModel} />
         )).toMatchSnapshot()

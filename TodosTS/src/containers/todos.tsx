@@ -3,7 +3,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import React from 'react'
 import { ScrollView, View } from 'react-native'
-const todosActions =  require("../actions/todosActions")
+const todosActions =  require('../actions/todosActions')
 import Input from '../components/Input'
 import Button from '../components/Button'
 import TodoList from '../components/TodoList'
@@ -11,7 +11,7 @@ import TabBar from '../components/TabBar'
 //import TimerMixin from 'react-timer-mixin'
 import {styles} from '../styles/common-styles.js'
 import * as TodosTsTypes from '../types/todoTypes'
-import * as Redux from "redux"
+import * as Redux from 'redux'
 
 export interface ITodosProps{
     todos: TodosTsTypes.TodosState,
@@ -30,7 +30,7 @@ class TodosApp extends Component<ITodosProps, any> {
     constructor(props: ITodosProps) {
         super(props)
         //this.submitTodo = this.submitTodo.bind(this)
-        //this.inputChange = this.inputChange.bind(this)
+        this.inputChange = this.inputChange.bind(this)
         this.setType = this.setType.bind(this)
         /*
         this.state = {
@@ -38,14 +38,15 @@ class TodosApp extends Component<ITodosProps, any> {
         }
         this.setBannerSize = this.setBannerSize.bind(this)
         */
-    };
+    }
 
     setType (type1) {
         this.props.onSetType(type1)
-    };
+    }
 
     public render(): JSX.Element {
         const {inputValue: inputVal, todos : todosList, taskStatus : type } = this.props.todos
+        console.log('test0')
         return (
                 <View style={styles.container}>
                     <View style={styles.body}>
@@ -56,8 +57,8 @@ class TodosApp extends Component<ITodosProps, any> {
                                 inputValue={inputVal}
                                 inputChange={this.inputChange}
                             />
-                            <TodoList 
-                                todos={todosList}  
+                            <TodoList
+                                todos={todosList}
                                 toggleComplete={this.toggleComplete}
                                 deleteTodo={this.deleteTask}
                                 type={type}
@@ -71,14 +72,14 @@ class TodosApp extends Component<ITodosProps, any> {
     }
 
     submitTodo = () => {
-        if(this.props.todos.inputValue.match(/^\s*$/)){
+        if (this.props.todos.inputValue.match(/^\s*$/)){
             return
         }
         let todo = {
-            "Task": this.props.todos.inputValue,
-            "Complete": false,
-            "taskType": "General",
-             "TaskId": -1 // will be updated in the action method
+            'Task': this.props.todos.inputValue,
+            'Complete': false,
+            'taskType': 'General',
+             'TaskId': -1 // will be updated in the action method
         }
         /*
         const {userName} = this.props
@@ -86,33 +87,34 @@ class TodosApp extends Component<ITodosProps, any> {
         if(userName.length >0){
             const ref = firebase.database().ref("/")
             const userRef= ref.child(userName.replace("@","_").replace(".","-"))
-            const todosRef = userRef.child("todos")            
+            const todosRef = userRef.child("todos")
             todosRef.set([todo])
         }
         */
-        
+
         this.props.onSubmitClick(todo)
     }
 
     deleteTask = (taskId) => {
         const { todos : todosList } = this.props.todos
-        const currentTodo = todosList.filter((td) => td.TaskId===taskId)
-        if(currentTodo && currentTodo.length ===1){
+        const currentTodo = todosList.filter((td) => td.TaskId === taskId)
+        if (currentTodo && currentTodo.length === 1){
             this.props.onDeleteTask(currentTodo[0])
         }
     }
 
     toggleComplete = (taskId) => {
         const { todos : todosList } = this.props.todos
-        const currentTodo = todosList.filter((td) => td.TaskId===taskId)
-        if(currentTodo && currentTodo.length ===1){
+        const currentTodo = todosList.filter((td) => td.TaskId === taskId)
+        if (currentTodo && currentTodo.length === 1){
             this.props.onTaskChanged(
-                Object.assign({},currentTodo[0],{Complete:!currentTodo[0].Complete})
+                Object.assign({}, currentTodo[0], {Complete: !currentTodo[0].Complete})
                 )
         }
     }
 
-    inputChange(nv){
+    inputChange(nv) {
+        console.log('test1')
         this.props.onTitleChanged(nv)
     }
 }
@@ -138,8 +140,6 @@ const styles = StyleSheet.create({
 })
 */
 
-
-
 const mapStateToProps = (state: any) => {
   return {
     todos: state.todos
@@ -163,13 +163,13 @@ const mapDispatchToProps = (dispatch: Redux.Dispatch<any>) => {
         onDeleteTask: (todo) => {
             dispatch(todosActions.deleteTodos(todo))
         },
-        onSetType: (type) =>{
+        onSetType: (type) => {
             dispatch(todosActions.todoTypeChanged(type))
         }
     }
 }
 
-export default connect(
+export const TodosAppConnected = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodosApp)

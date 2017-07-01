@@ -1,5 +1,5 @@
-import React,{Component} from 'react';
-import {View, StyleSheet, TextInput, ViewStyle} from 'react-native';
+import React, {Component} from 'react'
+import {View, StyleSheet, TextInput, ViewStyle} from 'react-native'
 
 /*
 class Input extends Component = () => (
@@ -15,18 +15,17 @@ class Input extends Component = () => (
 )
 */
 
-
 export interface IInputProps {
-    inputValue : string,
-    inputChange : (string) => void
+    inputValue: string,
+    inputChange: (string) => void
 
 }
 
-class Input extends Component<IInputProps,any>{
+class Input extends Component<IInputProps, any>{
     constructor(props: IInputProps){
-        super(props);
-        this.state = {text : ''};
-        this.onInputValChanged = this.onInputValChanged.bind(this);
+        super(props)
+        this.state = {text : ''}
+        this.onInputValChanged = this.onInputValChanged.bind(this)
     }
 
     render(){
@@ -36,21 +35,21 @@ class Input extends Component<IInputProps,any>{
                 <TextInput
                     value={this.state.text}
                     style={styles.input}
-                    placeholder="What needs to be done?"
+                    placeholder='What needs to be done?'
                     //placeholderTextcolor="#CACACA"
                     //selectionColor="#666666"
-                    //onChangeText={ (text) => this.setState({text})} 
+                    //onChangeText={ (text) => this.setState({text})}
                     onBlur={this.onInputValChanged}
                     onChange={ (text) => this.setState({text})}
                     />
             </View>
-        );
+        )
     }
 
     onInputValChanged(){
-        this.props.inputChange(this.state.text);
+        this.props.inputChange(this.state.text)
     }
-};
+}
 
 const styles = StyleSheet.create<any>({
     inputContainer: {
@@ -63,10 +62,10 @@ const styles = StyleSheet.create<any>({
     } as ViewStyle,
     input: {
         height: 60,
-        backgroundColor: "#ffffff",
+        backgroundColor: '#ffffff',
         paddingLeft: 10,
         paddingRight: 10
     } as ViewStyle
-});
+})
 
-export default Input;
+export default Input

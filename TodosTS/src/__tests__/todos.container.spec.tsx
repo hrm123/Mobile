@@ -1,21 +1,60 @@
 import React from 'react'
 import { mount, render, shallow } from 'enzyme'
+import {TextInput} from 'react-native'
 import { Provider } from 'react-redux'
-import Todo from '../containers/todos'
+import * as TodoContainer from '../containers/todos'
 import * as TodosTsTypes from '../types/todoTypes'
 import * as Mocks from './mocks'
 import TodoList from '../components/TodoList'
+import TodoComponent from '../components/Todo'
+import Input from '../components/Input'
+// import sinon from 'sinon'
+
 describe('>>>T O D O S CONTAINER -- tests', () => {
     let wrapper
-    let fn2 = jest.fn()  // (taskId: number) => { console.log(taskId)}
-    // let onPress: TodosTsTypes.PressFn = () => { console.log('onPress called')}
-    let currentTodos: TodosTsTypes.Todo[] = []
-    let todoContainerModel: any = {
-        onSetType: fn2,
-        onSubmitClick: fn2,
-        onDeleteTask: fn2,
-        onTitleChanged: fn2,
-        onTaskChanged: fn2,
+    /*
+    let dummyFns = {
+        onSetTypeMock : (type1: any) => {
+            console.log(type1)
+        },
+        onSubmitClickMock : (todo: TodosTsTypes.Todo) => {
+            console.log(todo)
+        },
+        onTitleChangeMock : (newVal: string) => {
+            console.log(newVal)
+        }
+    }
+    jest.spyOn(dummyFns, 'onSetTypeMock')
+    jest.spyOn(dummyFns, 'onSubmitClickMock')
+    jest.spyOn(dummyFns, 'onTitleChangeMock')
+    */
+
+    let dummyFns = {
+        onSetTypeMock : jest.fn(),
+        onSubmitClickMock : jest.fn(),
+        onTitleChangeMock : jest.fn()
+    }
+
+    let currentTodos: TodosTsTypes.Todo[] = [
+        {
+        Complete: false,
+        Task: 'task1',
+        TaskId: 1,
+        taskType: 'Career'
+        },
+        {
+        Complete: false,
+        Task: 'task2',
+        TaskId: 1,
+        taskType: 'Personal'
+        }
+    ]
+    let todoContainerModel: TodoContainer.ITodosProps = {
+        onSetType: dummyFns.onSetTypeMock,
+        onSubmitClick: dummyFns.onSubmitClickMock,
+        onDeleteTask: dummyFns.onSubmitClickMock,
+        onTitleChanged: dummyFns.onTitleChangeMock,
+        onTaskChanged: dummyFns.onSubmitClickMock,
         todos: {
             todos: currentTodos,
             inputValue: 'todo1',
@@ -37,19 +76,35 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
             }
         })
         let store = Mocks.mockStore
-        wrapper = mount(<Provider store={store}><Todo {...todoContainerModel} /></Provider>)
+        wrapper = mount(<Provider store={store}><TodoContainer.TodosAppConnected {...todoContainerModel} /></Provider>)
     })
 
     it('should render a Todo container', () => {
         //console.log(wrapper)
         //console.log(wrapper.render())
         expect(wrapper).toBeTruthy()
-        let todoApp = wrapper.find(Todo)
+        let todoApp = wrapper.find(TodoContainer.TodosAppConnected)
         expect(todoApp.props()).toEqual(todoContainerModel)
 
         expect(todoApp).toHaveLength(1)
         let todoList = wrapper.find(TodoList)
         expect(todoList).toHaveLength(1)
+
+        let textInputComponent = wrapper.find(Input)
+        //console.log(textInputComponent)
+        expect(textInputComponent.props().inputValue).toEqual('My first todo')
+        console.log(textInputComponent.props().inputChange)
+        //expect(textInputComponent.props().inputChange).toEqual(fnOnChangeTitle)
+        let textInput = textInputComponent.find(TextInput)
+        textInput.simulate('keypress', {which: 'a'})
+        //dummyFns.onTitleChangeMock('a')
+        expect(dummyFns.onTitleChangeMock).toBeCalledWith('a')
+        // expect(dummyFns.onSetTypeMock).toBeCalledWith('a')
+        // expect(dummyFns.onSubmitClickMock).toBeCalledWith('a')
+
+        let todoComponents = wrapper.find(TodoComponent)
+        expect(todoComponents).toBeTruthy()
+        //expect(todoComponents).toHaveLength(2)
 
 
         /*
