@@ -47,6 +47,7 @@ class TodosApp extends Component<ITodosProps, any> {
     public render(): JSX.Element {
         const {inputValue: inputVal, todos : todosList, taskStatus : type } = this.props.todos
         console.log('test0')
+        this.inputChange('a')
         return (
                 <View style={styles.container}>
                     <View style={styles.body}>
@@ -56,6 +57,7 @@ class TodosApp extends Component<ITodosProps, any> {
                             <Input
                                 inputValue={inputVal}
                                 inputChange={this.inputChange}
+                                ref = 'Taskdescription'
                             />
                             <TodoList
                                 todos={todosList}

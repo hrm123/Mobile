@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount, render, shallow } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import {TextInput} from 'react-native'
 import { Provider } from 'react-redux'
 import * as TodoContainer from '../containers/todos'
@@ -9,6 +9,7 @@ import TodoList from '../components/TodoList'
 import TodoComponent from '../components/Todo'
 import Input from '../components/Input'
 // import sinon from 'sinon'
+require('react-native-mock-render/mock')
 
 describe('>>>T O D O S CONTAINER -- tests', () => {
     let wrapper
@@ -67,8 +68,8 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         let jsdom = require('jsdom').jsdom
         global.document = jsdom('')
         global.window = document.defaultView
-        global.mount = mount
-        global.render = render
+        // global.mount = mount
+        // global.render = mockRend
         global.shallow = shallow
         Object.keys(document.defaultView).forEach((property) => {
             if (typeof global[property] === 'undefined') {
@@ -91,14 +92,19 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         expect(todoList).toHaveLength(1)
 
         let textInputComponent = wrapper.find(Input)
-        //console.log(textInputComponent)
+        // console.log(textInputComponent)
         expect(textInputComponent.props().inputValue).toEqual('My first todo')
-        console.log(textInputComponent.props().inputChange)
+        console.log(textInputComponent.debug())
+        // let textInputComponentWrapper = new ReactWrapper(textInputComponent.node.refs[refName], wrapper)
+        // expect(textInputComponent.state('text')).toEqual('My first todo')
+        // console.log(textInputComponent.props().inputChange)
         //expect(textInputComponent.props().inputChange).toEqual(fnOnChangeTitle)
         let textInput = textInputComponent.find(TextInput)
+        console.log(textInput.debug())
         textInput.simulate('keypress', {which: 'a'})
-        //dummyFns.onTitleChangeMock('a')
-        expect(dummyFns.onTitleChangeMock).toBeCalledWith('a')
+        expect(textInput.text()).toEqual('a')
+        // dummyFns.onTitleChangeMock('a')
+        // expect(dummyFns.onTitleChangeMock).toBeCalledWith('a')
         // expect(dummyFns.onSetTypeMock).toBeCalledWith('a')
         // expect(dummyFns.onSubmitClickMock).toBeCalledWith('a')
 

@@ -17,28 +17,27 @@ class Input extends Component = () => (
 
 export interface IInputProps {
     inputValue: string,
-    inputChange: (string) => void
+    inputChange: (val: string) => void
 
 }
 
-class Input extends Component<IInputProps, any>{
-    constructor(props: IInputProps){
+class Input extends Component<IInputProps, any> {
+    constructor(props: IInputProps) {
         super(props)
         this.state = {text : ''}
         this.onInputValChanged = this.onInputValChanged.bind(this)
     }
 
-    render(){
-        //const { inputValue, inputChange } = this.props;
+    render() {
+        // const { inputValue, inputChange } = this.props;
         return(
             <View style={styles.inputContainer}>
                 <TextInput
                     value={this.state.text}
                     style={styles.input}
                     placeholder='What needs to be done?'
-                    //placeholderTextcolor="#CACACA"
-                    //selectionColor="#666666"
-                    //onChangeText={ (text) => this.setState({text})}
+                    selectionColor='#666666'
+                    onChangeText={ (text) => this.setState({text})}
                     onBlur={this.onInputValChanged}
                     onChange={ (text) => this.setState({text})}
                     />
