@@ -8,7 +8,7 @@ import * as Mocks from './mocks'
 import TodoList from '../components/TodoList'
 import TodoComponent from '../components/Todo'
 import Input from '../components/Input'
-// import sinon from 'sinon'
+import sinon from 'sinon'
 require('react-native-mock-render/mock')
 
 describe('>>>T O D O S CONTAINER -- tests', () => {
@@ -31,9 +31,9 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
     */
 
     let dummyFns = {
-        onSetTypeMock : jest.fn(),
-        onSubmitClickMock : jest.fn(),
-        onTitleChangeMock : jest.fn()
+        onSetTypeMock : sinon.stub(), // jest.fn(),
+        onSubmitClickMock : sinon.stub(), // jest.fn(),
+        onTitleChangeMock : sinon.stub() // jest.fn()
     }
 
     let currentTodos: TodosTsTypes.Todo[] = [
@@ -46,7 +46,7 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         {
         Complete: false,
         Task: 'task2',
-        TaskId: 1,
+        TaskId: 2,
         taskType: 'Personal'
         }
     ]
@@ -82,7 +82,7 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
 
     it('should render a Todo container', () => {
         //console.log(wrapper)
-        //console.log(wrapper.render())
+        // console.log(wrapper.render())
         expect(wrapper).toBeTruthy()
         let todoApp = wrapper.find(TodoContainer.TodosAppConnected)
         expect(todoApp.props()).toEqual(todoContainerModel)
@@ -90,7 +90,7 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         expect(todoApp).toHaveLength(1)
         let todoList = wrapper.find(TodoList)
         expect(todoList).toHaveLength(1)
-
+        // console.log(wrapper.debug())
         let textInputComponent = wrapper.find(Input)
         // console.log(textInputComponent)
         expect(textInputComponent.props().inputValue).toEqual('My first todo')
@@ -100,9 +100,14 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         // console.log(textInputComponent.props().inputChange)
         //expect(textInputComponent.props().inputChange).toEqual(fnOnChangeTitle)
         let textInput = textInputComponent.find(TextInput)
+        //console.log(textInput.debug())
+        expect(textInput).toHaveLength(1)
+        expect(textInput.props().value).toEqual('My first todo')
         console.log(textInput.debug())
-        textInput.simulate('keypress', {which: 'a'})
-        expect(textInput.text()).toEqual('a')
+        // textInput.simulate('keypress', {which: 'a'})
+        // textInput.first().simulate('change', {target: {value: 'a'}})
+        // textInput.simulate('update', 'a')
+        expect(textInput.props().value).toEqual('a')
         // dummyFns.onTitleChangeMock('a')
         // expect(dummyFns.onTitleChangeMock).toBeCalledWith('a')
         // expect(dummyFns.onSetTypeMock).toBeCalledWith('a')

@@ -24,7 +24,7 @@ export interface IInputProps {
 class Input extends Component<IInputProps, any> {
     constructor(props: IInputProps) {
         super(props)
-        this.state = {text : ''}
+        this.state = {text : this.props.inputValue}
         this.onInputValChanged = this.onInputValChanged.bind(this)
     }
 
