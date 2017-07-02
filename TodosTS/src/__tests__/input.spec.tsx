@@ -3,12 +3,12 @@ import { mount, shallow, render } from 'enzyme'
 import {Input} from '../components/Input'
 import * as TodosTsTypes from '../types/todoTypes'
 import { TextInput } from 'react-native'
-import sinon from 'sinon'
+// import sinon from 'sinon'
 describe('>>>Input COMPONENT -- tests', () => {
     let wrapper
     // let Mock = jest.fn((val: string) => {console.log(val) })
     // const inputChangeMock = new Mock()
-    let mockFn = sinon.stub()
+    let mockFn = jest.fn()
     let inputModel: TodosTsTypes.IInputProps = {
         inputValue: 'todo1',
         inputChange: mockFn
@@ -46,7 +46,7 @@ describe('>>>Input COMPONENT -- tests', () => {
         inputTextField.prop('onChange')('todo2') // Invoke onchange event to change text to todo2
         expect(wrapper.state('text')).toEqual('todo2')
         inputTextField.prop('onBlur')() // Invoke onBlur event
-        expect(mockFn.getCall(0).args).toEqual(['todo2'])
+        expect(mockFn).toBeCalledWith('todo2')
     })
 
 })

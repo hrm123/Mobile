@@ -43,7 +43,7 @@ export class Input extends Component<TodosTsTypes.IInputProps, any> {
     }
 
     onInputValChanged() {
-        console.log('In onInputValChanged')
+        // console.log('In onInputValChanged')
         this.props.inputChange(this.state.text)
     }
 }
