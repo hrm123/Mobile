@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import React from 'react'
 import { ScrollView, View } from 'react-native'
 const todosActions =  require('../actions/todosActions')
-import Input from '../components/Input'
+import {Input} from '../components/Input'
 import Button from '../components/Button'
 import TodoList from '../components/TodoList'
 import TabBar from '../components/TabBar'
@@ -47,17 +47,14 @@ class TodosApp extends Component<ITodosProps, any> {
     public render(): JSX.Element {
         const {inputValue: inputVal, todos : todosList, taskStatus : type } = this.props.todos
         console.log('test0')
-        this.inputChange('a')
         return (
                 <View style={styles.container}>
                     <View style={styles.body}>
                         <ScrollView style={styles.content}
-                        keyboardShouldPersistTaps='handled'
                         >
                             <Input
                                 inputValue={inputVal}
                                 inputChange={this.inputChange}
-                                ref = 'Taskdescription'
                             />
                             <TodoList
                                 todos={todosList}
@@ -74,6 +71,7 @@ class TodosApp extends Component<ITodosProps, any> {
     }
 
     submitTodo = () => {
+        console.log('button1')
         if (this.props.todos.inputValue.match(/^\s*$/)){
             return
         }

@@ -39,7 +39,7 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
 
     it('should render a Todo component', () => {
         //console.log(wrapper)
-        console.log(wrapper.render())
+        //console.log(wrapper.render())
         expect(wrapper.contains(
             <Text >
                 todo1
@@ -88,8 +88,8 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
         //console.log(todoObj)
         //let todoTxt = todoObj.find('Text')
         //console.log(todoTxt.debug())
-        console.log(wrapper.debug())
-        console.log(wrapper.render())
+        //console.log(wrapper.debug())
+        //console.log(wrapper.render())
         //console.log(todoTxt.Children())
         //    expect(todoTxt.find('textinput')).toEqual("What needs to be done?")
     })

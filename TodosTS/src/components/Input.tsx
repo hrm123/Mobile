@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {View, StyleSheet, TextInput, ViewStyle} from 'react-native'
+import * as TodosTsTypes from '../types/todoTypes'
 
 /*
 class Input extends Component = () => (
@@ -15,14 +16,10 @@ class Input extends Component = () => (
 )
 */
 
-export interface IInputProps {
-    inputValue: string,
-    inputChange: (val: string) => void
 
-}
 
-class Input extends Component<IInputProps, any> {
-    constructor(props: IInputProps) {
+export class Input extends Component<TodosTsTypes.IInputProps, any> {
+    constructor(props: TodosTsTypes.IInputProps) {
         super(props)
         this.state = {text : this.props.inputValue}
         this.onInputValChanged = this.onInputValChanged.bind(this)
@@ -45,7 +42,8 @@ class Input extends Component<IInputProps, any> {
         )
     }
 
-    onInputValChanged(){
+    onInputValChanged() {
+        console.log('In onInputValChanged')
         this.props.inputChange(this.state.text)
     }
 }
@@ -66,5 +64,3 @@ const styles = StyleSheet.create<any>({
         paddingRight: 10
     } as ViewStyle
 })
-
-export default Input

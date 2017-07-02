@@ -1,12 +1,10 @@
-import React,{Component} from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import React, {Component} from 'react'
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
-
-
-class Button extends Component<any,any>{
-    constructor(props){
-        super(props);
-    };
+class Button extends Component<any, any>{
+    constructor(props) {
+        super(props)
+    }
     public render()  {
         return(
             <View style={styles.buttonContainer} >
@@ -20,14 +18,15 @@ class Button extends Component<any,any>{
                 </Text>
             </TouchableHighlight>
         </View>
-        );
-    };
+        )
+    }
     submitClicked = () => {
-        const { submitTodo } = this.props;
-        if(submitTodo){
-            submitTodo();
+        console.log('submitClicked')
+        const { submitTodo } = this.props
+        if (submitTodo) {
+            submitTodo()
         }
-    };
+    }
 }
 
 const styles = StyleSheet.create({
@@ -51,6 +50,6 @@ const styles = StyleSheet.create({
         color: '#666666',
         fontWeight: '600'
     }
-});
+})
 
-export default Button;
+export default Button

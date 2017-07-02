@@ -51,3 +51,11 @@ export type TodoButtonModel = {
     complete?: boolean,
     name: string
 }
+
+export interface IInputProps {
+    inputValue: string,
+    inputChange: (val: string) => void
+
+}
+
+
