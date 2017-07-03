@@ -38,6 +38,7 @@ describe('>>>Input COMPONENT -- tests', () => {
     })
 
     it('should invoke inputChange function', () => {
+        expect(wrapper).toBeTruthy()
         let inputComponent = wrapper.find(Input)
         let inputTextField = inputComponent.find(TextInput)
         expect(inputTextField).toBeTruthy()

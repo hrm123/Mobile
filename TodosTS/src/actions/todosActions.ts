@@ -19,9 +19,10 @@ export const titleChanged: ThunkAction<void, TodosTsTypes.AppState, {}> = (newTi
 
 export type AddTodos = (todo: TodosTsTypes.Todo) => ThunkAction<any, TodosTsTypes.AppState, {todo: TodosTsTypes.Todo}>
 export const addTodos: AddTodos = (todo) => {
-    return (dispatch, getState, extraArg) => {
+    return (dispatch, getState) => {
       const currentState = getState()
-      const currentTodo: TodosTsTypes.Todo = extraArg.todo
+      console.log('in addTodos action')
+      const currentTodo: TodosTsTypes.Todo = todo
       currentTodo.TaskId = currentState.todos.maxTodoIndex + 1
       dispatch( {type: ActionTypes.ADD_TODOS, todo})
   }

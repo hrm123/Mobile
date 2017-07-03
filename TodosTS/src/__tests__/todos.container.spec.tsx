@@ -7,10 +7,11 @@ import * as TodosTsTypes from '../types/todoTypes'
 import * as Mocks from './mocks'
 import TodoList from '../components/TodoList'
 // import TodoComponent from '../components/Todo'
-import Input from '../components/Input'
+import {Input} from '../components/Input'
 import Button from '../components/Button'
 // import sinon from 'sinon'
 require('react-native-mock-render/mock')
+import * as TodosActionsTypes from '../actions/actionTypes'
 
 describe('>>>T O D O S CONTAINER -- tests', () => {
     let wrapper
@@ -49,7 +50,7 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         onTitleChangeMock : sinon.stub() // jest.fn()
     }
     */
-
+    let store = Mocks.mockStore
     let currentTodos: TodosTsTypes.Todo[] = [
         {
         Complete: false,
@@ -90,13 +91,12 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
                 global[property] = document.defaultView[property]
             }
         })
-        let store = Mocks.mockStore
+        store.clearActions()
+        // store.dispatch = sinon.spy()
         wrapper = mount(<Provider store={store}><TodoContainer.TodosAppConnected {...todoContainerModel} /></Provider>)
     })
 
-    xit('should render a Todo container', () => {
-        //console.log(wrapper)
-        // console.log(wrapper.render())
+    it('should render a Todo container', () => {
         expect(wrapper).toBeTruthy()
         let todoApp = wrapper.find(TodoContainer.TodosAppConnected)
         expect(todoApp.props()).toEqual(todoContainerModel)
@@ -104,49 +104,28 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         expect(todoApp).toHaveLength(1)
         let todoList = wrapper.find(TodoList)
         expect(todoList).toHaveLength(1)
-        // console.log(wrapper.debug())
         let textInputComponent = wrapper.find(Input)
-        // console.log(textInputComponent)
         expect(textInputComponent.props().inputValue).toEqual('My first todo')
-        //console.log(textInputComponent.debug())
-        // let textInputComponentWrapper = new ReactWrapper(textInputComponent.node.refs[refName], wrapper)
-        // expect(textInputComponent.state('text')).toEqual('My first todo')
-        // console.log(textInputComponent.props().inputChange)
-        //expect(textInputComponent.props().inputChange).toEqual(fnOnChangeTitle)
         let textInput = textInputComponent.find(TextInput)
-        //console.log(textInput.debug())
         expect(textInput).toHaveLength(1)
         expect(textInput.props().value).toEqual('My first todo')
-        // textInput.simulate('ChangeText', 'a') Textinput simulate not working for events I tested
-        // textInput.simulate('onChange', {target: {value: 'a'}})
-        // textInput.simulate('update', 'a')
-        //expect(textInput.props().value).toEqual('a')
-        // dummyFns.onTitleChangeMock('a')
-        // expect(dummyFns.onTitleChangeMock).toBeCalledWith('a')
-        // expect(dummyFns.onSetTypeMock).toBeCalledWith('a')
-        // expect(dummyFns.onSubmitClickMock).toBeCalledWith('a')
+    })
 
+    it('submit button should invoke submit callback', () => {
         let submitButton = wrapper.find(Button)
         expect(submitButton).toBeTruthy()
         expect(submitButton).toHaveLength(1)
-        expect(submitButton.props().submitTodo).toEqual(dummyFns.onSubmitClickMock)
+        // expect(submitButton.props().submitTodo).toEqual(dummyFns.onSubmitClickMock)
 
         let submitTH = submitButton.find(TouchableHighlight)
-        console.log(submitTH.props().onPress)
-        submitTH.simulate('click')
-        expect(dummyFns.onSubmitClickMock).toBeCalled()
-        /*
-        const initialTodos: TodosTsTypes.Todo[] = []
-        const initialTodosState: TodosTsTypes.TodosState = {
-            todos: initialTodos,
-            inputValue: 'My first todo',
+        // console.log(submitTH.props().onPress)
+        submitTH.props().onPress()
+        // expect(dummyFns.onSubmitClickMock).toBeCalled()
+        const actions = store.getActions()
+        expect(actions[0]).toEqual( { 'todo': { Task: 'My first todo',
+            Complete: false,
             taskType: 'General',
-            taskStatus: 'All',
-            maxTodoIndex: 0
-        }
-        */
-        //expect(todoList.props()).toEqual(todoContainerModel)
-
+            TaskId: 1} , 'type': TodosActionsTypes.ADD_TODOS})
     })
 
 })

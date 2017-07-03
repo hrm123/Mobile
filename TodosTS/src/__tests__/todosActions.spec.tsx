@@ -5,6 +5,11 @@ import * as Mocks from './mocks'
 // import initialState from '../reducers/initialState'
 
 describe('todo actions tests', () => {
+    let store = Mocks.mockStore
+    beforeEach(() => {
+        store.clearActions()
+    })
+
    it('should create an action to add todo', () => {
        let currentTodo: TodosTsTypes.Todo = {
            Complete: false,
@@ -12,8 +17,8 @@ describe('todo actions tests', () => {
            TaskId: 1,
            taskType: 'general'
        }
-       let store = Mocks.mockStore
-       TodosActions.addTodos( currentTodo)(store.dispatch, store.getState, {todo: currentTodo})
+       // TodosActions.addTodos( currentTodo)(store.dispatch, store.getState, {todo: currentTodo})
+       store.dispatch(TodosActions.addTodos(currentTodo))
        const actions = store.getActions()
        expect(actions[0]).toEqual( { 'todo': currentTodo , 'type': TodosActionsTypes.ADD_TODOS})
    })

@@ -81,6 +81,7 @@ class TodosApp extends Component<ITodosProps, any> {
             'taskType': 'General',
              'TaskId': -1 // will be updated in the action method
         }
+        console.log(todo)
         /*
         const {userName} = this.props
         debugger
@@ -152,6 +153,7 @@ const mapDispatchToProps = (dispatch: Redux.Dispatch<any>) => {
         // actions: bindActionCreators(TodosActions, dispatch) -- can use this
         // when you want to pass these dispatch methods to component that does not know about redux
         onSubmitClick: (todo) => {
+            console.log('in onSubmitClick')
             dispatch(todosActions.addTodos(todo))
         },
         onTitleChanged:  (newVal) => {
