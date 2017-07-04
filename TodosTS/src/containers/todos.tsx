@@ -46,7 +46,7 @@ class TodosApp extends Component<ITodosProps, any> {
 
     public render(): JSX.Element {
         const {inputValue: inputVal, todos : todosList, taskStatus : type } = this.props.todos
-        console.log('test0')
+        // console.log('test0')
         return (
                 <View style={styles.container}>
                     <View style={styles.body}>
@@ -71,7 +71,7 @@ class TodosApp extends Component<ITodosProps, any> {
     }
 
     submitTodo = () => {
-        console.log('button1')
+        // console.log('button1')
         if (this.props.todos.inputValue.match(/^\s*$/)){
             return
         }
@@ -81,17 +81,7 @@ class TodosApp extends Component<ITodosProps, any> {
             'taskType': 'General',
              'TaskId': -1 // will be updated in the action method
         }
-        console.log(todo)
-        /*
-        const {userName} = this.props
-        debugger
-        if(userName.length >0){
-            const ref = firebase.database().ref("/")
-            const userRef= ref.child(userName.replace("@","_").replace(".","-"))
-            const todosRef = userRef.child("todos")
-            todosRef.set([todo])
-        }
-        */
+        // console.log(todo)
 
         this.props.onSubmitClick(todo)
     }
@@ -153,7 +143,7 @@ const mapDispatchToProps = (dispatch: Redux.Dispatch<any>) => {
         // actions: bindActionCreators(TodosActions, dispatch) -- can use this
         // when you want to pass these dispatch methods to component that does not know about redux
         onSubmitClick: (todo) => {
-            console.log('in onSubmitClick')
+            // console.log('in onSubmitClick')
             dispatch(todosActions.addTodos(todo))
         },
         onTitleChanged:  (newVal) => {

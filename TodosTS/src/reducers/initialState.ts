@@ -20,7 +20,7 @@ const initialTodosState: TodosTsTypes.TodosState = {
         inputValue: 'My first todo',
         taskType: 'General',
         taskStatus: 'All',
-        maxTodoIndex: 0
+        maxTodoIndex: 2
     }
 const initialState: TodosTsTypes.AppState =  {
     todos: initialTodosState

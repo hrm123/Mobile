@@ -21,7 +21,7 @@ class Button extends Component<any, any>{
         )
     }
     submitClicked = () => {
-        console.log('submitClicked')
+        // console.log('submitClicked')
         const { submitTodo } = this.props
         if (submitTodo) {
             submitTodo()

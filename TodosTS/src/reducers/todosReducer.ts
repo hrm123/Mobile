@@ -13,6 +13,7 @@ export default function todosReducer(currentState: TodosTsTypes.TodosState = ini
       return Object.assign({}, currentState, {'inputValue' : action.newTitle})
     case TodosTsActionTypes.ADD_TODOS:
         // { "Task" : todoText, "TaskType" : "General", "TaskId":  ownProps.maxTodoIndex++}
+      console.log(' case TodosTsActionTypes.ADD_TODOS')
       return Object.assign({}, currentState, { maxTodoIndex : action.todo.TaskId }, { todos : currentState.todos.concat( action.todo ) });
     case TodosTsActionTypes.EDIT_TODOS:
       const editedIndex = currentState.todos.map(function(x) {return x.TaskId }).indexOf(action.todo.TaskId)

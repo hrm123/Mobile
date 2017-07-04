@@ -43,41 +43,15 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
             console.log(newVal)
         })
     }
-    /*
-    let dummyFns = {
-        onSetTypeMock : sinon.stub(), // jest.fn(),
-        onSubmitClickMock : sinon.stub(), // jest.fn(),
-        onTitleChangeMock : sinon.stub() // jest.fn()
-    }
-    */
     let store = Mocks.mockStore
-    let currentTodos: TodosTsTypes.Todo[] = [
-        {
-        Complete: false,
-        Task: 'task1',
-        TaskId: 1,
-        taskType: 'Career'
-        },
-        {
-        Complete: false,
-        Task: 'task2',
-        TaskId: 2,
-        taskType: 'Personal'
-        }
-    ]
+    let currentState = store.getState().todos
     let todoContainerModel: TodoContainer.ITodosProps = {
         onSetType: dummyFns.onSetTypeMock,
         onSubmitClick: dummyFns.onSubmitClickMock,
         onDeleteTask: dummyFns.onSubmitClickMock,
         onTitleChanged: dummyFns.onTitleChangeMock,
         onTaskChanged: dummyFns.onSubmitClickMock,
-        todos: {
-            todos: currentTodos,
-            inputValue: 'todo1',
-            taskType: 'general',
-            taskStatus: 'pending',
-            maxTodoIndex: 0
-        }
+        todos: currentState
     }
     beforeEach(() => {
         let jsdom = require('jsdom').jsdom
@@ -93,6 +67,7 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         })
         store.clearActions()
         // store.dispatch = sinon.spy()
+        // console.log(store.getState())
         wrapper = mount(<Provider store={store}><TodoContainer.TodosAppConnected {...todoContainerModel} /></Provider>)
     })
 
@@ -125,7 +100,7 @@ describe('>>>T O D O S CONTAINER -- tests', () => {
         expect(actions[0]).toEqual( { 'todo': { Task: 'My first todo',
             Complete: false,
             taskType: 'General',
-            TaskId: 1} , 'type': TodosActionsTypes.ADD_TODOS})
+            TaskId: currentState.maxTodoIndex + 1} , 'type': TodosActionsTypes.ADD_TODOS})
     })
 
 })

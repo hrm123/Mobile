@@ -21,7 +21,7 @@ export type AddTodos = (todo: TodosTsTypes.Todo) => ThunkAction<any, TodosTsType
 export const addTodos: AddTodos = (todo) => {
     return (dispatch, getState) => {
       const currentState = getState()
-      console.log('in addTodos action')
+      // console.log('in addTodos action')
       const currentTodo: TodosTsTypes.Todo = todo
       currentTodo.TaskId = currentState.todos.maxTodoIndex + 1
       dispatch( {type: ActionTypes.ADD_TODOS, todo})
