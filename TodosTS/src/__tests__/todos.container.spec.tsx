@@ -13,7 +13,7 @@ import Button from '../components/Button'
 require('react-native-mock-render/mock')
 import * as TodosActionsTypes from '../actions/actionTypes'
 
-describe('>>>T O D O S CONTAINER -- tests', () => {
+describe('>>> T O D O S CONTAINER -- tests', () => {
     let wrapper
     /*
     let dummyFns = {

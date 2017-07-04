@@ -29,7 +29,9 @@
     "ios",
     "build",
     "node_modules",
-    "coverage"
+    "coverage",
+    "__mock__",
+    "jest"
   ],
   "compileOnSave": true
 }

@@ -71,6 +71,9 @@
       "!artifacts/**/*.spec.js",
       "!artifacts/**/*.index.js"
     ],
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+      "C:\\Users\\Ramm\\my_git\\Mobile\\TodosTS\\artifacts\\__tests__\\jestSetup.js"
+    ]
   }
 }

@@ -94,35 +94,3 @@ describe('>>>T O D O S COMPONENT -- tests', () => {
         //    expect(todoTxt.find('textinput')).toEqual("What needs to be done?")
     })
 })
-
-/*
-
-describe('>>>T O D O S A P P -- REACT-REDUX (actual Store + reducers) more of Integration Testing',()=>{
-    //const initState = initialState
-    let store,wrapper
-
-    beforeEach(()=>{
-        store = createStore(todosReducer)
-        wrapper = mount( <Provider store={store}><TodosApp /></Provider> )
-    })
-
-    it('+++ check Prop matches with initialState', () => {
-        //store.dispatch(addInputs(500))
-       expect(wrapper.find(TodosApp).prop('todos.inputValue')).toBe('My first todo')
-    })
-
-})
-
-describe('>>>T O D O S A P P --- Shallow Render REACT COMPONENTS',()=>{
-    let wrapper
-
-    beforeEach(() => {
-        wrapper = shallow(<TodosApp />)
-    })
-
-    it('+++ render the DUMB component', () => {
-       expect(wrapper.length).toEqual(1)
-    })
-
-})
-*/
