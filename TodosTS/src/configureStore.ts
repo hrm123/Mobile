@@ -20,7 +20,6 @@ const configureStore: any = (onComplete) => {
       , autoRehydrate()
     ) (createStore)(rootReducer)
     persistStore(store, { storage: AsyncStorage }, onComplete).purge()
-    persistStore(store).purge() // call to clean up storage cache
     return store
 }
 
