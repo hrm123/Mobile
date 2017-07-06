@@ -110,27 +110,6 @@ class TodosApp extends Component<ITodosProps, any> {
     }
 }
 
-//reactMixin(Todos.prototype, TimerMixin)
-
-/*
-Todos.propTypes = {
-    todos: PropTypes.object.isRequired
-}
-*/
-
-/*
-const styles = StyleSheet.create({
-    container: {
-        flex :1,
-        backgroundColor: "#f5f5f5"
-    },
-    content :{
-        flex: 1,
-        paddingTop: 60
-    }
-})
-*/
-
 const mapStateToProps = (state: any) => {
   return {
     todos: state.todos

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Router, Scene } from 'react-native-router-flux'
-import Todos from './todos'
-
+// import Todos from './todos'
+import * as TodoContainer from './todos'
 import { Provider, connect  } from 'react-redux'
 import configureStore from '../configureStore'
 
@@ -34,7 +34,7 @@ class App extends Component<IAppProps, any> {
             <Provider store={ store }>
                 <RouterWithRedux>
                     <Scene key='root'>
-                        <Scene key='todos' component={Todos} title='todos' hideNavBar={true} initial/>
+                        <Scene key='todos' component={TodoContainer.TodosAppConnected} title='todos' hideNavBar={true} initial/>
                     </Scene>
                 </RouterWithRedux>
             </Provider>

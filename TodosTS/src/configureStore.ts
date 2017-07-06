@@ -4,12 +4,12 @@ import { autoRehydrate, persistStore } from 'redux-persist'
 import rootReducer from './reducers/rootReducer'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'remote-redux-devtools'
-import createLoggerMiddleware  from 'redux-logger'
+import { createLogger} from 'redux-logger'
 import promise from 'redux-promise'
 import * as EnvironmentDetails from './environment'
 
 const configureStore: any = (onComplete) => {
-    const logger = createLoggerMiddleware({})
+    const logger = createLogger({})
     const middlewares = [thunk ]
     if ( EnvironmentDetails.env === 'dev') {
         middlewares.push(logger)
