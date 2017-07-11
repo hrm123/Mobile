@@ -31,7 +31,7 @@ describe('perf test', () => {
     var start = new Date().getTime();
     wrapper = mount(<Index />);
     var end = new Date().getTime();
-    expect(end-start).toBeLessThanOrEqual(previousBestTime + 10);
+    expect(end-start).toBeLessThanOrEqual(previousBestTime + 3);
   })
 
 });
