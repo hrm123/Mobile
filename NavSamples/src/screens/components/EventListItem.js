@@ -9,14 +9,14 @@ import {
   LayoutAnimation,
   TouchableOpacity,
 } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/FontAwesome'
 
 export default function EventListItem({ event, goToEvent }) {
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => goToEvent(event)}>
-      <FontAwesome
+      <Ionicons
         name={event.icon ? event.icon : 'ticket'}
         size={32}
         color='black'
@@ -26,7 +26,7 @@ export default function EventListItem({ event, goToEvent }) {
         <Text style={styles.h2}>{event.title}</Text>
         <Text style={styles.p}>{event.location}</Text>
       </View>
-      <FontAwesome
+      <Ionicons
         name='chevron-right'
         size={32}
         color='black'

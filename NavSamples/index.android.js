@@ -6,10 +6,12 @@
 
 import React, { Component } from 'react';
 import {
+  Platform,
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar
 } from 'react-native';
 import Loading from './src/screens/components/loading'
 import MainNav from './src/screens/navigation'
@@ -26,7 +28,7 @@ export default class NavSamples extends Component {
     return (
       <View style={{flex: 1}}>
         {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-        {Platform.OS === 'android' && <View style={{ height: Constants.statusBarHeight, backgroundColor: 'rgba(0,0,0,0.2)' }} />}
+        {Platform.OS === 'android' && <View style={{ height: StatusBar.currentHeight, backgroundColor: 'rgba(0,0,0,0.2)' }} />}
         <MainNav />
       </View>
     )

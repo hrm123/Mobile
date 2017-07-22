@@ -9,7 +9,7 @@ import {
   LayoutAnimation,
   TouchableOpacity,
 } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/FontAwesome'
 
 export default function ChatListItem({ person, goToProfile, goToChat }) {
   return (
@@ -31,7 +31,7 @@ export default function ChatListItem({ person, goToProfile, goToChat }) {
         onPress={() => goToChat(person)}
         style={{justifyContent: 'center', padding: 6}}
       >
-        <FontAwesome
+        <Ionicons
           name='chevron-right'
           size={32}
           color='black'

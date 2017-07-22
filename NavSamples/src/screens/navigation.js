@@ -16,26 +16,25 @@ import {
   TabBarBottom,
   NavigationActions
 } from 'react-navigation'
-import {
-  Ionicons
-} from '@expo/vector-icons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-import Login from './screens/Login'
-import SignupStart from './screens/SignupStart'
-import SignupFinish from './screens/SignupFinish'
-import ChatsPage from './screens/ChatsPage'
-import Chat from './screens/Chat'
-import Profile from './screens/Profile'
-import EventsPage from './screens/EventsPage'
-import EventDetails from './screens/EventDetails'
-import EventMessages from './screens/EventMessages'
-import EventOther from './screens/EventOther'
-import EventsFilter from './screens/EventsFilter'
-import Tbd from './screens/Tbd'
-import FirstTab from './screens/FirstTab'
-import SecondTab from './screens/SecondTab'
-import ThirdTab from './screens/ThirdTab'
-import MyProfile from './screens/MyProfile'
+import Login from './Login'
+import SignupStart from './SignupStart'
+import SignupFinish from './SignupFinish'
+import ChatsPage from './ChatsPage'
+import Chat from './Chat'
+import Profile from './Profile'
+import EventsPage from './EventsPage'
+import EventDetails from './EventDetails'
+import EventMessages from './EventMessages'
+import EventOther from './EventOther'
+import EventsFilter from './EventsFilter'
+import Tbd from './Tbd'
+import FirstTab from './FirstTab'
+import SecondTab from './SecondTab'
+import ThirdTab from './ThirdTab'
+import MyProfile from './MyProfile'
 
 const defaultTabs = {
   labelStyle: {
@@ -76,7 +75,7 @@ const EventsWithFilterStack = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerRight: (
         <TouchableOpacity onPress={() => navigation.navigate('EventsFilter')} >
-          <Ionicons name='md-switch' size={28} color={'white'} style={{paddingRight: 12}}/>
+            <Ionicons name='md-switch' size={28} color={'white'}/>
         </TouchableOpacity>
       )
     })
@@ -86,7 +85,7 @@ const EventsWithFilterStack = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerRight: (
         <TouchableOpacity onPress={() => navigation.goBack()} >
-          <Ionicons name='md-close' size={28} color={'white'} style={{paddingRight: 12}}/>
+          <Ionicons name='md-close' size={28} color={'white'}/>
         </TouchableOpacity>
       )
     })
@@ -154,10 +153,10 @@ const HomeStackSummary = StackNavigator({
   SummaryStack: {
     screen: HomeTabs,
     navigationOptions: ({ navigation }) => ({
-      title: 'YABA',
+      title: 'YAA',
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')} >
-          <Ionicons name='md-menu' size={28} color={'white'} style={{paddingLeft: 12}}/>
+          <FontAwesome name='navicon' size={28} color={'white'} />
         </TouchableOpacity>
       )
     })
@@ -195,7 +194,7 @@ const TbdStack = StackNavigator({
       title: 'TBD',
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')} >
-          <Ionicons name='md-menu' size={28} color={'white'} style={{paddingLeft: 12}}/>
+          <FontAwesome name='navicon' size={28} color={'white'} />
         </TouchableOpacity>
       )
     })
@@ -233,7 +232,7 @@ const BottomTabsStack = StackNavigator({
       title: 'BOTTOM TABS',
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')} >
-          <Ionicons name='md-menu' size={28} color={'white'} style={{paddingLeft: 12}}/>
+          <FontAwesome name='navicon' size={28} color={'white'} />
         </TouchableOpacity>
       )
     })
@@ -318,7 +317,7 @@ const DrawerNavigation = DrawerNavigator({
     <View style={styles.drawer}>
       <View style={{flex: 1}}>
         <View style={styles.header}>
-          <Image style={styles.logo} resizeMode='contain' source={require('./assets/icons/yaba_logo.png')} />
+            <FontAwesome name='bank' size={28} color={'white'} />
         </View>
 
         <ScrollView>

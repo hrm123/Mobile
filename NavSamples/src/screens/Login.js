@@ -12,6 +12,7 @@ import {
   Alert,
   TouchableOpacity
 } from 'react-native'
+import Ionicons from 'react-native-vector-icons/FontAwesome'
 
 export default class Login extends React.Component {
   state = {
@@ -33,6 +34,7 @@ export default class Login extends React.Component {
   }
 
   render() {
+    debugger;
     if(this.state.isLoading) {
       return (
         <View style={{flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center'}}>
@@ -47,8 +49,10 @@ export default class Login extends React.Component {
       return (
         <View style={{flex: 1, backgroundColor: 'black', padding: 12}}>
           <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 25}}>
-            <Image source={require('../assets/icons/yaba_logo.png')} style={{width: 150, height: 150}}/>
-            <Text style={styles.header}>YABA</Text>
+
+            <Ionicons name='bank' size={28} color={'white'} /> 
+
+            <Text style={styles.header}>YAA</Text>
           </View>
           <KeyboardAvoidingView
             style={{flex: 1, justifyContent: 'flex-end'}}
