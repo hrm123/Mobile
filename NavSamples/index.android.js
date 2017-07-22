@@ -11,23 +11,25 @@ import {
   Text,
   View
 } from 'react-native';
+import Loading from './src/screens/components/loading'
+import MainNav from './src/screens/navigation'
 
 export default class NavSamples extends Component {
+  state = {
+    isLoading: false
+  }
+
   render() {
+    if(this.state.isLoading) {
+      return <Loading />
+    }
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View style={{flex: 1}}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+        {Platform.OS === 'android' && <View style={{ height: Constants.statusBarHeight, backgroundColor: 'rgba(0,0,0,0.2)' }} />}
+        <MainNav />
       </View>
-    );
+    )
   }
 }
 
