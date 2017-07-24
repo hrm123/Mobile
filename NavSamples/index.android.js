@@ -14,25 +14,51 @@ import {
   StatusBar
 } from 'react-native';
 import Loading from './src/screens/components/loading'
-import MainNav from './src/screens/navigation'
+// import MainNav from './src/screens/navigation'
+import MainNavWithState from './src/screens/navigation'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import AppReducer from './src/reducers';
+import {createLogger} from 'redux-logger';
+import thunk from "redux-thunk"
+var EnvironmentDetails = require("./environment");
+
+var configureStore = function( onComplete){
+    let store1  = createStore(AppReducer,{}, applyMiddleware(thunk, createLogger()));
+    onComplete();
+    return store1;
+};
 
 export default class NavSamples extends Component {
-  state = {
-    isLoading: false
-  }
+    constructor(props) {
+        super(props);
+        this.state = {isLoading: true};
+        // this.onComplete = this.onComplete.bind(this);
+    };
 
-  render() {
-    if(this.state.isLoading) {
-      return <Loading />
+    onComplete = () => {
+        debugger;
+        this.setState({isLoading: false});
+    };
+
+    componentDidMount() {
+        this.store = configureStore(this.onComplete);
     }
-    return (
-      <View style={{flex: 1}}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-        {Platform.OS === 'android' && <View style={{ height: StatusBar.currentHeight, backgroundColor: 'rgba(0,0,0,0.2)' }} />}
-        <MainNav />
-      </View>
-    )
-  }
+    render() {
+        if(this.state.isLoading) {
+          return <Loading />
+        };
+
+        return (
+          <View style={{flex: 1}}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+            {Platform.OS === 'android' && <View style={{ height: StatusBar.currentHeight, backgroundColor: 'rgba(0,0,0,0.2)' }} />}
+            <Provider store={this.store}>
+              <MainNavWithState />
+            </Provider>
+          </View>
+        );
+    };
 }
 
 const styles = StyleSheet.create({

@@ -14,10 +14,13 @@ import {
   TabNavigator,
   TabBarTop,
   TabBarBottom,
-  NavigationActions
+  NavigationActions,
+    addNavigationHelpers
 } from 'react-navigation'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { connect } from 'react-redux'
+
 
 import Login from './Login'
 import SignupStart from './SignupStart'
@@ -51,7 +54,7 @@ const defaultTabs = {
   tabStyle: {
     padding: 0,
   }
-}
+};
 
 const defaultHeader = {
   headerStyle: {
@@ -67,7 +70,7 @@ const defaultHeader = {
   },
   headerTintColor: 'white',
   headerBackTitle: null
-}
+};
 
 const EventsWithFilterStack = StackNavigator({
   EventsPage: {
@@ -97,7 +100,7 @@ const EventsWithFilterStack = StackNavigator({
   navigationOptions: {
     ...defaultHeader
   }
-})
+});
 
 const HomeTabs = TabNavigator({
   ChatsTab: {
@@ -119,7 +122,7 @@ const HomeTabs = TabNavigator({
   tabBarOptions: {
     ...defaultTabs
   }
-})
+});
 
 const EventTabs = TabNavigator({
   EventDetails: {
@@ -147,7 +150,7 @@ const EventTabs = TabNavigator({
   tabBarOptions: {
     ...defaultTabs
   }
-})
+});
 
 const HomeStackSummary = StackNavigator({
   SummaryStack: {
@@ -185,7 +188,7 @@ const HomeStackSummary = StackNavigator({
   navigationOptions: {
     ...defaultHeader
   }
-})
+});
 
 const TbdStack = StackNavigator({
   Tbd: {
@@ -204,7 +207,7 @@ const TbdStack = StackNavigator({
   navigationOptions: {
     ...defaultHeader
   }
-})
+});
 
 const BottomTabs = TabNavigator({
   FirstTab: {
@@ -223,7 +226,7 @@ const BottomTabs = TabNavigator({
   tabBarOptions: {
     ...defaultTabs
   }
-})
+});
 
 const BottomTabsStack = StackNavigator({
   BottomTabsLanding: {
@@ -242,7 +245,7 @@ const BottomTabsStack = StackNavigator({
   navigationOptions: {
     ...defaultHeader
   }
-})
+});
 
 const MyProfileStack = StackNavigator({
   MyProfile: {
@@ -261,7 +264,7 @@ const MyProfileStack = StackNavigator({
   navigationOptions: {
     ...defaultHeader
   }
-})
+});
 
 const SignupStack = StackNavigator({
   SignupStart: {
@@ -276,7 +279,7 @@ const SignupStack = StackNavigator({
               index: 0,
               actions: [ NavigationActions.navigate({ routeName: 'Login' }) ],
               key: null
-            })
+            });
             navigation.dispatch(resetAction)
           }} >
           <Ionicons name='ios-arrow-back' size={28} color={'white'} style={{paddingHorizontal: 15}} />
@@ -295,7 +298,7 @@ const SignupStack = StackNavigator({
   mode: 'card',
   headerMode: 'screen',
   transitionConfig: () => ({ screenInterpolator: () => null })
-})
+});
 
 const DrawerNavigation = DrawerNavigator({
   Home: {
@@ -377,7 +380,7 @@ const DrawerNavigation = DrawerNavigator({
               NavigationActions.navigate({ routeName: 'Login' })
             ],
             key: null
-          })
+          });
           navigation.dispatch(resetAction)
         }}>
         <Text style={styles.drawerText}>Logout</Text>
@@ -389,9 +392,9 @@ const DrawerNavigation = DrawerNavigator({
       </TouchableOpacity>
 
     </View>
-})
+});
 
-const MainNavigation = StackNavigator({
+export const MainNavigation = StackNavigator({
   Login: {
     screen: Login,
     navigationOptions: {
@@ -411,7 +414,7 @@ const MainNavigation = StackNavigator({
   initialRouteName: 'Login',
   mode: 'card',
   headerMode: 'none',
-})
+});
 
 const styles = StyleSheet.create({
   drawer: {
@@ -457,6 +460,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   }
-})
+});
 
-export default MainNavigation
+const AppWithNavigationState = ({ dispatch, nav }) => (
+    <MainNavigation navigation={addNavigationHelpers({ dispatch, state: nav })} />
+);
+
+const mapStateToProps = state => ({
+    nav: state.nav,
+});
+
+export default connect(mapStateToProps)(AppWithNavigationState);
