@@ -1,6 +1,10 @@
 package com.navsamples;
 
 import com.facebook.react.ReactActivity;
+import android.os.Bundle;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+import com.crashlytics.android.Crashlytics;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +15,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "NavSamples";
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
     }
 }
