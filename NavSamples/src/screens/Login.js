@@ -13,7 +13,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/FontAwesome'
-import {Crashlytics} from 'react-native-fabric'
+import {Crashlytics, Answers} from 'react-native-fabric'
 
 export default class Login extends React.Component {
   state = {
@@ -25,6 +25,7 @@ export default class Login extends React.Component {
   login = () => {
     debugger;
     Crashlytics.setUserIdentifier(this.props.screenProps.uuid);
+    Answers.logLogin('Custom', true);
     this.props.navigation.navigate('App')
   }
 
