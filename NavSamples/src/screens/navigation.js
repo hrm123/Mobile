@@ -377,7 +377,7 @@ const DrawerNavigation = DrawerNavigator({
           let resetAction = NavigationActions.reset({
             index: 0,
             actions: [
-              NavigationActions.navigate({ routeName: 'Login' })
+              NavigationActions.navigate({ routeName: 'Login'})
             ],
             key: null
           });
@@ -462,9 +462,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
-    <MainNavigation navigation={addNavigationHelpers({ dispatch, state: nav })} />
-);
+const AppWithNavigationState = ({ dispatch, nav }) => {
+  debugger;
+  let navHlprs = addNavigationHelpers({ dispatch, state: nav });
+    return (
+    <MainNavigation navigation={navHlprs} screenProps={ {'uuid': nav.uuid} }/>
+    );
+};
 
 const mapStateToProps = state => ({
     nav: state.nav,

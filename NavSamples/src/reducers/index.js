@@ -4,7 +4,8 @@
 import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
 import { MainNavigation } from '../screens/navigation';
-
+// const uniqueId = require('react-native-unique-id')
+import DeviceInfo from 'react-native-device-info';
 /*
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = MainNavigation.router.getActionForPathAndParams('App');
@@ -15,6 +16,8 @@ const initialNavState = MainNavigation.router.getStateForAction(
     tempNavState
 );
 */
+
+
 
 const initialNavState=MainNavigation.router.getStateForAction(NavigationActions.reset({
     index: 0,
@@ -27,6 +30,18 @@ const initialNavState=MainNavigation.router.getStateForAction(NavigationActions.
 
 function nav(state = initialNavState, action) {
     let nextState;
+    let uuid = DeviceInfo.getUniqueID();
+
+    /*
+    uniqueId()
+    .then(id => {
+
+        debugger;
+        uuid = id;
+    })
+    .catch(error => console.error(error))
+    */
+
     switch (action.type) {
         case 'Login':
             nextState = MainNavigation.router.getStateForAction(
@@ -41,13 +56,16 @@ function nav(state = initialNavState, action) {
             );
             break;
         default:
+        debugger;
             nextState = MainNavigation.router.getStateForAction(action, state);
+            Object.assign(nextState,{uuid})
             break;
     }
 
     // Simply return the original `state` if `nextState` is null or undefined.
     return nextState || state;
 }
+
 
 const initialAuthState = { isLoggedIn: false };
 
