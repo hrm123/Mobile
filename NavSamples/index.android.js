@@ -37,7 +37,6 @@ export default class NavSamples extends Component {
     };
 
     onComplete = () => {
-        debugger;
         this.setState({isLoading: false});
     };
 

@@ -23,7 +23,6 @@ export default class Login extends React.Component {
   }
 
   login = () => {
-    debugger;
     Crashlytics.setUserIdentifier(this.props.screenProps.uuid);
     Answers.logLogin('Custom', true);
     this.props.navigation.navigate('App')
@@ -38,7 +37,6 @@ export default class Login extends React.Component {
   }
 
   render() {
-    debugger;
     if(this.state.isLoading) {
       return (
         <View style={{flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center'}}>

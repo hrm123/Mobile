@@ -6,6 +6,7 @@ import { NavigationActions } from 'react-navigation';
 import { MainNavigation } from '../screens/navigation';
 // const uniqueId = require('react-native-unique-id')
 import DeviceInfo from 'react-native-device-info';
+import todos from './todosReducer';
 /*
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = MainNavigation.router.getActionForPathAndParams('App');
@@ -56,7 +57,6 @@ function nav(state = initialNavState, action) {
             );
             break;
         default:
-        debugger;
             nextState = MainNavigation.router.getStateForAction(action, state);
             Object.assign(nextState,{uuid})
             break;
@@ -83,6 +83,7 @@ function auth(state = initialAuthState, action) {
 const AppReducer = combineReducers({
     nav,
     auth,
+    todos
 });
 
 export default AppReducer;
