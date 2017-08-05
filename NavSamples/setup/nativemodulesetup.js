@@ -15,6 +15,3 @@ jest.mock('react-native-device-info', () => {
     getUniqueID: jest.fn()
   }
 });
-
-
-
