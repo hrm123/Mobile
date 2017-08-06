@@ -81,6 +81,32 @@ const styles = StyleSheet.create({
     },
     deleteButton: {
         color: 'rgba(175, 47, 47, 1)'
+    },
+
+    item: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    border: {
+        borderLeftWidth: 1,
+        borderLeftColor: '#dddddd'
+    },
+    itemText: {
+        color: '#777777',
+        fontSize: 16
+    },
+    selected: {
+        backgroundColor: '#ffffff'
+    },
+    bold: {
+        fontWeight: 'bold'
+    },
+    tabbarcontainer: {
+        height: 70,
+        flexDirection: 'row',
+        borderTopWidth: 1,
+        borderTopColor: '#dddddd'
     }
 });
 

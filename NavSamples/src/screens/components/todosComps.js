@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
-import { View, Text, Textinput, StyleSheet, TouchableHighlight } from 'react-native';
+import { 
+    View, Text, TextInput, StyleSheet,
+     TouchableHighlight } from 'react-native';
 import styles from '../../styles/todosStyles'
 
 export class Button extends Component{
@@ -27,7 +29,7 @@ export class Button extends Component{
             submitTodo();
         }
     };
-}
+};
 
 export class ButtonWidget extends Component {
 
@@ -42,7 +44,7 @@ export class ButtonWidget extends Component {
       </View>
     );
   }
-}
+};
 
 export class Input extends Component{
     constructor(props){
@@ -65,11 +67,11 @@ export class Input extends Component{
                     onBlur={this.onInputValChanged}/>
             </View>
         );
-    }
+    };
 
     onInputValChanged(evnt){
         this.props.inputChange(this.state.text);
-    }
+    };
 };
 
 export const Todo = ({ todo, toggleComplete, deleteTodo  }) => (
@@ -138,3 +140,30 @@ export const TodoList = ({todos, toggleComplete, deleteTodo , type}) => {
         </View>
     );
 };
+
+export const TabBarItem = ({ border, title, selected, setType, type }) => (
+    <TouchableHighlight
+        underlayColor='#efefef'
+        onPress={setType}
+        style={[
+        styles.item, selected ? styles.selected : null,
+        border ? styles.border : null,
+        type === title ? styles.selected : null ]}
+    >
+        <Text style={[ styles.itemText, type === title ? styles.bold : null ]}>
+            {title}
+        </Text>
+    </TouchableHighlight>
+);
+
+
+export const TabBar = ({ setType, type }) => (
+    <View style={styles.tabbarcontainer}>
+        <TabBarItem type={type} title='All'
+        setType={() => setType('All')} />
+        <TabBarItem type={type} title='Active'
+        setType={() => setType('Active')} />
+        <TabBarItem type={type} title='Complete'
+        setType={() => setType('Complete')} />
+    </View>
+);
