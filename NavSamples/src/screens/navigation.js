@@ -103,16 +103,17 @@ const EventsWithFilterStack = StackNavigator({
 });
 
 const HomeTabs = TabNavigator({
-  ChatsTab: {
-    screen: ChatsPage,
-    navigationOptions: {
-      tabBarLabel: 'Chats',
-    }
-  },
+  
   EventsTab: {
     screen: EventsWithFilterStack,
     navigationOptions: {
       tabBarLabel: 'Events'
+    }
+  },
+  ChatsTab: {
+    screen: ChatsPage,
+    navigationOptions: {
+      tabBarLabel: 'Chats',
     }
   },
 },

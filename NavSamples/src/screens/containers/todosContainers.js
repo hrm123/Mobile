@@ -18,9 +18,9 @@ import {TodoList} from '../components/todosComps';
 import {TabBar} from '../components/todosComps';
 // import TimerMixin from 'react-timer-mixin';
 // import reactMixin from 'react-mixin';
-import styles from '../../styles/common-styles.js';
+// let  styles1 = require('../../styles/common-styles.js');
 
-class Todos extends Component{
+export class Todos extends Component{
     constructor(props){
         super(props);
         this.submitTodo = this.submitTodo.bind(this);
@@ -34,28 +34,29 @@ class Todos extends Component{
     };
 
     render(){
-        const { todos } = this.props;
-        
-        const {inputVal, todos : todosList, taskStatus : type } = todos;
+        const { todos : todosModel } = this.props;
+        const {inputValue, todos : todosList, taskStatus : type } = todosModel;
         return(   
-                <View style={styles.container}>
-                    <View style={styles.body}>
-                        <ScrollView style={styles.content} keyboardShouldPersistTaps="handled">
-                            <Input
-                                inputValue={inputVal}
-                                inputChange={this.inputChange}
-                            /> 
-                            <TodoList 
-                                todos={todosList}  
-                                toggleComplete={this.toggleComplete}
-                                deleteTodo={this.deleteTask}
-                                type={type}
-                            />
-                            <Button submitTodo={this.submitTodo} />
-                        </ScrollView>
-                        <TabBar type={type} setType={this.setType} />
-                    </View>
-                </View>
+            <View style={{flex: 1,flexDirection: 'column'}}>
+                <ScrollView keyboardShouldPersistTaps="handled" >
+                    <Input  
+                        inputValue={inputValue}
+                        inputChange={this.inputChange}
+                    />
+                    <TodoList 
+                        todos={todosList}  
+                        toggleComplete={this.toggleComplete}
+                        deleteTodo={this.deleteTask}
+                        type={type}
+                    />
+                    <Button submitTodo={this.submitTodo} />
+                </ScrollView>
+                
+                <TabBar type={type} setType={this.setType}  style={{
+                    backgroundColor: 'steelblue'
+                }}/>
+            
+            </View>
         );
     };
 
@@ -129,7 +130,38 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-export default connect(
+export default TodosAppConnected = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Todos);
+
+
+/*
+
+let styles1 = StyleSheet.create({
+  container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        },
+  body: {
+    flex: 9,
+    backgroundColor: '#F5FCFF'
+  },
+   footer: {
+    backgroundColor: 'steelblue',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  header: {
+    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    flex: 2,
+    backgroundColor: 'powderblue'
+  }
+});
+
+*/
