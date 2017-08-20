@@ -18,6 +18,7 @@
     "react-redux": "^5.0.5",
     "react-timer-mixin": "^0.13.3",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },
@@ -26,8 +27,7 @@
     "babel-preset-react-native": "2.1.0",
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0-alpha.12",
-    "redux-mock-store": "^1.2.3",
-    "remote-redux-devtools": "^0.5.12"
+    "redux-mock-store": "^1.2.3"
   },
   "jest": {
     "preset": "react-native",
