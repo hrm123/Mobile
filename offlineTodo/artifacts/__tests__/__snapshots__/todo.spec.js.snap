@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>T O D O S COMPONENT -- tests should render a Todo component using SnapShots 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ffffff",
+      "borderColor": "#ededed",
+      "borderLeftWidth": 1,
+      "borderRightWidth": 1,
+      "borderTopWidth": 1,
+      "flexDirection": "row",
+      "marginLeft": 20,
+      "marginRight": 20,
+      "paddingBottom": 7,
+      "paddingLeft": 14,
+      "paddingTop": 7,
+      "shadowColor": "#000000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 2,
+      },
+      "shadowOpacity": 0.2,
+      "shadowRadius": 3,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    todo1
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "alignSelf": "flex-end",
+            "borderColor": "#ededed",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "marginRight": 5,
+            "padding": 7,
+          },
+        ]
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#666666",
+            },
+            null,
+            null,
+          ]
+        }
+      >
+        Done
+      </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "alignSelf": "flex-end",
+            "borderColor": "#ededed",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "marginRight": 5,
+            "padding": 7,
+          },
+        ]
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#666666",
+            },
+            null,
+            Object {
+              "color": "rgba(175, 47, 47, 1)",
+            },
+          ]
+        }
+      >
+        Delete
+      </Text>
+    </View>
+  </View>
+</View>
+`;

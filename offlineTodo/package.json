@@ -4,20 +4,67 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc",
+    "clean": "rimraf artifacts",
+    "build": "npm run clean && npm run tsc -- ",
+    "lint": "tslint src/**/*.ts",
+    "watch": "npm run build -- -w",
+    "start:android": "npm run build && react-native run-android "
   },
   "dependencies": {
+    "@types/react-redux": "^5.0.4",
     "react": "16.0.0-alpha.6",
-    "react-native": "0.43.4"
+    "react-native": "0.43.4",
+    "react-navigation": "^1.0.0-beta.11",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.2.3",
+    "redux-persist": "^4.8.3",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "babel-jest": "19.0.0",
-    "babel-preset-react-native": "1.9.1",
+    "@types/jest": "^20.0.7",
+    "@types/react": "^16.0.2",
+    "@types/react-native": "^0.47.5",
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-react-native": "^1.9.1",
     "jest": "19.0.2",
     "jest-cli": "^19.0.2",
-    "react-test-renderer": "16.0.0-alpha.6"
+    "react-addons-test-utils": "^15.6.0",
+    "react-native-mock-render": "0.0.8",
+    "react-test-renderer": "16.0.0-alpha.6",
+    "remote-redux-devtools": "^0.5.12",
+    "tslint": "^5.6.0",
+    "tslint-fix": "^0.1.0",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.5"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testRegex": "artifacts/.+\\.(test|spec).(ts|tsx|js)$",
+    "coverageDirectory": "coverage",
+    "collectCoverage": false,
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "collectCoverageFrom": [
+      "artifacts/**/*.js",
+      "!artifacts/**/*.spec.js",
+      "!artifacts/**/*.index.js"
+    ],
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+      "C:\\Users\\Ramm\\my_git\\Mobile\\TodosTS\\artifacts\\__tests__\\jestSetup.js"
+    ]
   }
 }
